@@ -3,7 +3,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="utf-8" />
-    <title>Categories: 日常记录 | yty的博客</title>
+    <title>大数据探索性分析课程笔记 | yty的博客</title>
     <meta name="author" content="Leo yu yty" />
     <meta name="description" content="Hello Everyone This is my website" />
     <meta name="keywords" content="" />
@@ -37,6 +37,10 @@
 
 
 <script src="/js/lib/preview.js"></script>
+
+
+
+
 
 
 
@@ -150,14 +154,20 @@
 </transition>
 
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
-            <div id="archives">
-    
-    <div class="categories-tags">
+            <div class="article">
+    <div>
+        <h1>大数据探索性分析课程笔记</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2025/12/9
+        </span>
         
-        
-        
-        <span>
-            <a href="/categories/%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/" style="background: #00bcd4">
+        <span class="category">
+            <a href="/categories/%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/">
                 <span class="icon">
                     <i class="fa-solid fa-bookmark fa-fw"></i>
                 </span>
@@ -166,58 +176,66 @@
         </span>
         
         
-        
-        <span>
-            <a href="/categories/%E6%97%A5%E5%B8%B8%E8%AE%B0%E5%BD%95/" style="background: linear-gradient(120deg, #9abbf7 0%, #ffbbf4 100%)">
-                <span class="icon">
-                    <i class="fa-solid fa-bookmark fa-fw"></i>
-                </span>
-                日常记录
-            </a>
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/%E7%AC%94%E8%AE%B0/" style="color: #ffa2c4">
+                    笔记
+                </a>
+            </span>
+            
         </span>
-        
-        
-        
         
     </div>
     
-    <div class="timeline">
-        <div class="timeline-tail"></div>
-        <div class="timeline-content">
-            <div class="item-time">2025/11/27</div>
-            <a href="/2025/11/27/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/">
-                <h3>第一篇文章</h3>
-            </a>
-            <div class="info">
-                
-                <span class="category">
-                    <a href="/categories/%E6%97%A5%E5%B8%B8%E8%AE%B0%E5%BD%95/">
-                        <span class="icon">
-                            <i class="fa-solid fa-bookmark fa-fw"></i>
-                        </span>
-                        日常记录
-                    </a>
-                </span>
-                
-                
-                <span class="tags">
-                    <span class="icon">
-                        <i class="fa-solid fa-tags fa-fw"></i>
-                    </span>
-                    
-                    
-                    <span class="tag">
-                        
-                        <a href="/tags/%E6%97%A5%E5%B8%B8/" style="color: #ff7d73">
-                            日常
-                        </a>
-                    </span>
-                    
-                </span>
-                
-            </div>
-        </div>
+    <div class="content" v-pre>
+        <h2 id="数据配平"><a href="#数据配平" class="headerlink" title="数据配平"></a>数据配平</h2><h4 id="数据配平定义"><a href="#数据配平定义" class="headerlink" title="数据配平定义"></a>数据配平定义</h4><p>数据配平是针对于机器学习中“类别不平衡”问题的关键预处理技术，通过调整不同类别的样本分布比例，使模型能够提升对少数类样本的识别能力。</p>
+<p>例如：想象你要训练一个 “识别人” 的模型：如果给它 1000 张男生照片、只给 1 张女生照片，模型练完后大概率只会认男生 —— 因为它见太多男生、没学过女生的特征，这就是 “类别不平衡”。</p>
+<h5 id="类别不平衡的危害："><a href="#类别不平衡的危害：" class="headerlink" title="类别不平衡的危害："></a>类别不平衡的危害：</h5><ul>
+<li>模型对于少数类的预测能力较差</li>
+<li>在不平衡数据集上，常用的准确率指标可能误导分析</li>
+<li>实际场景中漏检关键少数类</li>
+</ul>
+<h4 id="欠采样"><a href="#欠采样" class="headerlink" title="欠采样"></a>欠采样</h4><h5 id="定义：通过减少多数类样本的样本数量来平衡数据集"><a href="#定义：通过减少多数类样本的样本数量来平衡数据集" class="headerlink" title="定义：通过减少多数类样本的样本数量来平衡数据集"></a>定义：通过减少多数类样本的样本数量来平衡数据集</h5><ul>
+<li>随机欠采样：随机删除多数类样本，使两类样本数量接近</li>
+<li>基于聚类的欠采样：对多数类样本聚类（K - means），仅保留簇中心样本</li>
+</ul>
+<p>注：这里K - means聚类就是将多数类分为多个簇，每个簇保留中心样本</p>
+<h5 id="欠采样的缺点"><a href="#欠采样的缺点" class="headerlink" title="欠采样的缺点"></a>欠采样的缺点</h5><p>删去样本可能会丢失有价值的信息；同时数据量的减少还会导致模型泛化能力下降</p>
+<h5 id="解决欠采样导致的信息缺失方法："><a href="#解决欠采样导致的信息缺失方法：" class="headerlink" title="解决欠采样导致的信息缺失方法："></a>解决欠采样导致的信息缺失方法：</h5><ul>
+<li><p>Bagging法：对多数类进行多次有放回的欠采样，从而得到多个不同的训练集，对这些不同训练集建立模型（也叫训练出多个分类器），最后综合得到的结果。</p>
+<p>即：多次有放回欠采样，多模型组合</p>
+</li>
+<li><p>Boosting法：先通过一次欠采样得到训练集，并建立模型训练出一个分类器；然后从一开始的样本集中删掉第一次用掉的这些样本，对剩下的样本再次欠采样重复上面的步骤，最后综合得到结果。</p>
+<p>即：逐步删除已经学会的多数类样本，多模型迭代</p>
+</li>
+</ul>
+<h4 id="过采样"><a href="#过采样" class="headerlink" title="过采样"></a>过采样</h4><h5 id="定义：增加少数类样本数量来平衡数据集"><a href="#定义：增加少数类样本数量来平衡数据集" class="headerlink" title="定义：增加少数类样本数量来平衡数据集"></a>定义：增加少数类样本数量来平衡数据集</h5><ul>
+<li><p>随机过采样：直接复制少数类样本（比如把 100 个少数类复制 9 次变 1000 个）</p>
+<p>优点：简单快速<br>缺点：导致样本重复，使模型在新数据上泛化能力差</p>
+</li>
+<li><p>SMOTE方法：仿照少数类样本，造与他们相似的新样本<br>优点：样本多样<br>缺点：可能偏离真实数据分布</p>
+</li>
+</ul>
+<img src="/2025/12/09/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8E%A2%E7%B4%A2%E6%80%A7%E5%88%86%E6%9E%90%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/1.png" class="" title="图片描述">
+
+
+
+
+
+
     </div>
+    
+    
+    
+    
+    
+    
     
 </div>
 
@@ -249,6 +267,12 @@
         
     </div>
     <script src="/js/main.js"></script>
+    
+    
+
+
+
+
     
 </body>
 </html>
