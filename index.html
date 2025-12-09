@@ -181,6 +181,245 @@
         
 
 <div class="post">
+    <a href="/2025/12/10/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8E%A2%E7%B4%A2%E5%88%86%E6%9E%90%E8%AF%BE%E7%A8%8B%E5%9F%BA%E7%A1%80/">
+        <h2 class="post-title">大数据探索分析课程基础</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="category">
+            <a href="/categories/%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                复习笔记
+            </a>
+        </span>
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2025/12/10
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h2 id="大数据探索性分析基本流程"><a href="#大数据探索性分析基本流程" class="headerlink" title="大数据探索性分析基本流程"></a>大数据探索性分析基本流程</h2><p>**1）理解数据：**了解数据的结构、质量（缺失值、错误值、重复值）、分布（数据取值范围、集中趋势 - 均值&#x2F;中位数、离散程度 - 方差&#x2F;标准差）等规律</p>
+<p>**2）发现线索：**识别趋势、异常值、关联</p>
+<p>**3）形成假设：**针对线索，生成可验证的假设</p>
+<p>**4）检查前提：**有很多数据分析模型（如：回归分析，方差分析）都有明确的适用前提，如：正态性（数据分布符合正态分布）、独立性（样本之间无关联）</p>
+<p>**5）建模准备：**包括数据清洗、特征工程（标准化&#x2F;归一化）</p>
+<h2 id="一、数据形式内容"><a href="#一、数据形式内容" class="headerlink" title="一、数据形式内容"></a>一、数据形式内容</h2><h4 id="数据的形式（偏概念）"><a href="#数据的形式（偏概念）" class="headerlink" title="数据的形式（偏概念）"></a>数据的形式（偏概念）</h4><p>**1）结构化数据：**以行和列存储，具有固定格式和明确字段含义的数据（便于计算机直接读取的数据）</p>
+<p>**核心分析方法：**SQL查询、回归分析（线性回归预测连续型变量；逻辑回归预测分类型变量）</p>
+<p>**2）非结构化数据：**无固定格式的数据，需要通过半结构化处理才能被分析的数据</p>
+<p>**核心分析方法：**自然语言处理、计算机视觉、语音识别</p>
+<p>**数据元素的类型：**数值型、字符型、布尔值、日期时间型、列表型、字典型</p>
+<p>**属性的类型：**类别型、序数型、区间型、比率型</p>
+<h4 id="数据点的相似性度量"><a href="#数据点的相似性度量" class="headerlink" title="数据点的相似性度量"></a>数据点的相似性度量</h4><h5 id="纯数值型属性情况："><a href="#纯数值型属性情况：" class="headerlink" title="纯数值型属性情况："></a>纯数值型属性情况：</h5><img src="/2025/12/10/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8E%A2%E7%B4%A2%E5%88%86%E6%9E%90%E8%AF%BE%E7%A8%8B%E5%9F%BA%E7%A1%80/1.png" class="" title="图片描述">
+
+<h5 id="纯类别型属性情况："><a href="#纯类别型属性情况：" class="headerlink" title="纯类别型属性情况："></a>纯类别型属性情况：</h5><img src="/2025/12/10/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8E%A2%E7%B4%A2%E5%88%86%E6%9E%90%E8%AF%BE%E7%A8%8B%E5%9F%BA%E7%A1%80/2.png" class="" title="图片描述">
+
+<h5 id="纯序数型属性情况："><a href="#纯序数型属性情况：" class="headerlink" title="纯序数型属性情况："></a>纯序数型属性情况：</h5><img src="/2025/12/10/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8E%A2%E7%B4%A2%E5%88%86%E6%9E%90%E8%AF%BE%E7%A8%8B%E5%9F%BA%E7%A1%80/3.png" class="" title="图片描述">
+
+<h5 id="混合型属性情况："><a href="#混合型属性情况：" class="headerlink" title="混合型属性情况："></a>混合型属性情况：</h5><p>案例：</p>
+<img src="/2025/12/10/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8E%A2%E7%B4%A2%E5%88%86%E6%9E%90%E8%AF%BE%E7%A8%8B%E5%9F%BA%E7%A1%80/4.png" class="" title="图片描述">
+
+<p>解答：</p>
+<p>目标：比较A与B像不像</p>
+<p><strong>step 1：计算每个属性的局部距离（不像程度）</strong></p>
+<p><strong>1）年龄（数值属性）</strong></p>
+<p>局部距离 &#x3D; A(35)与B(28)年龄差 &#x2F; 年龄最大范围差 （这里年龄最大范围假设为18 - 70，差为52) &#x3D; 0.135</p>
+<p><strong>2）性别（二元属性）</strong></p>
+<p>二人不同性别，局部距离 &#x3D; 1</p>
+<p><strong>3）教育程度（序数属性）</strong></p>
+<p>把学历按 “高中 &#x3D; 1、学士 &#x3D; 2、硕士 &#x3D; 3、博士 &#x3D; 4” 排顺序</p>
+<p>局部距离 &#x3D; A(3)与B(2)的差 &#x2F; 学历最大范围差(4-1&#x3D;3) &#x3D; 0.333</p>
+<p><strong>4）购买类别（类别属性）</strong></p>
+<p>由于二者完全没有重叠部分，采用Jaccard方法计算</p>
+<p>局部距离 &#x3D; 1-(重叠数&#x2F;总类别数) &#x3D; 1</p>
+<p><strong>总结一下这部分：</strong></p>
+<img src="/2025/12/10/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8E%A2%E7%B4%A2%E5%88%86%E6%9E%90%E8%AF%BE%E7%A8%8B%E5%9F%BA%E7%A1%80/5.png" class="" title="图片描述">
+
+<p><strong>step 2：设置权重，计算加权距离（加权距离为：对应属性权重 * 对应局部距离）</strong></p>
+<img src="/2025/12/10/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8E%A2%E7%B4%A2%E5%88%86%E6%9E%90%E8%AF%BE%E7%A8%8B%E5%9F%BA%E7%A1%80/6.png" class="" title="图片描述">
+
+<p>—— 0表示完全相同，1表示完全不同。</p>
+<h2 id="二、描述型统计"><a href="#二、描述型统计" class="headerlink" title="二、描述型统计"></a>二、描述型统计</h2><h4 id="集中趋势概念：均值、中位数、众数"><a href="#集中趋势概念：均值、中位数、众数" class="headerlink" title="集中趋势概念：均值、中位数、众数"></a>集中趋势概念：均值、中位数、众数</h4><img src="/2025/12/10/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8E%A2%E7%B4%A2%E5%88%86%E6%9E%90%E8%AF%BE%E7%A8%8B%E5%9F%BA%E7%A1%80/7.png" class="" title="图片描述">
+
+<h4 id="离散程度："><a href="#离散程度：" class="headerlink" title="离散程度："></a>离散程度：</h4><p><strong>1）标准差</strong></p>
+<p>**2）变异系数：**消除测量尺度和量纲的影响</p>
+<p>如：身高用厘米、体重用公斤，单位不一样没法直接比波动？这时候用变异系数：把标准差除以平均值，去掉单位影响。</p>
+<p>**3）极差：**最大数-最小数</p>
+<p>**4）四分位差：**先把数据排好队，分成 4 等份，取中间那一半的范围（第 3 份减第 1 份）。不管两头的极端值，只看中间大多数数据的波动。</p>
+<h4 id="分布形态：偏度、峰度"><a href="#分布形态：偏度、峰度" class="headerlink" title="分布形态：偏度、峰度"></a>分布形态：偏度、峰度</h4><p><strong>1）偏度</strong>（衡量数据偏移程度）- 偏不偏？</p>
+<img src="/2025/12/10/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8E%A2%E7%B4%A2%E5%88%86%E6%9E%90%E8%AF%BE%E7%A8%8B%E5%9F%BA%E7%A1%80/8.png" class="" title="图片描述">
+
+<p><strong>2）峰度</strong>（衡量数据集中趋势的指标）- 尖不尖？</p>
+<img src="/2025/12/10/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8E%A2%E7%B4%A2%E5%88%86%E6%9E%90%E8%AF%BE%E7%A8%8B%E5%9F%BA%E7%A1%80/9.png" class="" title="图片描述">
+
+<p>偏度是绝对指标、峰度是相对指标</p>
+<h5 id="Q1：如何计算样本偏度和峰度？"><a href="#Q1：如何计算样本偏度和峰度？" class="headerlink" title="Q1：如何计算样本偏度和峰度？"></a>Q1：如何计算样本偏度和峰度？</h5><p><strong>1）计算样本偏度</strong></p>
+<img src="/2025/12/10/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8E%A2%E7%B4%A2%E5%88%86%E6%9E%90%E8%AF%BE%E7%A8%8B%E5%9F%BA%E7%A1%80/10.png" class="" title="图片描述">
+
+<p>样本偏度公式：</p>
+<img src="/2025/12/10/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8E%A2%E7%B4%A2%E5%88%86%E6%9E%90%E8%AF%BE%E7%A8%8B%E5%9F%BA%E7%A1%80/11.png" class="" title="图片描述">
+
+<p><strong>2）计算样本峰度</strong></p>
+<img src="/2025/12/10/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8E%A2%E7%B4%A2%E5%88%86%E6%9E%90%E8%AF%BE%E7%A8%8B%E5%9F%BA%E7%A1%80/12.png" class="" title="图片描述">
+
+<h5 id="Q2：方差、偏度、峰度的联系？"><a href="#Q2：方差、偏度、峰度的联系？" class="headerlink" title="Q2：方差、偏度、峰度的联系？"></a>Q2：方差、偏度、峰度的联系？</h5><p>都是描述数据分布特征的指标</p>
+<img src="/2025/12/10/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8E%A2%E7%B4%A2%E5%88%86%E6%9E%90%E8%AF%BE%E7%A8%8B%E5%9F%BA%E7%A1%80/13.png" class="" title="图片描述">
+
+<h2 id="三、属性类型与统计方法的适配"><a href="#三、属性类型与统计方法的适配" class="headerlink" title="三、属性类型与统计方法的适配"></a>三、属性类型与统计方法的适配</h2><h4 id="1）类别型属性"><a href="#1）类别型属性" class="headerlink" title="1）类别型属性"></a>1）类别型属性</h4><ul>
+<li>核心统计方法：<br>- 频数：某类别的出现次数<br>- 频率：某类别出现次数占总数的比例</li>
+<li>图表：柱状图、饼图</li>
+</ul>
+<h4 id="2）序数型属性（数据有顺序-等级，但没有固定的数值间隔）"><a href="#2）序数型属性（数据有顺序-等级，但没有固定的数值间隔）" class="headerlink" title="2）序数型属性（数据有顺序&#x2F;等级，但没有固定的数值间隔）"></a>2）序数型属性（数据有顺序&#x2F;等级，但没有固定的数值间隔）</h4><ul>
+<li>核心统计方法：<br>- 累积频数：从低到高（或高到低）累加的次数（比如 “优 + 良” 的累积频数 &#x3D; 优的频数 + 良的频数）<br>- 等级相关分析：看两个序数数据的 “顺序关联”（比如 “成绩等级” 和 “作业完成等级” 是否正相关）</li>
+</ul>
+<img src="/2025/12/10/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8E%A2%E7%B4%A2%E5%88%86%E6%9E%90%E8%AF%BE%E7%A8%8B%E5%9F%BA%E7%A1%80/14.png" class="" title="图片描述">
+
+<ul>
+<li>图表：折线图、箱线图</li>
+</ul>
+<h4 id="3）区间型属性"><a href="#3）区间型属性" class="headerlink" title="3）区间型属性"></a>3）区间型属性</h4><ul>
+<li>核心统计方法：均值、方差</li>
+<li>图表：直方图、散点图</li>
+</ul>
+<h4 id="4）比率型属性"><a href="#4）比率型属性" class="headerlink" title="4）比率型属性"></a>4）比率型属性</h4><ul>
+<li>核心统计方法：均值、标准差、相关系数（看两个比率数据的 “线性关联强度”（比如 “身高” 和 “体重” 的相关程度））</li>
+<li>图表：折线图、散点图</li>
+</ul>
+<h2 id="四、缺失值"><a href="#四、缺失值" class="headerlink" title="四、缺失值"></a>四、缺失值</h2><h4 id="1）缺失值的分类："><a href="#1）缺失值的分类：" class="headerlink" title="1）缺失值的分类："></a>1）缺失值的分类：</h4><ul>
+<li>完全随机缺失：缺失与任何变量无关，仅由随机因素导致</li>
+<li>随机缺失：缺失与已观测变量相关，但与缺失变量本身无关</li>
+<li>非随机缺失：缺失与缺失变量本身直接相关</li>
+</ul>
+<h4 id="2）缺失数据的处理步骤"><a href="#2）缺失数据的处理步骤" class="headerlink" title="2）缺失数据的处理步骤"></a>2）缺失数据的处理步骤</h4><p>识别缺失值——探索缺失值的分布模式——分析导致缺失的原因——处理缺失值</p>
+<h4 id="3）缺失值的处理"><a href="#3）缺失值的处理" class="headerlink" title="3）缺失值的处理"></a>3）缺失值的处理</h4><ul>
+<li>**删除法：**行删除&amp;列删除</li>
+<li><strong>代表性性数据填充：</strong><br>- 均值填充：适用于服从正态分布的数值型变量<br>- 中位数填充：适用于存在极端值的偏态分布<br>- 众数填充：适用于离散型分布变量<br>- 前向填充&#x2F;后向填充：适用于时间序列数据（如：今天的数字空了，就用明天的或者昨天的数据填充）</li>
+<li><strong>预测法填充：</strong><br>- 回归填充：通过与缺失值有关联的变量建立回归模型，从而预测缺失值<br>- KNN填充：找k个与缺失值相似情况的值，取他们的均值从而填充缺失值</li>
+</ul>
+<h2 id="五、异常值（-离群点）"><a href="#五、异常值（-离群点）" class="headerlink" title="五、异常值（&#x3D; 离群点）"></a>五、异常值（&#x3D; 离群点）</h2><h3 id="1、概念部分"><a href="#1、概念部分" class="headerlink" title="1、概念部分"></a>1、概念部分</h3><h4 id="1）异常值的来源"><a href="#1）异常值的来源" class="headerlink" title="1）异常值的来源"></a>1）异常值的来源</h4><ul>
+<li>数据来源于不同的类</li>
+<li>自然变异</li>
+<li>数据测量和收集误差</li>
+<li>业务特征</li>
+</ul>
+<h4 id="2）异常值的类型"><a href="#2）异常值的类型" class="headerlink" title="2）异常值的类型"></a>2）异常值的类型</h4><ul>
+<li>点异常值</li>
+<li>上下文异常值</li>
+<li>集体异常值</li>
+</ul>
+<h4 id="3）判断异常值需要注意"><a href="#3）判断异常值需要注意" class="headerlink" title="3）判断异常值需要注意"></a>3）判断异常值需要注意</h4><ul>
+<li>确定数据对象是单一属性异常还是多个属性异常</li>
+<li>异常值的全局观点和局部观点（数据是否异常需要考虑其所对比对象）</li>
+<li>数据对象的异常程度</li>
+<li>多个数据对象同时考虑看有没有异常</li>
+</ul>
+<h3 id="2、异常值检测"><a href="#2、异常值检测" class="headerlink" title="2、异常值检测"></a>2、异常值检测</h3><h4 id="1）基于统计方法检测异常值"><a href="#1）基于统计方法检测异常值" class="headerlink" title="1）基于统计方法检测异常值"></a>1）基于统计方法检测异常值</h4><h5 id="a、基于z-score的异常值检测"><a href="#a、基于z-score的异常值检测" class="headerlink" title="a、基于z-score的异常值检测"></a>a、基于z-score的异常值检测</h5><p>适用于：单变量+正态分布</p>
+<p>z的值 &#x3D; （当前值 - 均值）&#x2F; 标准差</p>
+<img src="/2025/12/10/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8E%A2%E7%B4%A2%E5%88%86%E6%9E%90%E8%AF%BE%E7%A8%8B%E5%9F%BA%E7%A1%80/15.png" class="" title="图片描述">
+
+<h5 id="b、基于箱线图的检测"><a href="#b、基于箱线图的检测" class="headerlink" title="b、基于箱线图的检测"></a>b、基于箱线图的检测</h5><p>箱线图（&#x3D; 盒须图）：由中位数Q2、下四分位数Q1、上四分位数Q3构成的箱体以及两个表示数据范围的须线组成，超出上下边缘的值为异常值。</p>
+<img src="/2025/12/10/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8E%A2%E7%B4%A2%E5%88%86%E6%9E%90%E8%AF%BE%E7%A8%8B%E5%9F%BA%E7%A1%80/16.png" class="" title="图片描述">
+
+<h5 id="c、基于假设检验的检测"><a href="#c、基于假设检验的检测" class="headerlink" title="c、基于假设检验的检测"></a>c、基于假设检验的检测</h5><p>（适合数据少+只有一个异常值点+正态分布的情况）——（可以支持多变量）</p>
+<img src="/2025/12/10/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8E%A2%E7%B4%A2%E5%88%86%E6%9E%90%E8%AF%BE%E7%A8%8B%E5%9F%BA%E7%A1%80/17.png" class="" title="图片描述">
+
+<p>用算出来的G，查表检验（G是否&gt;临界点）该值是否显著，若显著（&gt;），则该点为异常值点。</p>
+<h4 id="2）基于局部离群因子检测异常值"><a href="#2）基于局部离群因子检测异常值" class="headerlink" title="2）基于局部离群因子检测异常值"></a>2）基于局部离群因子检测异常值</h4><h5 id="局部离群因子（LOF）"><a href="#局部离群因子（LOF）" class="headerlink" title="局部离群因子（LOF）"></a>局部离群因子（LOF）</h5><p>定义：通过评估数据对象相对于其局部邻近区域的离群程度来检测异常点，不是通过全局尺度来判定。</p>
+<p>异常点位于局部密度较低的区域；正常点位于局部密度较高的区域。</p>
+<p>LOF通过比较每个点的局部1密度来判断该点是否为异常点。</p>
+<ul>
+<li><h5 id="计算局部离群因子（LOF）"><a href="#计算局部离群因子（LOF）" class="headerlink" title="计算局部离群因子（LOF）"></a>计算局部离群因子（LOF）</h5></li>
+</ul>
+<p><strong>step1：</strong></p>
+<p>对数据集中每个点选取k个离他最近的点</p>
+<p><strong>step2：</strong></p>
+<p>计算k - 距离**（k - distance）&#x3D; 每个数据点p到与他的第k个最近点ok之间的距离**</p>
+<p>ok又被称为点p的第k个最近邻</p>
+<p>如：第五个点离该点2米，则k - 距离就为2米</p>
+<p><strong>step3：</strong></p>
+<p>定义<strong>可达距离</strong>（平滑点之间的距离，避免由于局部过于密集的区域导致的异常点识别误差）</p>
+<p>当前点为p</p>
+<p><strong>可达距离 &#x3D; max（o点的k - 距离，p到o之间的距离）</strong></p>
+<p>简单来讲：可达距离 &#x3D; max (邻居的 k - 距离，点到邻居的实际距离)</p>
+<img src="/2025/12/10/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8E%A2%E7%B4%A2%E5%88%86%E6%9E%90%E8%AF%BE%E7%A8%8B%E5%9F%BA%E7%A1%80/18.png" class="" title="图片描述">
+
+<p><strong>step4：</strong></p>
+<p><strong>局部可达密度（LRD）：邻居到该点的平均可达距离的倒数（密度越高，值越大）</strong></p>
+<img src="/2025/12/10/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8E%A2%E7%B4%A2%E5%88%86%E6%9E%90%E8%AF%BE%E7%A8%8B%E5%9F%BA%E7%A1%80/19.png" class="" title="图片描述">
+
+<p><strong>step5：</strong></p>
+<p><strong>计算局部离群因子（LOF）</strong></p>
+<p>LOF接近于1——为正常点</p>
+<p>LOF&gt;1——为异常点</p>
+<p>LOF值越大，离群程度越高</p>
+<img src="/2025/12/10/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8E%A2%E7%B4%A2%E5%88%86%E6%9E%90%E8%AF%BE%E7%A8%8B%E5%9F%BA%E7%A1%80/20.png" class="" title="图片描述">
+
+<ul>
+<li>k值的影响：k太小，局部信息不够，容易误判；k值越大，异常点会被漏掉</li>
+</ul>
+<h4 id="3）基于聚类检测异常值（k-means聚类）"><a href="#3）基于聚类检测异常值（k-means聚类）" class="headerlink" title="3）基于聚类检测异常值（k - means聚类）"></a>3）基于聚类检测异常值（k - means聚类）</h4><ul>
+<li><h5 id="k-means聚类定义："><a href="#k-means聚类定义：" class="headerlink" title="k - means聚类定义："></a>k - means聚类定义：</h5></li>
+</ul>
+<p>把所有数据点分为k个簇（k个小团体），计算每个点到自己所属簇的中心的距离，根据这一距离设定阈值，大于这一阈值的被称为离群点。</p>
+<p>阈值选择：</p>
+<img src="/2025/12/10/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8E%A2%E7%B4%A2%E5%88%86%E6%9E%90%E8%AF%BE%E7%A8%8B%E5%9F%BA%E7%A1%80/21.png" class="" title="图片描述">
+
+<ul>
+<li><h5 id="k-means聚类的优缺点："><a href="#k-means聚类的优缺点：" class="headerlink" title="k - means聚类的优缺点："></a>k - means聚类的优缺点：</h5></li>
+</ul>
+<img src="/2025/12/10/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8E%A2%E7%B4%A2%E5%88%86%E6%9E%90%E8%AF%BE%E7%A8%8B%E5%9F%BA%E7%A1%80/22.png" class="" title="图片描述">
+
+<h4 id="3）基于聚类检测异常值（DBSCAN聚类）"><a href="#3）基于聚类检测异常值（DBSCAN聚类）" class="headerlink" title="3）基于聚类检测异常值（DBSCAN聚类）"></a>3）基于聚类检测异常值（DBSCAN聚类）</h4><ul>
+<li><h5 id="DBSCAN聚类定义："><a href="#DBSCAN聚类定义：" class="headerlink" title="DBSCAN聚类定义："></a>DBSCAN聚类定义：</h5></li>
+</ul>
+<p>两个重要参数：<strong>最小邻居数（MinPts）</strong>；<strong>半径参数（eps）</strong></p>
+<p>对每个数据点，DBSCAN通过检查它在半径（eps）范围内的邻居数是否达到最小邻居数（&gt;&#x3D;MinPts）来判断这一数据点是否为核心点。</p>
+<ul>
+<li>&gt;&#x3D;MinPts 则为核心点；&lt;MinPts则为噪声点。</li>
+</ul>
+<h5 id="优缺点："><a href="#优缺点：" class="headerlink" title="优缺点："></a>优缺点：</h5><img src="/2025/12/10/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8E%A2%E7%B4%A2%E5%88%86%E6%9E%90%E8%AF%BE%E7%A8%8B%E5%9F%BA%E7%A1%80/23.png" class="" title="图片描述">
+
+<h3 id="3、异常值的处理"><a href="#3、异常值的处理" class="headerlink" title="3、异常值的处理"></a>3、异常值的处理</h3><ul>
+<li><strong>直接删除</strong></li>
+<li>**异常值替换：**均值替换；中位数替换；截断（超过异常值边界的值用边界值代替）</li>
+<li>**异常值修正：**对数变化（减少右偏分布的影响）；平方根变换（适用于轻微偏移的数据）；Box-Cox变换（通过参数调整数据分布，使其更接近正态分布）</li>
+<li><strong>分离异常值单独分析</strong></li>
+</ul>
+<h5 id="异常值处理的影响评估："><a href="#异常值处理的影响评估：" class="headerlink" title="异常值处理的影响评估："></a>异常值处理的影响评估：</h5><ul>
+<li><strong>可视化图表</strong>（直方图；QQ图——验证正态性）</li>
+<li><strong>统计量量化</strong>（均值，方差，偏度的变化）</li>
+<li><strong>模型性能的前后验证</strong>：如线性回归模型的R2变化；k - means聚类的轮廓系数变化</li>
+</ul>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/%E7%AC%94%E8%AE%B0/" style="color: #00bcd4">笔记</a>
+        </span>
+        
+    </div>
+    <a href="/2025/12/10/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8E%A2%E7%B4%A2%E5%88%86%E6%9E%90%E8%AF%BE%E7%A8%8B%E5%9F%BA%E7%A1%80/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
     <a href="/2025/12/09/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8E%A2%E7%B4%A2%E6%80%A7%E5%88%86%E6%9E%90%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/">
         <h2 class="post-title">大数据探索性分析课程笔记</h2>
     </a>
@@ -452,7 +691,7 @@
         
         <span class="tag">
             
-            <a href="/tags/%E7%AC%94%E8%AE%B0/" style="color: #ff7d73">笔记</a>
+            <a href="/tags/%E7%AC%94%E8%AE%B0/" style="color: #03a9f4">笔记</a>
         </span>
         
     </div>
@@ -515,7 +754,7 @@
         
         <span class="tag">
             
-            <a href="/tags/%E7%AC%94%E8%AE%B0/" style="color: #00bcd4">笔记</a>
+            <a href="/tags/%E7%AC%94%E8%AE%B0/" style="color: #ffa2c4">笔记</a>
         </span>
         
     </div>
@@ -593,7 +832,7 @@
         
         <span class="tag">
             
-            <a href="/tags/%E7%AC%94%E8%AE%B0/" style="color: #03a9f4">笔记</a>
+            <a href="/tags/%E7%AC%94%E8%AE%B0/" style="color: #00bcd4">笔记</a>
         </span>
         
     </div>
@@ -645,7 +884,7 @@
         
         <span class="tag">
             
-            <a href="/tags/%E6%97%A5%E5%B8%B8/" style="color: #ff7d73">日常</a>
+            <a href="/tags/%E6%97%A5%E5%B8%B8/" style="color: #00a596">日常</a>
         </span>
         
     </div>
