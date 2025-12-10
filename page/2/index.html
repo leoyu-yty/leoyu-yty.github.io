@@ -1,0 +1,456 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <title>yty的博客</title>
+    <meta name="author" content="Leo yu yty" />
+    <meta name="description" content="Hello Everyone This is my website" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/xnylh.webp" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+<script src="/js/lib/home.js"></script>
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>YTY的博客</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;主页</span>
+        </a>
+        
+        <a href="/about/">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;关于</span>
+        </a>
+        
+        <a href="/archives/">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;文章</span>
+        </a>
+        
+        <a href="/categories/">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;分类</span>
+        </a>
+        
+        <a href="/tags/">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;标签</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;YTY的博客</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">主页</div>
+                    </div>
+                </a>
+                
+                <a href="/about/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">关于</div>
+                    </div>
+                </a>
+                
+                <a href="/archives/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">文章</div>
+                    </div>
+                </a>
+                
+                <a href="/categories/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">分类</div>
+                    </div>
+                </a>
+                
+                <a href="/tags/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">标签</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div id="home-head">
+    <div
+        id="home-background"
+        ref="homeBackground"
+        data-images="/images/science.jpg"
+    ></div>
+    <div id="home-info" @click="homeClick">
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="info">
+            <div class="wrap">
+                <h1>yty的博客</h1>
+                <h3>yty的日常博客记录</h3>
+                <h5>Hello Everyone This is my website</h5>
+            </div>
+        </span>
+    </div>
+</div>
+<div
+    id="home-posts-wrap"
+    ref="homePostsWrap"
+    true
+>
+    <div id="home-posts">
+        
+
+<div class="post">
+    <a href="/2025/12/04/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E7%A8%8B/">
+        <h2 class="post-title">机器学习课程</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="category">
+            <a href="/categories/%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                复习笔记
+            </a>
+        </span>
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2025/12/4
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h1 id="机器学习课程期末复习笔记"><a href="#机器学习课程期末复习笔记" class="headerlink" title="机器学习课程期末复习笔记"></a>机器学习课程期末复习笔记</h1><p>——按章节来排序</p>
+<h3 id="第一章——监督学习"><a href="#第一章——监督学习" class="headerlink" title="第一章——监督学习"></a>第一章——监督学习</h3><p>#### 监督学习 —— (Supervised Learning)  </p>
+<p><strong>定义</strong>：指从<u>标注数据</u>中学习预测模型的机器学习问题，学习<u>输入输出</u>之间对应关系，<u>预测</u>给定的输入产生相应的输出。</p>
+<h4 id="监督学习的分类-——-根据输出空间的不同"><a href="#监督学习的分类-——-根据输出空间的不同" class="headerlink" title="监督学习的分类 —— (根据输出空间的不同)"></a>监督学习的分类 —— (根据输出空间的不同)</h4><p>**1）回归问题 - Regression：**一般输出空间是由<u>连续数值</u>构成的</p>
+<p>**2）分类问题 - Classification：**一般输出空间是由<u>离散数值</u>构成的</p>
+<img src="/2025/12/04/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E7%A8%8B/1.png" class="" title="分类问题">
+
+<h4 id="损失函数："><a href="#损失函数：" class="headerlink" title="损失函数："></a>损失函数：</h4><p><strong>定义：</strong></p>
+<p>假如现在从假设空间 F 下中选取模型 f 作为目标，实例 x 的标签为 y，通过模型 f 得到的预测结果为 f(x)。<br>损失函数就是比较输入变量取值为 x 时，f(x) 与真实标注 y 之间的差异，记为 L(y,f(x))。</p>
+<p><strong>回归问题中的损失函数：</strong></p>
+<img src="/2025/12/04/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E7%A8%8B/3.png" class="" title="图片描述">
+
+<p><strong>分类问题中的损失函数：</strong></p>
+<img src="/2025/12/04/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E7%A8%8B/4.png" class="" title="图片描述">
+
+<h5 id="损失函数的期望-风险函数-期望损失"><a href="#损失函数的期望-风险函数-期望损失" class="headerlink" title="损失函数的期望 - 风险函数&#x2F;期望损失"></a>损失函数的期望 - 风险函数&#x2F;期望损失</h5>
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/%E7%AC%94%E8%AE%B0/" style="color: #ff7d73">笔记</a>
+        </span>
+        
+    </div>
+    <a href="/2025/12/04/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E7%A8%8B/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2025/12/02/%E5%9B%BD%E9%99%85%E9%87%91%E8%9E%8D/">
+        <h2 class="post-title">国际金融</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="category">
+            <a href="/categories/%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                复习笔记
+            </a>
+        </span>
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2025/12/2
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <p>国际金融课程期末复习笔记</p>
+<p>——练习题部分</p>
+<p>第一章第二章：</p>
+<p>单选：<br>1）货币国际化的主要收益包括：<br>贸易条件的改善、非对称的政策优势、国际铸币税<br>2）与金币本位相比，金块本位和金汇兑本位下汇率的稳定程度：<br>有所降低<br>3）国际货币的供给影响了整个世界的物价水平，对整个世界的实际产出虽然没有影响，但却导致了资源在不同国家之间的转移，指的是国际货币的：<br>非中性<br>4）影响汇率变动的主要因素有：<br>国际收支、相对通货膨胀、相对利率水平、财政与货币政策、市场预期<br>5）历史上第一个国际货币体系是：<br>国际金本位制<br>6）汇率变化对资本流动的关系是：<br>本币汇率大幅度贬值会引起资本外逃</p>
+<p>多选：<br>1）金本位制的特点：<br>各国货币能按照法定含金量与黄金自由兑换；黄金能自由铸造成金币；黄金是国际货币体系的基础；黄金能在各国间自由输入输出<br>2）货币国际化的成本主要有：<br>汇率调整方面的非对称性；金融市场波动加剧，金融稳定成本增加；“特里芬难题”对国际货币地位的自我削弱；削弱宏观调控能力，增大宏观调控难度。<br>3）汇率变化对资本流动的关系：<br>汇率升值为引起短期资本流入；汇率变动对长期资本的影响较小；本币汇率大幅度贬值会引起资本外逃。<br>4）选项排除：<br>外币不等于外汇；直接标价法下，本币汇率水平上升，意味着本币对外价值上升，二者变化同方向；间接标价法是以一定单位的本国货币作为基准货币，外国货币作为标价货币；直接标价法以一定单位的外国货币作为基准；远期汇率与即期汇率的差价，除了升水和贴水两种情况，还有平价的情况。</p>
+<p>判断：<br>1）根据利率平价论，其他条件不变。预期汇率与远期汇率之间如果存在差异，会引起资金的投机性移动：True<br>2）在间接标价法下，汇率数值下降表示外国货币贬值，本国货币升值：False<br>3）国际借贷说实际上就是汇率的供求决定论：True<br>4）铸币税指的是中央银行发行货币的成本与货币流通中的币值之间的差额：True<br>5）进口公司向银行买入外汇时应使用买入价：False<br>6）银行的现钞卖出价低于现汇卖出价：False（应该是&#x3D;）<br>7）美元兑新加坡元的汇价为 1 美元&#x3D;1.6403&#x2F;1.6410，则客户从银行买入美元的汇率为 1 美元&#x3D;1.6403 新加坡元：True<br>解释：在直接标价法下，银行买入外汇(客户卖出外汇)用买入价，银行卖出外汇(客户买入外汇)用卖出价。这里1.6403是银行卖出美元(客户买入美元)的价格。<br>8）现买现卖的外汇交易就是即期外汇交易：True<br>解释：指的是外汇市场上买卖双方成交<br>9）利率平价理论主要是讲短期汇率的决定,其基本条件是两国金融市场高度发达井紧密相连，资金流动无障碍：True</p>
+<p>计算题：<br>1）<br>根据下面汇率：<br>美元&#x2F;瑞典克朗 6.9980&#x2F;6.9986<br>美元&#x2F;加拿大元 1.2329&#x2F;1.2359<br>请问某中加合资公司要以加拿大元买进瑞典克朗，汇率是多少?</p>
+<p>答：<br>需先将加拿大元兑换为美元，再将美元兑换为瑞典克朗，对应汇率选择：<br>用加拿大元买美元：使用 “银行卖出美元” 的汇率（即美元 &#x2F; 加拿大元的卖出价 1.2359）<br>用美元买瑞典克朗：使用 “银行卖出瑞典克朗” 的汇率（即美元 &#x2F; 瑞典克朗的卖出价 6.9980）</p>
+<p>计算汇率：加拿大元 &#x2F; 瑞典克朗 &#x3D; （瑞典克朗 &#x2F; 美元） ÷ （加拿大元 &#x2F; 美元）<br>即：6.9980 ÷ 1.2359 ≈ 5.662</p>
+<p>2）<br>美元&#x2F;日元 153.40&#x2F;153.30<br>美元&#x2F;港元 7.8010&#x2F;7.8020<br>请问某公司以港元买进日元支付货款，日元兑港元汇价是多少?</p>
+<p>答：<br>因为港元买进日元，所以要先把港元换成美元，再把美元换成日元。<br>港元换美元是用美元&#x2F;港元的买入价(7.8010)，即1港元&#x3D;1&#x2F;7.8010 美元<br>美元换日元是用美元 &#x2F;日元的卖出价(153.30)，即1美元&#x3D;153.30 日元<br>那么 1 港元可以换的日元数为:(1&#x2F;7.8010)x153.30≈19.65 日元。</p>
+<p>所以日元兑港元的汇率约为 19.65。</p>
+<p>3）<br>请简述你对于人民币国际化的认识以及人民币国际化的现状</p>
+<p>答:<br>人民币国际化指人民币成为国际上认可的货币的一个过程。人民币国际化能降低中国企业的汇率风险，促进国内企业的对外贸易，在国际上也能在提供更多货币选择的同时也能促进国际货币的多元化。</p>
+<p>现状:人民币的国际化地位上升，且在海外贸易往来中被广泛使用，同时向国际投资者打开了中国金融市场的大门，促进中国经济的发展。</p>
+<p>标准答案：</p>
+<p>人民币国际化的认识:</p>
+<ul>
+<li>人民币国际化是指人民币能够跨越国界，在境外流通，成为国际上普遍认可的计价、结算及储备货币的过程。其好处包括提升中国在国际金融市场的话语权、降低中国企业的汇率风险、促进对外贸易和投资等。</li>
+<li>同时,人民币国际化也面临挑战,如需要完善国内金融市场、保持汇率稳定加强金融监管等。</li>
+</ul>
+<p>人民币国际化的现状:</p>
+<ul>
+<li><p>目前，人民币国际化已经取得了一定进展。在贸易结算方面，越来越多的企业在跨境贸易中使用人民币结算。例如，中国与周边国家和新兴市场国家的贸易中，人民币结算比例逐步提高。</p>
+</li>
+<li><p>在金融交易方面，人民币离岸市场不断发展，如香港、新加坡等地的人民币离岸业务不断拓展，包括人民币债券发行(点心债)等。</p>
+</li>
+<li><p>在储备货币方面，一些国家的央行已经将人民币纳入其外汇储备。但总体上，人民币在国际储备货币中的占比还相对较低，与美元、欧元等相比还有较大差距。</p>
+</li>
+</ul>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/%E7%AC%94%E8%AE%B0/" style="color: #ffa2c4">笔记</a>
+        </span>
+        
+    </div>
+    <a href="/2025/12/02/%E5%9B%BD%E9%99%85%E9%87%91%E8%9E%8D/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2025/11/27/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/">
+        <h2 class="post-title">第一篇文章</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="category">
+            <a href="/categories/%E6%97%A5%E5%B8%B8%E8%AE%B0%E5%BD%95/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                日常记录
+            </a>
+        </span>
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2025/11/27
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <p>这是我的第一篇文章~</p>
+<ul>
+<li>以此记录第一次创建个人网站</li>
+</ul>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/%E6%97%A5%E5%B8%B8/" style="color: #ffa2c4">日常</a>
+        </span>
+        
+    </div>
+    <a href="/2025/11/27/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/" class="go-post">阅读全文</a>
+</div>
+
+
+        <div class="page-current">
+    
+    <a class="page-num" href="/">
+        <i class="fa-solid fa-caret-left fa-fw"></i>
+    </a>
+    <a class="page-num" href="/">1</a>
+    <span class="page-omit">...</span>
+    
+    <span class="current">2</span>
+    
+    
+    
+    
+</div>
+
+    </div>
+    
+    <div id="home-card">
+        <div id="card-style">
+    <div id="card-div">
+        <div class="avatar">
+            <img src="/images/xnylh.webp" alt="avatar" />
+        </div>
+        <div class="name">Leo yu yty</div>
+        <div class="description">
+            <p>yty的个人博客~<br>分享日常和学习心得</p>
+
+        </div>
+        
+        
+        <div class="friend-links">
+            
+            <div class="friend-link">
+                <a target="_blank" rel="noopener" href="https://argvchs.github.io">Argvchs</a>
+            </div>
+            
+            <div class="friend-link">
+                <a target="_blank" rel="noopener" href="https://blog.csdn.net/leo_yty?spm=1000.2692.3001.5343">yty的csdn博客</a>
+            </div>
+            
+        </div>
+        
+    </div>
+</div>
+
+    </div>
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2005 - 2025 yty的博客
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Leo yu yty
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+</body>
+</html>
