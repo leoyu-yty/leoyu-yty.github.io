@@ -184,7 +184,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/%E7%AC%94%E8%AE%B0/" style="color: #ff7d73">
+                <a href="/tags/%E7%AC%94%E8%AE%B0/" style="color: #03a9f4">
                     笔记
                 </a>
             </span>
@@ -194,14 +194,14 @@
     </div>
     
     <div class="content" v-pre>
-        <h2 id="数据配平"><a href="#数据配平" class="headerlink" title="数据配平"></a>数据配平</h2><h4 id="数据配平定义"><a href="#数据配平定义" class="headerlink" title="数据配平定义"></a>数据配平定义</h4><p>数据配平是针对于机器学习中“类别不平衡”问题的关键预处理技术，通过调整不同类别的样本分布比例，使模型能够提升对少数类样本的识别能力。</p>
+        <h2 id="数据配平"><a href="#数据配平" class="headerlink" title="数据配平"></a>数据配平</h2><h3 id="数据配平定义"><a href="#数据配平定义" class="headerlink" title="数据配平定义"></a>数据配平定义</h3><p>数据配平是针对于机器学习中“类别不平衡”问题的关键预处理技术，通过调整不同类别的样本分布比例，使模型能够提升对少数类样本的识别能力。</p>
 <p>例如：想象你要训练一个 “识别人” 的模型：如果给它 1000 张男生照片、只给 1 张女生照片，模型练完后大概率只会认男生 —— 因为它见太多男生、没学过女生的特征，这就是 “类别不平衡”。</p>
 <h5 id="类别不平衡的危害："><a href="#类别不平衡的危害：" class="headerlink" title="类别不平衡的危害："></a>类别不平衡的危害：</h5><ul>
 <li>模型对于少数类的预测能力较差</li>
 <li>在不平衡数据集上，常用的准确率指标可能误导分析</li>
 <li>实际场景中漏检关键少数类</li>
 </ul>
-<h4 id="欠采样"><a href="#欠采样" class="headerlink" title="欠采样"></a>欠采样</h4><h5 id="定义：通过减少多数类样本的样本数量来平衡数据集"><a href="#定义：通过减少多数类样本的样本数量来平衡数据集" class="headerlink" title="定义：通过减少多数类样本的样本数量来平衡数据集"></a>定义：通过减少多数类样本的样本数量来平衡数据集</h5><ul>
+<h3 id="欠采样-删"><a href="#欠采样-删" class="headerlink" title="欠采样 - 删"></a>欠采样 - 删</h3><h5 id="定义：通过减少多数类样本的样本数量来平衡数据集"><a href="#定义：通过减少多数类样本的样本数量来平衡数据集" class="headerlink" title="定义：通过减少多数类样本的样本数量来平衡数据集"></a>定义：通过减少多数类样本的样本数量来平衡数据集</h5><ul>
 <li>随机欠采样：随机删除多数类样本，使两类样本数量接近</li>
 <li>基于聚类的欠采样：对多数类样本聚类（K - means），仅保留簇中心样本</li>
 </ul>
@@ -215,19 +215,71 @@
 <p>即：逐步删除已经学会的多数类样本，多模型迭代</p>
 </li>
 </ul>
-<h4 id="过采样"><a href="#过采样" class="headerlink" title="过采样"></a>过采样</h4><h5 id="定义：增加少数类样本数量来平衡数据集"><a href="#定义：增加少数类样本数量来平衡数据集" class="headerlink" title="定义：增加少数类样本数量来平衡数据集"></a>定义：增加少数类样本数量来平衡数据集</h5><ul>
+<h3 id="过采样-补"><a href="#过采样-补" class="headerlink" title="过采样 - 补"></a>过采样 - 补</h3><h5 id="定义：增加少数类样本数量来平衡数据集"><a href="#定义：增加少数类样本数量来平衡数据集" class="headerlink" title="定义：增加少数类样本数量来平衡数据集"></a>定义：增加少数类样本数量来平衡数据集</h5><ul>
 <li><p>随机过采样：直接复制少数类样本（比如把 100 个少数类复制 9 次变 1000 个）</p>
-<p>优点：简单快速<br>缺点：导致样本重复，使模型在新数据上泛化能力差</p>
+<ul>
+<li>优点：简单快速</li>
+<li>缺点：导致样本重复，使模型在新数据上泛化能力差</li>
+</ul>
 </li>
-<li><p>SMOTE方法：仿照少数类样本，造与他们相似的新样本<br>优点：样本多样<br>缺点：可能偏离真实数据分布</p>
+<li><p>SMOTE方法：仿照少数类样本，造与他们相似的新样本</p>
+<ul>
+<li>优点：样本多样</li>
+<li>缺点：可能偏离真实数据分布</li>
+</ul>
 </li>
 </ul>
 <img src="/2025/12/09/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8E%A2%E7%B4%A2%E6%80%A7%E5%88%86%E6%9E%90%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/1.png" class="" title="图片描述">
 
+<h3 id="加权损失函数"><a href="#加权损失函数" class="headerlink" title="加权损失函数"></a>加权损失函数</h3><p>解释：对少数类样本赋予更大的权重</p>
+<p>优：不引入新样本，不改变数据分布，模型保持原有结构</p>
+<h4 id="损失函数"><a href="#损失函数" class="headerlink" title="损失函数"></a>损失函数</h4><p>模型预测值和真实值的差</p>
+<h2 id="对模型的评估和优化"><a href="#对模型的评估和优化" class="headerlink" title="对模型的评估和优化"></a>对模型的评估和优化</h2><p>如何判断分类模型好不好？（特别是当样本不均衡的时候）</p>
+<h3 id="混淆矩阵"><a href="#混淆矩阵" class="headerlink" title="混淆矩阵"></a>混淆矩阵</h3><img src="/2025/12/09/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8E%A2%E7%B4%A2%E6%80%A7%E5%88%86%E6%9E%90%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/4.png" class="" title="图片描述">
 
+<p>总结：</p>
+<p>情境：二分类问题，所有样本为两类之一：正例、负例</p>
+<ul>
+<li>TP：真实值为正例；预测值为正例 —— 预测正确</li>
+<li>FP：真实值为负例；预测值为正例 —— 将多数样本判为少数样本（误报）</li>
+<li>FN：真实值为正例；预测值为负例 —— 漏掉少数样本（漏报）</li>
+<li>TN：真实值为负例；预测值为负例 —— 预测正确</li>
+</ul>
+<h4 id="准确率"><a href="#准确率" class="headerlink" title="准确率"></a>准确率</h4><img src="/2025/12/09/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8E%A2%E7%B4%A2%E6%80%A7%E5%88%86%E6%9E%90%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/5.png" class="" title="图片描述">
 
+<p>即：混淆矩阵（左上+右下）&#x2F;（总样本数）</p>
+<h4 id="精准率"><a href="#精准率" class="headerlink" title="精准率"></a>精准率</h4><img src="/2025/12/09/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8E%A2%E7%B4%A2%E6%80%A7%E5%88%86%E6%9E%90%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/6.png" class="" title="图片描述">
 
+<p>即：混淆矩阵（左上）&#x2F;（左上+左下）</p>
+<p>注：误报（FP）（左下）成本高的场景，追求高精准率</p>
+<h4 id="召回率"><a href="#召回率" class="headerlink" title="召回率"></a>召回率</h4><img src="/2025/12/09/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8E%A2%E7%B4%A2%E6%80%A7%E5%88%86%E6%9E%90%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/7.png" class="" title="图片描述">
 
+<p>即：混淆矩阵（左上）&#x2F;（左上+右上）</p>
+<p>注：漏报（FN）（右上）成本高的场景，追求高召回率</p>
+<h4 id="F1得分-兼顾精准率与召回率"><a href="#F1得分-兼顾精准率与召回率" class="headerlink" title="F1得分 - 兼顾精准率与召回率"></a>F1得分 - 兼顾精准率与召回率</h4><img src="/2025/12/09/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8E%A2%E7%B4%A2%E6%80%A7%E5%88%86%E6%9E%90%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/8.png" class="" title="图片描述">
+
+<h4 id="ROC曲线"><a href="#ROC曲线" class="headerlink" title="ROC曲线"></a>ROC曲线</h4><h5 id="分类阈值"><a href="#分类阈值" class="headerlink" title="分类阈值"></a>分类阈值</h5><p>模型的分类结果依赖于一个分类阈值，如：结果为正例的概率超过0.5就预测为正例。</p>
+<h5 id="ROC曲线的两个指标"><a href="#ROC曲线的两个指标" class="headerlink" title="ROC曲线的两个指标"></a>ROC曲线的两个指标</h5><ul>
+<li>TPR（True Positive Rate）&#x3D; 召回率 &#x3D; 混淆矩阵（左上）&#x2F;（左上+右上）</li>
+<li>FPR（False Positive Rate）（误报率）&#x3D; 混淆矩阵（左下）&#x2F;（左下+右下）</li>
+</ul>
+<img src="/2025/12/09/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8E%A2%E7%B4%A2%E6%80%A7%E5%88%86%E6%9E%90%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/10.png" class="" title="图片描述">
+
+<h5 id="ROC曲线画图"><a href="#ROC曲线画图" class="headerlink" title="ROC曲线画图"></a>ROC曲线画图</h5><p>ROC曲线是一条以FPR为横坐标，TPR为纵坐标的曲线。</p>
+<p>即：通过不断调整模型的分类阈值，会得到一系列（FPR，TPR）的点，这些点组成了ROC曲线。</p>
+<img src="/2025/12/09/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8E%A2%E7%B4%A2%E6%80%A7%E5%88%86%E6%9E%90%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/9.png" class="" title="图片描述">
+
+<ul>
+<li>模型分类阈值高时，靠近左下（0，0）</li>
+<li>模型分类阈值低时，靠近右上（1，1）</li>
+</ul>
+<p>好的二分类模型的ROC曲线应该急剧向上凸，快速接近左上角（即：当FPR低的时候就有高的TPR）</p>
+<h5 id="AUC：ROC曲线下面部分的面积"><a href="#AUC：ROC曲线下面部分的面积" class="headerlink" title="AUC：ROC曲线下面部分的面积"></a>AUC：ROC曲线下面部分的面积</h5><p>作用：用于衡量分类器的性能</p>
+<ul>
+<li>AUC &#x3D; 1：完美分类器</li>
+<li>AUC &#x3D; 0.5：随机猜测模型（模型没有任何区分能力）</li>
+<li>AUC &lt; 0.5：无效模型</li>
+</ul>
 
     </div>
     
