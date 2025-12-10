@@ -184,7 +184,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/%E7%AC%94%E8%AE%B0/" style="color: #00bcd4">
+                <a href="/tags/%E7%AC%94%E8%AE%B0/" style="color: #00a596">
                     笔记
                 </a>
             </span>
@@ -194,14 +194,14 @@
     </div>
     
     <div class="content" v-pre>
-        <h2 id="数据配平"><a href="#数据配平" class="headerlink" title="数据配平"></a>数据配平</h2><h3 id="数据配平定义"><a href="#数据配平定义" class="headerlink" title="数据配平定义"></a>数据配平定义</h3><p>数据配平是针对于机器学习中“类别不平衡”问题的关键预处理技术，通过调整不同类别的样本分布比例，使模型能够提升对少数类样本的识别能力。</p>
+        <h2 id="数据配平"><a href="#数据配平" class="headerlink" title="数据配平"></a>数据配平</h2><h3 id="一、数据配平定义"><a href="#一、数据配平定义" class="headerlink" title="一、数据配平定义"></a>一、数据配平定义</h3><p>数据配平是针对于机器学习中“类别不平衡”问题的关键预处理技术，通过调整不同类别的样本分布比例，使模型能够提升对少数类样本的识别能力。</p>
 <p>例如：想象你要训练一个 “识别人” 的模型：如果给它 1000 张男生照片、只给 1 张女生照片，模型练完后大概率只会认男生 —— 因为它见太多男生、没学过女生的特征，这就是 “类别不平衡”。</p>
 <h5 id="类别不平衡的危害："><a href="#类别不平衡的危害：" class="headerlink" title="类别不平衡的危害："></a>类别不平衡的危害：</h5><ul>
 <li>模型对于少数类的预测能力较差</li>
 <li>在不平衡数据集上，常用的准确率指标可能误导分析</li>
 <li>实际场景中漏检关键少数类</li>
 </ul>
-<h3 id="欠采样-删"><a href="#欠采样-删" class="headerlink" title="欠采样 - 删"></a>欠采样 - 删</h3><h5 id="定义：通过减少多数类样本的样本数量来平衡数据集"><a href="#定义：通过减少多数类样本的样本数量来平衡数据集" class="headerlink" title="定义：通过减少多数类样本的样本数量来平衡数据集"></a>定义：通过减少多数类样本的样本数量来平衡数据集</h5><ul>
+<h3 id="二、欠采样-删"><a href="#二、欠采样-删" class="headerlink" title="二、欠采样 - 删"></a>二、欠采样 - 删</h3><h5 id="定义：通过减少多数类样本的样本数量来平衡数据集"><a href="#定义：通过减少多数类样本的样本数量来平衡数据集" class="headerlink" title="定义：通过减少多数类样本的样本数量来平衡数据集"></a>定义：通过减少多数类样本的样本数量来平衡数据集</h5><ul>
 <li>随机欠采样：随机删除多数类样本，使两类样本数量接近</li>
 <li>基于聚类的欠采样：对多数类样本聚类（K - means），仅保留簇中心样本</li>
 </ul>
@@ -215,7 +215,7 @@
 <p>即：逐步删除已经学会的多数类样本，多模型迭代</p>
 </li>
 </ul>
-<h3 id="过采样-补"><a href="#过采样-补" class="headerlink" title="过采样 - 补"></a>过采样 - 补</h3><h5 id="定义：增加少数类样本数量来平衡数据集"><a href="#定义：增加少数类样本数量来平衡数据集" class="headerlink" title="定义：增加少数类样本数量来平衡数据集"></a>定义：增加少数类样本数量来平衡数据集</h5><ul>
+<h3 id="三、过采样-补"><a href="#三、过采样-补" class="headerlink" title="三、过采样 - 补"></a>三、过采样 - 补</h3><h5 id="定义：增加少数类样本数量来平衡数据集"><a href="#定义：增加少数类样本数量来平衡数据集" class="headerlink" title="定义：增加少数类样本数量来平衡数据集"></a>定义：增加少数类样本数量来平衡数据集</h5><ul>
 <li><p>随机过采样：直接复制少数类样本（比如把 100 个少数类复制 9 次变 1000 个）</p>
 <ul>
 <li>优点：简单快速</li>
@@ -231,11 +231,11 @@
 </ul>
 <img src="/2025/12/09/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8E%A2%E7%B4%A2%E6%80%A7%E5%88%86%E6%9E%90%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/1.png" class="" title="图片描述">
 
-<h3 id="加权损失函数"><a href="#加权损失函数" class="headerlink" title="加权损失函数"></a>加权损失函数</h3><p>解释：对少数类样本赋予更大的权重</p>
+<h3 id="四、加权损失函数"><a href="#四、加权损失函数" class="headerlink" title="四、加权损失函数"></a>四、加权损失函数</h3><p>解释：对少数类样本赋予更大的权重</p>
 <p>优：不引入新样本，不改变数据分布，模型保持原有结构</p>
 <h4 id="损失函数"><a href="#损失函数" class="headerlink" title="损失函数"></a>损失函数</h4><p>模型预测值和真实值的差</p>
-<h2 id="对模型的评估和优化"><a href="#对模型的评估和优化" class="headerlink" title="对模型的评估和优化"></a>对模型的评估和优化</h2><p>如何判断分类模型好不好？（特别是当样本不均衡的时候）</p>
-<h3 id="混淆矩阵"><a href="#混淆矩阵" class="headerlink" title="混淆矩阵"></a>混淆矩阵</h3><img src="/2025/12/09/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8E%A2%E7%B4%A2%E6%80%A7%E5%88%86%E6%9E%90%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/4.png" class="" title="图片描述">
+<h2 id="五、对模型的评估和优化"><a href="#五、对模型的评估和优化" class="headerlink" title="五、对模型的评估和优化"></a>五、对模型的评估和优化</h2><p>如何判断分类模型好不好？（特别是当样本不均衡的时候）</p>
+<h3 id="1）混淆矩阵"><a href="#1）混淆矩阵" class="headerlink" title="1）混淆矩阵"></a>1）混淆矩阵</h3><img src="/2025/12/09/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8E%A2%E7%B4%A2%E6%80%A7%E5%88%86%E6%9E%90%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/4.png" class="" title="图片描述">
 
 <p>总结：</p>
 <p>情境：二分类问题，所有样本为两类之一：正例、负例</p>
@@ -245,27 +245,27 @@
 <li>FN：真实值为正例；预测值为负例 —— 漏掉少数样本（漏报）</li>
 <li>TN：真实值为负例；预测值为负例 —— 预测正确</li>
 </ul>
-<h4 id="准确率"><a href="#准确率" class="headerlink" title="准确率"></a>准确率</h4><img src="/2025/12/09/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8E%A2%E7%B4%A2%E6%80%A7%E5%88%86%E6%9E%90%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/5.png" class="" title="图片描述">
+<h3 id="2）准确率"><a href="#2）准确率" class="headerlink" title="2）准确率"></a>2）准确率</h3><img src="/2025/12/09/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8E%A2%E7%B4%A2%E6%80%A7%E5%88%86%E6%9E%90%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/5.png" class="" title="图片描述">
 
 <p>即：混淆矩阵（左上+右下）&#x2F;（总样本数）</p>
-<h4 id="精准率"><a href="#精准率" class="headerlink" title="精准率"></a>精准率</h4><img src="/2025/12/09/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8E%A2%E7%B4%A2%E6%80%A7%E5%88%86%E6%9E%90%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/6.png" class="" title="图片描述">
+<h3 id="3）精准率"><a href="#3）精准率" class="headerlink" title="3）精准率"></a>3）精准率</h3><img src="/2025/12/09/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8E%A2%E7%B4%A2%E6%80%A7%E5%88%86%E6%9E%90%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/6.png" class="" title="图片描述">
 
 <p>即：混淆矩阵（左上）&#x2F;（左上+左下）</p>
 <p>注：误报（FP）（左下）成本高的场景，追求高精准率</p>
-<h4 id="召回率"><a href="#召回率" class="headerlink" title="召回率"></a>召回率</h4><img src="/2025/12/09/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8E%A2%E7%B4%A2%E6%80%A7%E5%88%86%E6%9E%90%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/7.png" class="" title="图片描述">
+<h3 id="4）召回率"><a href="#4）召回率" class="headerlink" title="4）召回率"></a>4）召回率</h3><img src="/2025/12/09/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8E%A2%E7%B4%A2%E6%80%A7%E5%88%86%E6%9E%90%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/7.png" class="" title="图片描述">
 
 <p>即：混淆矩阵（左上）&#x2F;（左上+右上）</p>
 <p>注：漏报（FN）（右上）成本高的场景，追求高召回率</p>
-<h4 id="F1得分-兼顾精准率与召回率"><a href="#F1得分-兼顾精准率与召回率" class="headerlink" title="F1得分 - 兼顾精准率与召回率"></a>F1得分 - 兼顾精准率与召回率</h4><img src="/2025/12/09/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8E%A2%E7%B4%A2%E6%80%A7%E5%88%86%E6%9E%90%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/8.png" class="" title="图片描述">
+<h3 id="5）F1得分-兼顾精准率与召回率"><a href="#5）F1得分-兼顾精准率与召回率" class="headerlink" title="5）F1得分 - 兼顾精准率与召回率"></a>5）F1得分 - 兼顾精准率与召回率</h3><img src="/2025/12/09/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8E%A2%E7%B4%A2%E6%80%A7%E5%88%86%E6%9E%90%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/8.png" class="" title="图片描述">
 
-<h4 id="ROC曲线"><a href="#ROC曲线" class="headerlink" title="ROC曲线"></a>ROC曲线</h4><h5 id="分类阈值"><a href="#分类阈值" class="headerlink" title="分类阈值"></a>分类阈值</h5><p>模型的分类结果依赖于一个分类阈值，如：结果为正例的概率超过0.5就预测为正例。</p>
-<h5 id="ROC曲线的两个指标"><a href="#ROC曲线的两个指标" class="headerlink" title="ROC曲线的两个指标"></a>ROC曲线的两个指标</h5><ul>
+<h3 id="6）ROC曲线"><a href="#6）ROC曲线" class="headerlink" title="6）ROC曲线"></a>6）ROC曲线</h3><h5 id="分类阈值"><a href="#分类阈值" class="headerlink" title="分类阈值"></a>分类阈值</h5><p>模型的分类结果依赖于一个分类阈值，如：结果为正例的概率超过0.5就预测为正例。</p>
+<h4 id="ROC曲线的两个指标"><a href="#ROC曲线的两个指标" class="headerlink" title="ROC曲线的两个指标"></a>ROC曲线的两个指标</h4><ul>
 <li>TPR（True Positive Rate）&#x3D; 召回率 &#x3D; 混淆矩阵（左上）&#x2F;（左上+右上）</li>
 <li>FPR（False Positive Rate）（误报率）&#x3D; 混淆矩阵（左下）&#x2F;（左下+右下）</li>
 </ul>
 <img src="/2025/12/09/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8E%A2%E7%B4%A2%E6%80%A7%E5%88%86%E6%9E%90%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/10.png" class="" title="图片描述">
 
-<h5 id="ROC曲线画图"><a href="#ROC曲线画图" class="headerlink" title="ROC曲线画图"></a>ROC曲线画图</h5><p>ROC曲线是一条以FPR为横坐标，TPR为纵坐标的曲线。</p>
+<h4 id="ROC曲线画图"><a href="#ROC曲线画图" class="headerlink" title="ROC曲线画图"></a>ROC曲线画图</h4><p>ROC曲线是一条以FPR为横坐标，TPR为纵坐标的曲线。</p>
 <p>即：通过不断调整模型的分类阈值，会得到一系列（FPR，TPR）的点，这些点组成了ROC曲线。</p>
 <img src="/2025/12/09/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8E%A2%E7%B4%A2%E6%80%A7%E5%88%86%E6%9E%90%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/9.png" class="" title="图片描述">
 
@@ -274,13 +274,13 @@
 <li>模型分类阈值低时，靠近右上（1，1）</li>
 </ul>
 <p>好的二分类模型的ROC曲线应该急剧向上凸，快速接近左上角（即：当FPR低的时候就有高的TPR）</p>
-<h5 id="AUC：ROC曲线下面部分的面积"><a href="#AUC：ROC曲线下面部分的面积" class="headerlink" title="AUC：ROC曲线下面部分的面积"></a>AUC：ROC曲线下面部分的面积</h5><p>作用：用于衡量分类器的性能</p>
+<h4 id="AUC：ROC曲线下面部分的面积"><a href="#AUC：ROC曲线下面部分的面积" class="headerlink" title="AUC：ROC曲线下面部分的面积"></a>AUC：ROC曲线下面部分的面积</h4><p>作用：用于衡量分类器的性能</p>
 <ul>
 <li>AUC &#x3D; 1：完美分类器</li>
 <li>AUC &#x3D; 0.5：随机猜测模型（模型没有任何区分能力）</li>
 <li>AUC &lt; 0.5：无效模型</li>
 </ul>
-<h2 id="特征变换"><a href="#特征变换" class="headerlink" title="特征变换"></a>特征变换</h2><h4 id="特征变换定义："><a href="#特征变换定义：" class="headerlink" title="特征变换定义："></a>特征变换定义：</h4><p>将原始数据中的特征转化为更适合模型使用的形式，通过改变特征分布或表现形式，但不改变信息本质。</p>
+<h2 id="特征变换"><a href="#特征变换" class="headerlink" title="特征变换"></a>特征变换</h2><h3 id="一、特征变换定义："><a href="#一、特征变换定义：" class="headerlink" title="一、特征变换定义："></a>一、特征变换定义：</h3><p>将原始数据中的特征转化为更适合模型使用的形式，通过改变特征分布或表现形式，但不改变信息本质。</p>
 <h4 id="特征工程："><a href="#特征工程：" class="headerlink" title="特征工程："></a>特征工程：</h4><ul>
 <li>特征变换：改变已有特征</li>
 <li>特征选择：筛选出最重要的特征</li>
@@ -293,11 +293,11 @@
 <li>处理非数值特征</li>
 <li>提升建模收敛速度</li>
 </ul>
-<h3 id="解决尺度差异："><a href="#解决尺度差异：" class="headerlink" title="解决尺度差异："></a>解决尺度差异：</h3><h4 id="标准化"><a href="#标准化" class="headerlink" title="标准化"></a>标准化</h4><p>即：将原来所有特征全部统一改为 - 均值为0、标准差为1的统一标准</p>
+<h3 id="二、解决尺度差异："><a href="#二、解决尺度差异：" class="headerlink" title="二、解决尺度差异："></a>二、解决尺度差异：</h3><h4 id="1）标准化"><a href="#1）标准化" class="headerlink" title="1）标准化"></a>1）标准化</h4><p>即：将原来所有特征全部统一改为 - 均值为0、标准差为1的统一标准</p>
 <img src="/2025/12/09/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8E%A2%E7%B4%A2%E6%80%A7%E5%88%86%E6%9E%90%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/11.png" class="" title="图片描述">
 
 <p>特点：不改变数据分布，只改变尺度和中心；对异常值敏感</p>
-<h4 id="归一化"><a href="#归一化" class="headerlink" title="归一化"></a>归一化</h4><p>定义：将数据按比例压缩到一个固定范围</p>
+<h4 id="2）归一化"><a href="#2）归一化" class="headerlink" title="2）归一化"></a>2）归一化</h4><p>定义：将数据按比例压缩到一个固定范围</p>
 <h5 id="Min-Max-Scaling（最小最大归一化）-常用"><a href="#Min-Max-Scaling（最小最大归一化）-常用" class="headerlink" title="Min-Max Scaling（最小最大归一化）- 常用"></a>Min-Max Scaling（最小最大归一化）- 常用</h5><p>将数据按比例压缩到 [0,1] 的范围</p>
 <img src="/2025/12/09/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8E%A2%E7%B4%A2%E6%80%A7%E5%88%86%E6%9E%90%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/12.png" class="" title="图片描述">
 
@@ -310,6 +310,77 @@
 
 <p>这里 IQR 指的是四分位距：</p>
 <p>简单说就是数据中 “中间 50% 的数的范围”—— 先把数据从小到大排序，取第 75% 位置的数（上四分位数 Q3）减去第 25% 位置的数（下四分位数 Q1），即 IQR &#x3D; Q3 - Q1。</p>
+<h3 id="三、改善分布"><a href="#三、改善分布" class="headerlink" title="三、改善分布"></a>三、改善分布</h3><h5 id="1）对数变换-压缩数据尺度"><a href="#1）对数变换-压缩数据尺度" class="headerlink" title="1）对数变换 - 压缩数据尺度"></a>1）对数变换 - 压缩数据尺度</h5><img src="/2025/12/09/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8E%A2%E7%B4%A2%E6%80%A7%E5%88%86%E6%9E%90%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/15.png" class="" title="图片描述">
+
+<h5 id="2）BOX-COX变换"><a href="#2）BOX-COX变换" class="headerlink" title="2）BOX - COX变换"></a>2）BOX - COX变换</h5><p>目标：将非正态分布数据转换为近似正态分布数据</p>
+<img src="/2025/12/09/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8E%A2%E7%B4%A2%E6%80%A7%E5%88%86%E6%9E%90%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/16.png" class="" title="图片描述">
+
+<h5 id="3）离散化-分箱"><a href="#3）离散化-分箱" class="headerlink" title="3）离散化 &#x3D; 分箱"></a>3）离散化 &#x3D; 分箱</h5><p>定义：将连续不断的数值特征划分为有限个区间；并将每个区间映射为一个离散值的过程</p>
+<p>数据预处理阶段：</p>
+<ul>
+<li><p>**等宽分箱：**将值域范围划分为K个等宽的区间，宽度 &#x3D; （max - min）&#x2F;  K</p>
+<ul>
+<li>缺点：对异常值敏感；导致数据分布不均</li>
+</ul>
+</li>
+<li><p>**等频分箱：**将数据划分为K个区间，使得每个区间包含样本数相同</p>
+<ul>
+<li>分界点选择：数据的分位数</li>
+</ul>
+</li>
+<li><p>基于业务知识&#x2F;模型性能的分箱</p>
+</li>
+</ul>
+<h5 id="4）离散化的作用："><a href="#4）离散化的作用：" class="headerlink" title="4）离散化的作用："></a>4）离散化的作用：</h5><ul>
+<li>引入非线性关系</li>
+<li>改善特征分布 - 将非正态分布的数据转化为(近)均匀分布</li>
+<li>提高模型鲁棒性 - 限制离散值与噪声的影响</li>
+<li>便于特征交叉与解释 - 特征组合</li>
+</ul>
+<h3 id="四、类别特征编码"><a href="#四、类别特征编码" class="headerlink" title="四、类别特征编码"></a>四、类别特征编码</h3><h4 id="1）独热编码（One-Hot-Encoding）"><a href="#1）独热编码（One-Hot-Encoding）" class="headerlink" title="1）独热编码（One - Hot Encoding）"></a>1）独热编码（One - Hot Encoding）</h4><p>定义：为每个类别建二值列，样本属于该类别则列值为 1，否则为 0</p>
+<p>人话：将类别型特征变为模型能读懂的数字形式，通过给每个类别单独建一列，样本属于哪个类别，对应列标“1”，其他列标“0”</p>
+<p>案例：</p>
+<img src="/2025/12/09/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8E%A2%E7%B4%A2%E6%80%A7%E5%88%86%E6%9E%90%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/17.png" class="" title="图片描述">
+
+<p>特点：</p>
+<ul>
+<li>平等对待所有类别</li>
+<li>缺点1：类别数量多时，会增加数据集维度</li>
+<li>缺点2：多重共线性（比如 3 个类别列的和永远是 1（因为一个样本只能属于一个类别），会让模型计算出问题）<ul>
+<li>解决方法：哑变量编码（去掉其中一列，这一列代表类别用其他列表示）</li>
+</ul>
+</li>
+<li>缺点3：特征重要性分散</li>
+</ul>
+<h4 id="2）序数编码"><a href="#2）序数编码" class="headerlink" title="2）序数编码"></a>2）序数编码</h4><p>定义：处理”有顺序的类别特征“，把有序类别（如小学→中学→大学）映射成有序整数（1→2→3），保留类别间的顺序关系。</p>
+<p>优点：</p>
+<ul>
+<li>保留顺序信息</li>
+<li>避免维度爆炸</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>隐含”数值距离相等“假设</li>
+<li>类别数量多时，过度关注数值大小，忽略类别本身意义</li>
+<li>测试集可能出现新类别<ul>
+<li>预先定义完整的类别顺序</li>
+<li>制定规则处理未知类别</li>
+</ul>
+</li>
+</ul>
+<h4 id="3）频率编码"><a href="#3）频率编码" class="headerlink" title="3）频率编码"></a>3）频率编码</h4><p>定义：将分类变量替换为它在数据集中出现的频率</p>
+<p>注：频率本身带有预测信息，如：比如 “Chrome 浏览器” 出现频率高，说明它是主流浏览器，可能对应 “年轻用户” 等特征，模型能利用这种 “常见程度” 的信号</p>
+<p>适用场景：类别出现频率本身具有信息量时</p>
+<p>缺点：丢失类别本身的信息（如果两个不同类别出现频率一样（比如 “Firefox” 和 “Edge” 都出现 200 次，编码都是 0.2），模型会把它们当成同一个特征）</p>
+<p>注：只能在训练集上计算频率，防止数据泄露</p>
+<h4 id="4）目标编码"><a href="#4）目标编码" class="headerlink" title="4）目标编码"></a>4）目标编码</h4><p>定义：用“类别对应的目标变量统计值”代替类别标签</p>
+<p>如：比如预测 “用户是否购买商品”（目标是 “购买 &#x2F; 不购买”），对 “城市” 这个类别特征，计算每个城市的 “购买率”（目标变量的期望值），用这个购买率作为该城市的编码值。</p>
+<p>优点：</p>
+<ul>
+<li>直接编码类别与目标变量之间的统计关系，为模型提供了强烈的预测信号</li>
+<li>编码值具有明确的业务含义</li>
+</ul>
+<p>适用条件：需要足够样本量支撑</p>
 
     </div>
     
