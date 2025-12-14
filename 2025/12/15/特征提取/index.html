@@ -3,7 +3,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="utf-8" />
-    <title>贝叶斯推断 | yty的博客</title>
+    <title>特征提取 | yty的博客</title>
     <meta name="author" content="Leo yu yty" />
     <meta name="description" content="Hello Everyone This is my website" />
     <meta name="keywords" content="" />
@@ -156,14 +156,14 @@
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
             <div class="article">
     <div>
-        <h1>贝叶斯推断</h1>
+        <h1>特征提取</h1>
     </div>
     <div class="info">
         <span class="date">
             <span class="icon">
                 <i class="fa-solid fa-calendar fa-fw"></i>
             </span>
-            2025/12/13
+            2025/12/15
         </span>
         
         <span class="category">
@@ -184,7 +184,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/%E7%AC%94%E8%AE%B0/" style="color: #00bcd4">
+                <a href="/tags/%E7%AC%94%E8%AE%B0/" style="color: #03a9f4">
                     笔记
                 </a>
             </span>
@@ -194,90 +194,37 @@
     </div>
     
     <div class="content" v-pre>
-        <h3 id="摘要部分"><a href="#摘要部分" class="headerlink" title="摘要部分"></a>摘要部分</h3><h3 id="主题：贝叶斯推断"><a href="#主题：贝叶斯推断" class="headerlink" title="主题：贝叶斯推断"></a>主题：贝叶斯推断</h3><h4 id="一、贝叶斯定理"><a href="#一、贝叶斯定理" class="headerlink" title="一、贝叶斯定理"></a>一、贝叶斯定理</h4><ul>
-<li>贝叶斯公式</li>
-<li>先验概率 &amp; 后验概率</li>
-<li>贝叶斯思维（3步）</li>
+        <h3 id="摘要部分"><a href="#摘要部分" class="headerlink" title="摘要部分"></a>摘要部分</h3><span id="more"></span>
+
+
+
+
+
+
+
+<h2 id="特征提取"><a href="#特征提取" class="headerlink" title="特征提取"></a>特征提取</h2><h3 id="一、特征提取-vs-特征选择"><a href="#一、特征提取-vs-特征选择" class="headerlink" title="一、特征提取 vs 特征选择"></a>一、特征提取 vs 特征选择</h3><p>特征选择：从原始特征集中【筛选】出最具代表性的子集</p>
+<ul>
+<li>不改变特征本身意义</li>
+<li>适用场景：需要保留特征可解释性（需要保留特征含义）的场景</li>
 </ul>
-<h4 id="二、贝叶斯分布"><a href="#二、贝叶斯分布" class="headerlink" title="二、贝叶斯分布"></a>二、贝叶斯分布</h4><span id="more"></span>
-
-
-
-
-
-<h2 id="贝叶斯推断"><a href="#贝叶斯推断" class="headerlink" title="贝叶斯推断"></a>贝叶斯推断</h2><h3 id="一、贝叶斯定理-1"><a href="#一、贝叶斯定理-1" class="headerlink" title="一、贝叶斯定理"></a>一、贝叶斯定理</h3><h4 id="1）条件概率"><a href="#1）条件概率" class="headerlink" title="1）条件概率"></a>1）条件概率</h4><ul>
-<li>B 发生了，在 B 发生的条件下，A 发生的概率 —— 称为：A 的条件概率</li>
+<p>特征提取：通过数学变化【生成】低维度的新特征</p>
+<ul>
+<li><p>新特征是原始特征的抽象表达</p>
+</li>
+<li><p>适用场景：高冗余数据、需要捕捉潜在结构的场景</p>
+</li>
 </ul>
-<img src="/2025/12/13/%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%8E%A8%E6%96%AD/1.png" class="" title="图片描述">
-
-<h4 id="2）全概率公式"><a href="#2）全概率公式" class="headerlink" title="2）全概率公式"></a>2）全概率公式</h4><ul>
-<li>把事件 A 发生的概率拆分为：在不同条件下（发生 B1，B2，… ）A 发生的概率之和</li>
-<li>其中：B1，B2，这些相互独立</li>
-</ul>
-<img src="/2025/12/13/%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%8E%A8%E6%96%AD/2.png" class="" title="图片描述">
-
-<h4 id="3）贝叶斯公式"><a href="#3）贝叶斯公式" class="headerlink" title="3）贝叶斯公式"></a>3）贝叶斯公式</h4><ul>
-<li>即用“全概率公式”计算“后验概率”</li>
-</ul>
-<img src="/2025/12/13/%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%8E%A8%E6%96%AD/3.png" class="" title="图片描述">
-
-<img src="/2025/12/13/%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%8E%A8%E6%96%AD/4.png" class="" title="图片描述">
-
-<h4 id="4）先验概率-后验概率"><a href="#4）先验概率-后验概率" class="headerlink" title="4）先验概率 &amp; 后验概率"></a>4）先验概率 &amp; 后验概率</h4><ul>
-<li>先验概率：根据已有知识和经验确定的概率<ul>
-<li>人话：没看到任何线索，凭经验，得出某件事发生的概率</li>
-<li>如：普通人得感冒的概率是 10%</li>
+<p>特征构造的两类应用：</p>
+<ul>
+<li>多项式特征：扩展模型表现力，拟合非线性关系<ul>
+<li>如：把特征 x 扩展为 x²、x³</li>
 </ul>
 </li>
-<li>后验概率：看到新线索后，基于新线索，更新后的概率<ul>
-<li>如：看到某人咳嗽（线索），他得感冒的概率</li>
+<li>交互特征：捕捉变量之间的交互效应<ul>
+<li>如： “收入 × 教育水平” 体现两者共同影响</li>
 </ul>
 </li>
 </ul>
-<h4 id="5）贝叶斯思维（3个步骤）"><a href="#5）贝叶斯思维（3个步骤）" class="headerlink" title="5）贝叶斯思维（3个步骤）"></a>5）贝叶斯思维（3个步骤）</h4><ul>
-<li>通过训练集算出【先验概率】和【条件概率】</li>
-<li>根据【贝叶斯定理】计算【后验概率】</li>
-<li>利用【后验概率】做统计决策</li>
-</ul>
-<img src="/2025/12/13/%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%8E%A8%E6%96%AD/5.png" class="" title="图片描述">
-
-<h3 id="二、贝叶斯分类-核心准则：后验概率最大化"><a href="#二、贝叶斯分类-核心准则：后验概率最大化" class="headerlink" title="二、贝叶斯分类 - 核心准则：后验概率最大化"></a>二、贝叶斯分类 - 核心准则：后验概率最大化</h3><p>原理：根据最大后验概率来预测实例类别，此处众数思想指的是根据【概率最大】位置做出决策。</p>
-<p>这种决策准测被称为：【后验概率最大化】</p>
-<h4 id="1）朴素贝叶斯分类-”朴素“：属性条件独立假设"><a href="#1）朴素贝叶斯分类-”朴素“：属性条件独立假设" class="headerlink" title="1）朴素贝叶斯分类 - ”朴素“：属性条件独立假设"></a>1）朴素贝叶斯分类 - ”朴素“：属性条件独立假设</h4><p>特点：</p>
-<ul>
-<li>朴素 &#x3D; 特征之间相互独立（也叫：属性变量独立假设）</li>
-<li>核心公式（贝叶斯定理）<img src="/2025/12/13/%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%8E%A8%E6%96%AD/6.png" class="" title="图片描述"></li>
-</ul>
-<p>步骤（以巧克力分盒为案例）</p>
-<ul>
-<li><p>先算先验概率</p>
-<ul>
-<li>A 盒有 7 颗巧克力，B 盒有 9 颗，总共 16 颗→ A 盒概率 7&#x2F;16，B 盒 9&#x2F;16</li>
-</ul>
-</li>
-<li><p>再算条件概率</p>
-<ul>
-<li>比如 A 盒里黑色巧克力占 3&#x2F;7，B 盒里黑色巧克力占 1&#x2F;9</li>
-</ul>
-</li>
-<li><p>计算联合概率：先验概率 * 条件概率 &#x3D; 联合概率</p>
-<ul>
-<li>黑色巧克力来自 A 盒的概率 &#x3D;（7&#x2F;16）×（3&#x2F;7）&#x3D;3&#x2F;16；来自 B 盒的概率 &#x3D;（9&#x2F;16）×（1&#x2F;9）&#x3D;1&#x2F;16</li>
-</ul>
-</li>
-<li><p>选联合概率最大的类别</p>
-<ul>
-<li>3&#x2F;16＞1&#x2F;16→ 黑色巧克力更可能来自 A 盒</li>
-</ul>
-</li>
-</ul>
-<h4 id="2）训练贝叶斯分类器"><a href="#2）训练贝叶斯分类器" class="headerlink" title="2）训练贝叶斯分类器"></a>2）训练贝叶斯分类器</h4><p>如何估计【先验概率】和【属性变量的条件概率】？</p>
-<ul>
-<li>极大似然估计</li>
-<li>贝叶斯估计</li>
-</ul>
-<h4 id="a、极大似然估计"><a href="#a、极大似然估计" class="headerlink" title="a、极大似然估计"></a>a、极大似然估计</h4><p>核心逻辑：</p>
-<p>核心步骤：1、写出“似然函数”；2、最大化“似然函数”</p>
 
     </div>
     
