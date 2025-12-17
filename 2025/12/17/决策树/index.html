@@ -1,0 +1,383 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <title>决策树 | yty的博客</title>
+    <meta name="author" content="Leo yu yty" />
+    <meta name="description" content="Hello Everyone This is my website" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/xnylh.webp" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>YTY的博客</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;主页</span>
+        </a>
+        
+        <a href="/about/">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;关于</span>
+        </a>
+        
+        <a href="/archives/">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;文章</span>
+        </a>
+        
+        <a href="/categories/">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;分类</span>
+        </a>
+        
+        <a href="/tags/">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;标签</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;YTY的博客</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">主页</div>
+                    </div>
+                </a>
+                
+                <a href="/about/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">关于</div>
+                    </div>
+                </a>
+                
+                <a href="/archives/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">文章</div>
+                    </div>
+                </a>
+                
+                <a href="/categories/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">分类</div>
+                    </div>
+                </a>
+                
+                <a href="/tags/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">标签</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>决策树</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2025/12/17
+        </span>
+        
+        <span class="category">
+            <a href="/categories/%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                复习笔记
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/%E7%AC%94%E8%AE%B0/" style="color: #00a596">
+                    笔记
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <p>摘要部分：</p>
+<span id="more"></span>
+
+
+
+
+
+
+
+<h2 id="决策树模型"><a href="#决策树模型" class="headerlink" title="决策树模型"></a>决策树模型</h2><h3 id="一、什么是决策树"><a href="#一、什么是决策树" class="headerlink" title="一、什么是决策树"></a>一、什么是决策树</h3><p>决策树的结构：箭头、椭圆、矩形</p>
+<ul>
+<li>箭头：有向边</li>
+<li>椭圆：内部结点 —— 样本的特征&#x2F;属性</li>
+<li>矩形：叶子结点</li>
+</ul>
+<p>顶部的结点：根结点</p>
+<img src="/2025/12/17/%E5%86%B3%E7%AD%96%E6%A0%91/1.png" class="" title="图片描述">
+
+<p>每一条箭头为一条If - Then规则，拆分出的样本集合具有：1、互斥性（每个集合独立不相交）2、完备性（所有划分出来的子集合并在一起是全集）</p>
+<ul>
+<li>决策树具有树形结构，通过一系列规则对数据进行分类或回归</li>
+<li>决策树形成步骤：<ul>
+<li>根节点出发（所有训练集存放在根节点）</li>
+<li>选择一个最优特征，将训练集划分为多个子集</li>
+<li>如果子集中数据已经基本为同一类了，就将他作为叶子节点；如果不是，就对该子集选择最优特征再进行划分</li>
+<li>重复，直到所有训练数据子集都被基本正确分类或合理赋值为止。</li>
+</ul>
+</li>
+<li>决策树的生成过程涉及两个重要问题<ul>
+<li>如何选择最优特征</li>
+<li>如何设置停止条件</li>
+</ul>
+</li>
+</ul>
+<h3 id="二、决策树的特征选择"><a href="#二、决策树的特征选择" class="headerlink" title="二、决策树的特征选择"></a>二、决策树的特征选择</h3><h4 id="1）信息增益"><a href="#1）信息增益" class="headerlink" title="1）信息增益"></a>1）信息增益</h4><p>信息熵：衡量数据不确定性（混乱程度）的指标，数据越混乱，熵越大</p>
+<ul>
+<li>如果一个结点里的人全是幸存者，熵就是 0（完全不混乱）</li>
+<li>如果一半幸存者、一半遇难者，熵最大（最混乱）</li>
+</ul>
+<h4 id="经验熵"><a href="#经验熵" class="headerlink" title="经验熵"></a>经验熵</h4><img src="/2025/12/17/%E5%86%B3%E7%AD%96%E6%A0%91/12.png" class="" title="图片描述">
+
+<img src="/2025/12/17/%E5%86%B3%E7%AD%96%E6%A0%91/2.png" class="" title="图片描述">
+
+<p>经验熵的计算：</p>
+<img src="/2025/12/17/%E5%86%B3%E7%AD%96%E6%A0%91/3.png" class="" title="图片描述">
+
+<h4 id="条件经验熵（经验熵-权重）"><a href="#条件经验熵（经验熵-权重）" class="headerlink" title="条件经验熵（经验熵*权重）"></a>条件经验熵（经验熵*权重）</h4><img src="/2025/12/17/%E5%86%B3%E7%AD%96%E6%A0%91/13.png" class="" title="图片描述">
+
+<img src="/2025/12/17/%E5%86%B3%E7%AD%96%E6%A0%91/4.png" class="" title="图片描述">
+
+<h4 id="自信息-熵"><a href="#自信息-熵" class="headerlink" title="自信息 &#x3D; 熵"></a>自信息 &#x3D; 熵</h4><p>定义：<strong>随机变量自己跟自己的 “信息关联度”</strong>，熵也被称作自信息</p>
+<p>条件熵和无条件熵相差越大，这个条件带来的信息越多</p>
+<ul>
+<li>无条件熵（比如 H (Y)）是 Y 本身的混乱程度；</li>
+<li>条件熵（比如 H (Y|X)）是 “知道 X 之后，Y 的混乱程度”；</li>
+<li>两者的差就是 “信息增益”（I_D (Y;X)），差越大，说明 X 这个条件能帮我们减少 Y 的混乱程度，带来的信息就越多。</li>
+</ul>
+<h4 id="信息增益-不确定性减少的量-经验熵-条件经验熵"><a href="#信息增益-不确定性减少的量-经验熵-条件经验熵" class="headerlink" title="信息增益 - 不确定性减少的量 &#x3D; 经验熵 - 条件经验熵"></a>信息增益 - 不确定性减少的量 &#x3D; 经验熵 - 条件经验熵</h4><img src="/2025/12/17/%E5%86%B3%E7%AD%96%E6%A0%91/14.png" class="" title="图片描述">
+
+<p>定义：在给定特征X下Y的不确定性的缩减程度，也称作互信息I(Y;X)</p>
+<p>人话：用某个特征分割数据后，“混乱程度减少的量”</p>
+<ul>
+<li>信息增益越大，说明特征越有用</li>
+</ul>
+<img src="/2025/12/17/%E5%86%B3%E7%AD%96%E6%A0%91/5.png" class="" title="图片描述">
+
+<h4 id="2）信息增益比-信息增益-经验熵"><a href="#2）信息增益比-信息增益-经验熵" class="headerlink" title="2）信息增益比 &#x3D; 信息增益&#x2F;经验熵"></a>2）信息增益比 &#x3D; 信息增益&#x2F;经验熵</h4><p>计算步骤：</p>
+<ul>
+<li>先求特征的【经验熵】</li>
+<li>再算【条件经验熵】</li>
+<li>计算【信息增益】</li>
+<li>求出【信息增益比】</li>
+</ul>
+<img src="/2025/12/17/%E5%86%B3%E7%AD%96%E6%A0%91/6.png" class="" title="图片描述">
+
+<h4 id="3）基尼不纯度-熵的近似值"><a href="#3）基尼不纯度-熵的近似值" class="headerlink" title="3）基尼不纯度 - 熵的近似值"></a>3）基尼不纯度 - 熵的近似值</h4><p>定义：和熵的作用一样，也是衡量数据的混乱程度</p>
+<ul>
+<li>采用基尼不纯度作为特征选择标准可以加快计算机运算速度</li>
+</ul>
+<p>公式：</p>
+<img src="/2025/12/17/%E5%86%B3%E7%AD%96%E6%A0%91/8.png" class="" title="图片描述">
+
+<p>相关概念：</p>
+<img src="/2025/12/17/%E5%86%B3%E7%AD%96%E6%A0%91/7.png" class="" title="图片描述">
+
+<h4 id="基尼不纯度增量"><a href="#基尼不纯度增量" class="headerlink" title="基尼不纯度增量"></a>基尼不纯度增量</h4><p>定义：<strong>整个数据集的基尼不纯度” 减去 “用特征 X 分割后的基尼不纯度</strong></p>
+<img src="/2025/12/17/%E5%86%B3%E7%AD%96%E6%A0%91/9.png" class="" title="图片描述">
+
+<p>公式：</p>
+<img src="/2025/12/17/%E5%86%B3%E7%AD%96%E6%A0%91/10.png" class="" title="图片描述">
+
+<img src="/2025/12/17/%E5%86%B3%E7%AD%96%E6%A0%91/11.png" class="" title="图片描述">
+
+<ul>
+<li>基尼不纯度数值越大，不确定性越大</li>
+<li>增量越大，说明用特征 X 分割后，数据的 “混乱程度减少得越多”，数据纯度越高</li>
+</ul>
+<h3 id="三、决策树停止生长"><a href="#三、决策树停止生长" class="headerlink" title="三、决策树停止生长"></a>三、决策树停止生长</h3><p>如果不设置停止条件，决策树会一直长，直到每个叶子结点里只有一个数据（完全拟合训练数据），但这样会过拟合（对新数据预测不准）</p>
+<h4 id="停止生长的条件："><a href="#停止生长的条件：" class="headerlink" title="停止生长的条件："></a>停止生长的条件：</h4><h5 id="1）自然停止条件"><a href="#1）自然停止条件" class="headerlink" title="1）自然停止条件"></a>1）自然停止条件</h5><ul>
+<li>到达终点：所有样本属于同一类</li>
+<li>属性特征用完了，剩下样本按多数表决&#x2F;众数思想来决定类别</li>
+<li>所有特征的指标相同</li>
+</ul>
+<h5 id="2）人工设置条件"><a href="#2）人工设置条件" class="headerlink" title="2）人工设置条件"></a>2）人工设置条件</h5><ul>
+<li>设置阈值</li>
+<li>限定树的深度</li>
+<li>限定叶子节点的样本数</li>
+</ul>
+<h3 id="四、决策树的三种生成算法"><a href="#四、决策树的三种生成算法" class="headerlink" title="四、决策树的三种生成算法"></a>四、决策树的三种生成算法</h3><h4 id="1）ID3算法-信息增益最大"><a href="#1）ID3算法-信息增益最大" class="headerlink" title="1）ID3算法 - 信息增益最大"></a>1）ID3算法 - 信息增益最大</h4><p>核心思路：每次选”信息增益最大的特征“（让数据混乱程度降得最快的特征），直到满足停止条件</p>
+<p>选择特征的标准：信息增益最大</p>
+<p>停止生长的条件：</p>
+<ul>
+<li>自然停止：叶子节点中样本为同一类（熵为0）</li>
+<li>人工停止：设定一个 “阈值 δ”—— 如果某个特征的信息增益小于 δ，说明这个特征没用，直接把当前结点当成叶子结点（类别选样本最多的那个）</li>
+</ul>
+<p>算法步骤：</p>
+<ul>
+<li>先判断是否需要选特征：<ul>
+<li>样本是不是属于同一类别</li>
+<li>特征集是否为空</li>
+</ul>
+</li>
+<li>选择信息增益最大的特征<ul>
+<li>计算特征集中每个特征的信息增益，选择最大的那一个</li>
+<li>再看这个特征的信息增益是否&gt;&#x3D;阈值δ</li>
+<li>递归处理每个子节点</li>
+</ul>
+</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>偏爱”取值多的特征“</li>
+<li>只能处理”分类问题“，不能处理”回归问题“</li>
+<li>容易过拟合</li>
+</ul>
+<h4 id="2）C4-5算法-用信息增益比选特征"><a href="#2）C4-5算法-用信息增益比选特征" class="headerlink" title="2）C4.5算法 - 用信息增益比选特征"></a>2）C4.5算法 - 用信息增益比选特征</h4><p>理解：选择信息增益比最大的特征作为当前节点</p>
+<img src="/2025/12/17/%E5%86%B3%E7%AD%96%E6%A0%91/15.png" class="" title="图片描述">
+
+<p>优：既适合分类问题，又适合回归问题</p>
+<h4 id="3）CART算法"><a href="#3）CART算法" class="headerlink" title="3）CART算法"></a>3）CART算法</h4>
+    </div>
+    
+    
+    
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2005 - 2025 yty的博客
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Leo yu yty
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+
+
+
+
+    
+</body>
+</html>
