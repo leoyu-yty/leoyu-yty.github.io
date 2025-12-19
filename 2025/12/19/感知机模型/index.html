@@ -1,0 +1,437 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <title>感知机模型 | yty的博客</title>
+    <meta name="author" content="Leo yu yty" />
+    <meta name="description" content="Hello Everyone This is my website" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/xnylh.webp" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>YTY的博客</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;主页</span>
+        </a>
+        
+        <a href="/about/">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;关于</span>
+        </a>
+        
+        <a href="/archives/">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;文章</span>
+        </a>
+        
+        <a href="/categories/">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;分类</span>
+        </a>
+        
+        <a href="/tags/">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;标签</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;YTY的博客</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">主页</div>
+                    </div>
+                </a>
+                
+                <a href="/about/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">关于</div>
+                    </div>
+                </a>
+                
+                <a href="/archives/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">文章</div>
+                    </div>
+                </a>
+                
+                <a href="/categories/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">分类</div>
+                    </div>
+                </a>
+                
+                <a href="/tags/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">标签</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>感知机模型</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2025/12/19
+        </span>
+        
+        <span class="category">
+            <a href="/categories/%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                复习笔记
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/%E7%AC%94%E8%AE%B0/" style="color: #00bcd4">
+                    笔记
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <p>摘要部分：</p>
+<span id="more"></span>
+
+
+
+
+
+
+
+<h2 id="感知机模型"><a href="#感知机模型" class="headerlink" title="感知机模型"></a>感知机模型</h2><h3 id="一、感知机制"><a href="#一、感知机制" class="headerlink" title="一、感知机制"></a>一、感知机制</h3><h4 id="逻辑回归问题"><a href="#逻辑回归问题" class="headerlink" title="逻辑回归问题"></a>逻辑回归问题</h4><h5 id="分离超平面-核心作用：划分两类数据（正类-1，负类-1）"><a href="#分离超平面-核心作用：划分两类数据（正类-1，负类-1）" class="headerlink" title="分离超平面 - 核心作用：划分两类数据（正类+1，负类-1）"></a>分离超平面 - 核心作用：划分两类数据（正类+1，负类-1）</h5><p>从几何意义来理解逻辑回归模型，如果样本点根据属性变量完全线性可分，我们可通过属性空间中的超平面 <strong>w</strong>∙<strong>x</strong>+b&#x3D;0 将其分为两部分，一部分是正类，记为“+1”，一部分为负类，记为“-1”</p>
+<p>超平面：在几何中，如果环境空间是 p 维的，那它所对应的超平面其实就是一个 p-1 维的子空间。换句话说，超平面是比他所处的环境空间小一个维度的线性子空间。</p>
+<ul>
+<li>一维分离超平面（点）</li>
+</ul>
+<img src="/2025/12/19/%E6%84%9F%E7%9F%A5%E6%9C%BA%E6%A8%A1%E5%9E%8B/1.png" class="" title="图片描述">
+
+<ul>
+<li>二维分离超平面（直线）</li>
+</ul>
+<img src="/2025/12/19/%E6%84%9F%E7%9F%A5%E6%9C%BA%E6%A8%A1%E5%9E%8B/2.png" class="" title="图片描述">
+
+<ul>
+<li>如果属性空间是三维的，分离超平面应该就是一个二维平面了。</li>
+<li>四维属性空间对应的超平面是一个立体面，以此类推。</li>
+<li>当属性空间是 p 维的，所对应的分离超平面是一个 p-1 维的平面。 p-1 维的平面由 p+1 维的参数决定。</li>
+</ul>
+<h5 id="什么是感知机制？"><a href="#什么是感知机制？" class="headerlink" title="什么是感知机制？"></a>什么是感知机制？</h5><ul>
+<li>本质：二分类的线性判别模型</li>
+<li>核心：通过线性结构的分离超平面实现数据分类</li>
+<li>灵感来源：人类神经元的信号传递机制（模拟视觉、听觉等五感的感知逻辑）</li>
+<li>感知机通过简单的线性函数决定人工神经网络的神经元，感知数据世界。</li>
+</ul>
+<h3 id="二、感知机的学习-核心：找到分离超平面"><a href="#二、感知机的学习-核心：找到分离超平面" class="headerlink" title="二、感知机的学习 - 核心：找到分离超平面"></a>二、感知机的学习 - 核心：找到分离超平面</h3><h4 id="1）感知学习的前提-【数据线性可分】"><a href="#1）感知学习的前提-【数据线性可分】" class="headerlink" title="1）感知学习的前提 - 【数据线性可分】"></a>1）感知学习的前提 - 【数据线性可分】</h4><ul>
+<li><p>线性可分：</p>
+<ul>
+<li><p>存在至少一条线（二维）、一个点（一维）或更高维的超平面，能将所有正类（+1）和负类（-1）的数据完全分开，没有任何一个数据点站错队</p>
+</li>
+<li><p>如：用 “身高 + 体重” 区分 “成年人” 和 “未成年人”，如果所有成年人的身高 + 体重都大于某个值，未成年人都小于这个值，那就是线性可分；如果有个未成年人身高体重和成年人差不多，混在成年人堆里，那就是线性不可分，感知机学不会</p>
+</li>
+<li><p>线性可分定义：</p>
+<img src="/2025/12/19/%E6%84%9F%E7%9F%A5%E6%9C%BA%E6%A8%A1%E5%9E%8B/3.png" class="" title="图片描述"></li>
+</ul>
+</li>
+</ul>
+<h4 id="2）找最优分离超平面"><a href="#2）找最优分离超平面" class="headerlink" title="2）找最优分离超平面"></a>2）找最优分离超平面</h4><ul>
+<li>如何评判最优？<ul>
+<li>找 “最稳妥” 的线 —— 这条线离两边的数据点都尽可能远，这样后续遇到新数据时，分类出错的概率才最小</li>
+<li>如何达到 “最稳妥” ？<ul>
+<li>让 “误分类点”（被错分类的点）越来越少</li>
+<li>感知机学习本质：不断调整超平面位置，直到消灭所有误分类点</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="3）感知机学习过程"><a href="#3）感知机学习过程" class="headerlink" title="3）感知机学习过程"></a>3）感知机学习过程</h4><ul>
+<li><h5 id="核心步骤流程"><a href="#核心步骤流程" class="headerlink" title="核心步骤流程"></a>核心步骤流程</h5><ul>
+<li>找初始超平面</li>
+<li>发现误分类点</li>
+<li>修改超平面</li>
+<li>直到没有误分类点</li>
+</ul>
+</li>
+<li><h5 id="超平面的定义公式"><a href="#超平面的定义公式" class="headerlink" title="超平面的定义公式"></a>超平面的定义公式</h5><ul>
+<li><p>所有维度的超平面都公用一个公式：</p>
+<img src="/2025/12/19/%E6%84%9F%E7%9F%A5%E6%9C%BA%E6%A8%A1%E5%9E%8B/4.png" class="" title="图片描述"></li>
+</ul>
+</li>
+<li><h5 id="感知机模型定义公式"><a href="#感知机模型定义公式" class="headerlink" title="感知机模型定义公式"></a>感知机模型定义公式</h5><ul>
+<li><img src="/2025/12/19/%E6%84%9F%E7%9F%A5%E6%9C%BA%E6%A8%A1%E5%9E%8B/5.png" class="" title="图片描述"></li>
+<li>其中，sign 为符号函数；<em>f(x)</em> 为感知机模型的决策函数</li>
+<li><img src="/2025/12/19/%E6%84%9F%E7%9F%A5%E6%9C%BA%E6%A8%A1%E5%9E%8B/6.png" class="" title="图片描述"></li>
+</ul>
+</li>
+<li><h5 id="找初始超平面"><a href="#找初始超平面" class="headerlink" title="找初始超平面"></a>找初始超平面</h5><ul>
+<li>学习刚开始时，我们不知道 <em>w</em> 和 <em>b</em> 该取多少，就先随便设一个初始值（比如 <em>w</em> 全设为 0，<em>b</em> 设为 0），此时会出现很多误分类点</li>
+</ul>
+</li>
+<li><h5 id="判断误分类点"><a href="#判断误分类点" class="headerlink" title="判断误分类点"></a>判断误分类点</h5><ul>
+<li><p>如果 <strong>x</strong>_0 是误分类点, 通过感知机分类器所得到的类别 f(<strong>x</strong>_0 ) 与实例的真实类别 y_0 【符号相反】</p>
+</li>
+<li><p>点到超平面的几何距离公式：</p>
+<ul>
+<li>其中 w 为感知机的权值向量（了解它是啥即可）</li>
+</ul>
+<img src="/2025/12/19/%E6%84%9F%E7%9F%A5%E6%9C%BA%E6%A8%A1%E5%9E%8B/7.png" class="" title="图片描述">
+</li>
+<li><p>分类</p>
+<ul>
+<li><p><em>y0</em> 表示这个点的真实类别，+1 或 - 1</p>
+<img src="/2025/12/19/%E6%84%9F%E7%9F%A5%E6%9C%BA%E6%A8%A1%E5%9E%8B/8.png" class="" title="图片描述">
+</li>
+<li><p>如果式子去掉绝对值前面符号（正负）和 <em>y0</em> 的符号不一样，就是错误分类点</p>
+</li>
+</ul>
+<img src="/2025/12/19/%E6%84%9F%E7%9F%A5%E6%9C%BA%E6%A8%A1%E5%9E%8B/9.png" class="" title="图片描述"></li>
+</ul>
+</li>
+<li><h5 id="找最优超平面"><a href="#找最优超平面" class="headerlink" title="找最优超平面"></a>找最优超平面</h5><ul>
+<li><p>核心思路：最优超平面就是：让误分类点到超平面的距离尽可能小，直到没有误分类点</p>
+</li>
+<li><p>通过调整 w（感知机权值向量，也可以叫做：权重）和 b（截距参数，可以理解为超平面的移动偏移量）</p>
+</li>
+<li><p>总距离和 &#x3D; 所有误分类点到超平面 S 距离的总和</p>
+<ul>
+<li><img src="/2025/12/19/%E6%84%9F%E7%9F%A5%E6%9C%BA%E6%A8%A1%E5%9E%8B/10.png" class="" title="图片描述"></li>
+</ul>
+</li>
+<li><p>最小化总距离和 —— 找最优超平面</p>
+<ul>
+<li><p>∥<em>w</em>∥只影响距离的 “缩放比例”，不影响超平面的<strong>方向和位置</strong>，计算时不用管他</p>
+</li>
+<li><img src="/2025/12/19/%E6%84%9F%E7%9F%A5%E6%9C%BA%E6%A8%A1%E5%9E%8B/11.png" class="" title="图片描述"></li>
+<li><p><em>w</em>管超平面的 “方向”，<em>b</em>管超平面的 “位置”，这俩参数共同决定了感知机的分类边界</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>重点</p>
+<ul>
+<li><img src="/2025/12/19/%E6%84%9F%E7%9F%A5%E6%9C%BA%E6%A8%A1%E5%9E%8B/12.png" class="" title="图片描述"></li>
+</ul>
+</li>
+</ul>
+<h3 id="三、感知机的优化算法-梯度下降算法"><a href="#三、感知机的优化算法-梯度下降算法" class="headerlink" title="三、感知机的优化算法 - 梯度下降算法"></a>三、感知机的优化算法 - 梯度下降算法</h3><p>1）梯度下降法作用：</p>
+<ul>
+<li>梯度下降是 “系统化优化方法”—— 它能通过<strong>量化 “错误程度”（损失函数）</strong>，让参数调整更有方向，避免盲目试错，尤其适合数据量较大的场景</li>
+</ul>
+<p>2）梯度下降法核心：</p>
+<ul>
+<li><p>定义”损失函数“</p>
+<ul>
+<li><p>感知机的损失函数：误分类点到超平面的总距离（距离越大，误分类点越多）</p>
+</li>
+<li><p>感知机的损失函数</p>
+<ul>
+<li><p><em>M</em>：所有误分类点的集合（只计算分错的点，分对的点不贡献损失）</p>
+</li>
+<li><p>∥<em>w</em>∥：权重向量的 “范数”（可以理解为<em>w</em>的 “长度”），作用是消除<em>w</em>大小对距离的影响，让损失只和 “真实距离” 相关，不影响感知机模型的最终结果，也可以不考虑它</p>
+</li>
+<li><img src="/2025/12/19/%E6%84%9F%E7%9F%A5%E6%9C%BA%E6%A8%A1%E5%9E%8B/13.png" class="" title="图片描述"></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>简化，忽略 ∥<em>w</em>∥</p>
+<ul>
+<li><img src="/2025/12/19/%E6%84%9F%E7%9F%A5%E6%9C%BA%E6%A8%A1%E5%9E%8B/14.png" class="" title="图片描述"></li>
+</ul>
+</li>
+<li><p>计算梯度（对损失函数求w和b的偏导数）</p>
+<ul>
+<li><img src="/2025/12/19/%E6%84%9F%E7%9F%A5%E6%9C%BA%E6%A8%A1%E5%9E%8B/15.png" class="" title="图片描述"></li>
+</ul>
+</li>
+<li><p>更新 w 和 b</p>
+<ul>
+<li><img src="/2025/12/19/%E6%84%9F%E7%9F%A5%E6%9C%BA%E6%A8%A1%E5%9E%8B/16.png" class="" title="图片描述"></li>
+</ul>
+</li>
+<li><p>总步骤：</p>
+<ul>
+<li><img src="/2025/12/19/%E6%84%9F%E7%9F%A5%E6%9C%BA%E6%A8%A1%E5%9E%8B/17.png" class="" title="图片描述"></li>
+</ul>
+</li>
+</ul>
+<h3 id="四、总结与习题"><a href="#四、总结与习题" class="headerlink" title="四、总结与习题"></a>四、总结与习题</h3><p>1）感知机是一种二分类方法，通过线性结构的分离超平面解决分类问题。实例的类别可通过决策函数做出判断</p>
+<p>2）感知机的学习问题（所有误分类到超平面的距离之和最小）</p>
+<img src="/2025/12/19/%E6%84%9F%E7%9F%A5%E6%9C%BA%E6%A8%A1%E5%9E%8B/18.png" class="" title="图片描述">
+
+<p>3）感知机模型可通过梯度下降算法学习</p>
+<p>4）感知机模型特点</p>
+<ul>
+<li><p>感知机模型具有依赖性，不同的初值选择，或者迭代过程中不同的误分类点选择顺序，可能会得到不同的分离超平面。</p>
+<ul>
+<li>人话：结果不唯一<br>初始参数选得不一样、调整误分类点的顺序不一样，最后得到的分类线（超平面）可能不同，但都能分开数据</li>
+</ul>
+</li>
+<li><p>对于线性不可分的训练集 T，感知机模型不收敛，迭代结果会发生震荡</p>
+<ul>
+<li>人话：无法处理线性不可分情况<br>如果数据没法用一条线分开（线性不可分），感知机会一直调整参数，永远找不到合适的分类线，陷入 “来回晃” 的状态</li>
+</ul>
+</li>
+</ul>
+<p>习题：</p>
+<p>1）感知机模型的决策边界是：线性的</p>
+<p>2）感知机模型的参数更新规则是基于：梯度下降法</p>
+<p>3）几何间隔计算公式</p>
+<img src="/2025/12/19/%E6%84%9F%E7%9F%A5%E6%9C%BA%E6%A8%A1%E5%9E%8B/19.png" class="" title="图片描述">
+
+<p>4）感知机模型中，超平面：<em>w</em> * <em>x</em> + b &#x3D; 0 的作用是：用于分类决策（将输入空间分为正类和负类）（超平面为感知机的决策边界）</p>
+<p>5）感知机模型的损失函数通常基于什么原则设计：最小化误分类点到超平面的距离</p>
+
+    </div>
+    
+    
+    
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2005 - 2025 yty的博客
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Leo yu yty
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+
+
+
+
+    
+</body>
+</html>
