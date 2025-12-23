@@ -3,7 +3,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="utf-8" />
-    <title>yty的博客</title>
+    <title>提升方法 | yty的博客</title>
     <meta name="author" content="Leo yu yty" />
     <meta name="description" content="Hello Everyone This is my website" />
     <meta name="keywords" content="" />
@@ -42,7 +42,9 @@
 
 
 
-<script src="/js/lib/home.js"></script>
+
+
+
 
 <link rel="stylesheet" href="/css/main.css" />
 
@@ -152,39 +154,17 @@
 </transition>
 
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
-            <div id="home-head">
-    <div
-        id="home-background"
-        ref="homeBackground"
-        data-images="/images/6.png"
-    ></div>
-    <div id="home-info" @click="homeClick">
-        <span class="loop"></span>
-        <span class="loop"></span>
-        <span class="loop"></span>
-        <span class="loop"></span>
-        <span class="info">
-            <div class="wrap">
-                <h1>yty的博客</h1>
-                <h3>yty的日常博客记录</h3>
-                <h5>Hello Everyone This is my website</h5>
-            </div>
-        </span>
+            <div class="article">
+    <div>
+        <h1>提升方法</h1>
     </div>
-</div>
-<div
-    id="home-posts-wrap"
-    ref="homePostsWrap"
-    true
->
-    <div id="home-posts">
-        
-
-<div class="post">
-    <a href="/2025/12/10/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8E%A2%E7%B4%A2%E5%88%86%E6%9E%90%E8%AF%BE%E7%A8%8B%E5%9F%BA%E7%A1%80/">
-        <h2 class="post-title">大数据探索分析课程基础</h2>
-    </a>
-    <div class="category-and-date">
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2025/12/23
+        </span>
         
         <span class="category">
             <a href="/categories/%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/">
@@ -195,190 +175,116 @@
             </a>
         </span>
         
-        <span class="date">
+        
+        <span class="tags">
             <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
+                <i class="fa-solid fa-tags fa-fw"></i>
             </span>
-            2025/12/10
-        </span>
-        
-        
-    </div>
-    <div class="description">
-        <div class="content" v-pre>
             
-            <h3 id="摘要部分"><a href="#摘要部分" class="headerlink" title="摘要部分"></a>摘要部分</h3>
             
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        <span class="icon">
-            <i class="fa-solid fa-tags fa-fw"></i>
-        </span>
-        
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/%E7%AC%94%E8%AE%B0/" style="color: #03a9f4">笔记</a>
-        </span>
-        
-    </div>
-    <a href="/2025/12/10/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8E%A2%E7%B4%A2%E5%88%86%E6%9E%90%E8%AF%BE%E7%A8%8B%E5%9F%BA%E7%A1%80/" class="go-post">阅读全文</a>
-</div>
-
-<div class="post">
-    <a href="/2025/12/09/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8E%A2%E7%B4%A2%E6%80%A7%E5%88%86%E6%9E%90%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/">
-        <h2 class="post-title">大数据探索性分析课程笔记</h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="category">
-            <a href="/categories/%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/">
-                <span class="icon">
-                    <i class="fa-solid fa-bookmark fa-fw"></i>
-                </span>
-                复习笔记
-            </a>
-        </span>
-        
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
+            <span class="tag">
+                
+                <a href="/tags/%E7%AC%94%E8%AE%B0/" style="color: #00a596">
+                    笔记
+                </a>
             </span>
-            2025/12/9
-        </span>
-        
-        
-    </div>
-    <div class="description">
-        <div class="content" v-pre>
             
-            <h3 id="摘要部分"><a href="#摘要部分" class="headerlink" title="摘要部分"></a>摘要部分</h3>
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        <span class="icon">
-            <i class="fa-solid fa-tags fa-fw"></i>
-        </span>
-        
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/%E7%AC%94%E8%AE%B0/" style="color: #00bcd4">笔记</a>
         </span>
         
     </div>
-    <a href="/2025/12/09/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8E%A2%E7%B4%A2%E6%80%A7%E5%88%86%E6%9E%90%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/" class="go-post">阅读全文</a>
-</div>
-
-<div class="post">
-    <a href="/2025/12/08/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%A0%E9%A2%98/">
-        <h2 class="post-title">机器学习习题</h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="category">
-            <a href="/categories/%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/">
-                <span class="icon">
-                    <i class="fa-solid fa-bookmark fa-fw"></i>
-                </span>
-                复习笔记
-            </a>
-        </span>
-        
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
-            </span>
-            2025/12/8
-        </span>
-        
-        
-    </div>
-    <div class="description">
-        <div class="content" v-pre>
-            
-            <h3 id="摘要部分"><a href="#摘要部分" class="headerlink" title="摘要部分"></a>摘要部分</h3>
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        <span class="icon">
-            <i class="fa-solid fa-tags fa-fw"></i>
-        </span>
-        
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/%E7%AC%94%E8%AE%B0/" style="color: #03a9f4">笔记</a>
-        </span>
-        
-    </div>
-    <a href="/2025/12/08/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%A0%E9%A2%98/" class="go-post">阅读全文</a>
-</div>
+    
+    <div class="content" v-pre>
+        <p>摘要部分</p>
+<span id="more"></span>
 
 
-        <div class="page-current">
-    
-    <a class="page-num" href="/page/4/">
-        <i class="fa-solid fa-caret-left fa-fw"></i>
-    </a>
-    <a class="page-num" href="/">1</a>
-    <span class="page-omit">...</span>
-    
-    <span class="current">5</span>
-    
-    <a class="page-num" href="/page/6">
-        6
-    </a>
-    
-    
-    
-    
-    <a class="page-num" href="/page/6/">
-        <i class="fa-solid fa-caret-right fa-fw"></i>
-    </a>
-    
-</div>
+
+
+
+
+
+<h2 id="提升方法"><a href="#提升方法" class="headerlink" title="提升方法"></a>提升方法</h2><h3 id="一、集成学习"><a href="#一、集成学习" class="headerlink" title="一、集成学习"></a>一、集成学习</h3><ul>
+<li><h5 id="定义：将多个基础学习模型方法结合在一起"><a href="#定义：将多个基础学习模型方法结合在一起" class="headerlink" title="定义：将多个基础学习模型方法结合在一起"></a>定义：将多个基础学习模型方法结合在一起</h5></li>
+<li><p>集成学习分为</p>
+<ul>
+<li><h5 id="同质集成：同类型的基学习器集成而成"><a href="#同质集成：同类型的基学习器集成而成" class="headerlink" title="同质集成：同类型的基学习器集成而成"></a>同质集成：同类型的基学习器集成而成</h5><p>根据其内部结构分为：</p>
+<ul>
+<li>并行结构</li>
+<li>串行结构</li>
+</ul>
+</li>
+<li><h5 id="异质集成：不同种类基学习器集成而成"><a href="#异质集成：不同种类基学习器集成而成" class="headerlink" title="异质集成：不同种类基学习器集成而成"></a>异质集成：不同种类基学习器集成而成</h5><ul>
+<li>典型异质学习：堆叠法（表示将上一轮计算的结果经过处理之后输入下一轮，然后一轮轮训练下去）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="集成学习的两种关键结构："><a href="#集成学习的两种关键结构：" class="headerlink" title="集成学习的两种关键结构："></a>集成学习的两种关键结构：</h4><ul>
+<li><h5 id="聚合法（Bagging）-核心：每次对数据有放回地抽样（Boostrap）"><a href="#聚合法（Bagging）-核心：每次对数据有放回地抽样（Boostrap）" class="headerlink" title="聚合法（Bagging）- 核心：每次对数据有放回地抽样（Boostrap）"></a>聚合法（Bagging）- 核心：每次对数据有放回地抽样（Boostrap）</h5><ul>
+<li>每次对数据有放回地抽样，产生具有固定数量的采样集，然后针对每一采样集训练基分类器，最终以一定的组合方式生成终分类器（如：随机森林）</li>
+<li>总结：有放回抽样→各基学习器独立训练→平均 &#x2F; 投票组合</li>
+<li><img src="/2025/12/23/%E6%8F%90%E5%8D%87%E6%96%B9%E6%B3%95/1.png" class="" title="图片描述"></li>
+</ul>
+</li>
+<li><h5 id="提升法（Boosting）-核心：按上一轮基学习器的训练结果更新数据集，继续新的学习"><a href="#提升法（Boosting）-核心：按上一轮基学习器的训练结果更新数据集，继续新的学习" class="headerlink" title="提升法（Boosting）- 核心：按上一轮基学习器的训练结果更新数据集，继续新的学习"></a>提升法（Boosting）- 核心：按上一轮基学习器的训练结果更新数据集，继续新的学习</h5><ul>
+<li><img src="/2025/12/23/%E6%8F%90%E5%8D%87%E6%96%B9%E6%B3%95/2.png" class="" title="图片描述">
+</li>
+<li><p>总结：按前一轮结果更新数据集→串行训练基学习器→集成所有学习器</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="基学习器的选择："><a href="#基学习器的选择：" class="headerlink" title="基学习器的选择："></a>基学习器的选择：</h4><ul>
+<li><h5 id="平均法（均值思想）（回归问题）（聚合法Bagging）"><a href="#平均法（均值思想）（回归问题）（聚合法Bagging）" class="headerlink" title="平均法（均值思想）（回归问题）（聚合法Bagging）"></a>平均法（均值思想）（回归问题）（聚合法Bagging）</h5><ul>
+<li>直接平均</li>
+<li>加权平均</li>
+</ul>
+</li>
+<li><h5 id="投票法（众数思想）（分类问题）（提升法Boosting）"><a href="#投票法（众数思想）（分类问题）（提升法Boosting）" class="headerlink" title="投票法（众数思想）（分类问题）（提升法Boosting）"></a>投票法（众数思想）（分类问题）（提升法Boosting）</h5><ul>
+<li>绝对多数表决</li>
+<li>相对多数表决</li>
+<li>加权多数表决</li>
+</ul>
+</li>
+<li><img src="/2025/12/23/%E6%8F%90%E5%8D%87%E6%96%B9%E6%B3%95/3.png" class="" title="图片描述"></li>
+</ul>
+<h3 id="二、Adaboost算法"><a href="#二、Adaboost算法" class="headerlink" title="二、Adaboost算法"></a>二、Adaboost算法</h3><ul>
+<li><p>核心特点：根据弱分类器的误差率，有目的地进行适应性提升</p>
+</li>
+<li><h5 id="两大内核："><a href="#两大内核：" class="headerlink" title="两大内核："></a>两大内核：</h5><ul>
+<li><strong>可加模型</strong> —— 构建模型结构基础</li>
+<li><strong>前向回归</strong> —— 提供提升 &#x2F; 优化策略</li>
+</ul>
+</li>
+</ul>
+<h4 id="1）前向回归"><a href="#1）前向回归" class="headerlink" title="1）前向回归"></a>1）前向回归</h4><ul>
+<li>逐步回归包括：<ul>
+<li>前向回归</li>
+<li>后向回归</li>
+</ul>
+</li>
+<li>前向回归：<ul>
+<li>从空模型开始，每次引入一个最优变量（选取效果最好的模型；用来判断效果好坏的有：【AIC准则，BIC准则，F检验），直到不能再引入变量为止。</li>
+</ul>
+</li>
+<li>后向回归：<ul>
+<li>从包含所有自变量的全模型开始，一轮轮剔除变量，直到没有变量可剔除。</li>
+</ul>
+</li>
+<li>可加模型：一种【非参数】模型<ul>
+<li>结构特点：由多个【未知基函数】线性组合而成</li>
+</ul>
+</li>
+</ul>
 
     </div>
     
-    <div id="home-card">
-        <div id="card-style">
-    <div id="card-div">
-        <div class="avatar">
-            <img src="/images/xnylh.webp" alt="avatar" />
-        </div>
-        <div class="name">Leo yu yty</div>
-        <div class="description">
-            <p>yty的个人博客~<br>分享日常和学习心得</p>
-
-        </div>
-        
-        
-        <div class="friend-links">
-            
-            <div class="friend-link">
-                <a target="_blank" rel="noopener" href="https://argvchs.github.io">Argvchs</a>
-            </div>
-            
-            <div class="friend-link">
-                <a target="_blank" rel="noopener" href="https://blog.csdn.net/leo_yty?spm=1000.2692.3001.5343">yty的csdn博客</a>
-            </div>
-            
-        </div>
-        
-    </div>
-</div>
-
-    </div>
+    
+    
+    
+    
+    
     
 </div>
 
@@ -410,6 +316,12 @@
         
     </div>
     <script src="/js/main.js"></script>
+    
+    
+
+
+
+
     
 </body>
 </html>
