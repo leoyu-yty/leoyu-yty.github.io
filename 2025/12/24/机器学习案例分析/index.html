@@ -184,7 +184,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/%E7%AC%94%E8%AE%B0/" style="color: #00a596">
+                <a href="/tags/%E7%AC%94%E8%AE%B0/" style="color: #03a9f4">
                     笔记
                 </a>
             </span>
@@ -206,6 +206,14 @@
 
 <p>重点：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 导入线性回归模型</span></span><br><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> linear_model</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将数据集拆分成训练集和测试集</span></span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split</span><br><span class="line"></span><br><span class="line"><span class="comment"># 划分训练集和测试集，比例为 9:1</span></span><br><span class="line">X_train, X_test, y_train, y_test = train_test_split(X, y, train_size = <span class="number">9</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建线性回归模型</span></span><br><span class="line">lm_model = linear_model.LinearRegression()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 训练模型</span></span><br><span class="line">lm_model.fit(X_train, y_train)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>导入线性回归模型</li>
+</ul>
+<p><code>from sklearn import linear_model</code></p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="code">```python</span></span><br><span class="line"><span class="code"># 导入线性回归模型</span></span><br><span class="line"><span class="code">from sklearn import linear_model</span></span><br><span class="line"><span class="code"># 将数据集拆分成训练集和测试集</span></span><br><span class="line"><span class="code">from sklearn.model_selection import train_test_split</span></span><br></pre></td></tr></table></figure>
+
+
 
 
 
