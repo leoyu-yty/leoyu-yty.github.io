@@ -184,8 +184,15 @@
             
             <span class="tag">
                 
-                <a href="/tags/%E7%AC%94%E8%AE%B0/" style="color: #00bcd4">
+                <a href="/tags/%E7%AC%94%E8%AE%B0/" style="color: #00a596">
                     笔记
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/" style="color: #03a9f4">
+                    机器学习基础
                 </a>
             </span>
             
@@ -194,8 +201,15 @@
     </div>
     
     <div class="content" v-pre>
-        <p>摘要部分：</p>
-<span id="more"></span>
+        <h2 id="摘要部分"><a href="#摘要部分" class="headerlink" title="摘要部分"></a>摘要部分</h2><h4 id="一、决策树的结构组成"><a href="#一、决策树的结构组成" class="headerlink" title="一、决策树的结构组成"></a>一、决策树的结构组成</h4><img src="/2025/12/17/%E5%86%B3%E7%AD%96%E6%A0%91/1.png" class="" title="图片描述">
+
+<h4 id="二、决策树的特征选择"><a href="#二、决策树的特征选择" class="headerlink" title="二、决策树的特征选择"></a>二、决策树的特征选择</h4><h5 id="1、信息增益"><a href="#1、信息增益" class="headerlink" title="1、信息增益"></a>1、信息增益</h5><p>信息增益：不确定性减少的量 &#x3D; 经验熵 - 条件经验熵</p>
+<h5 id="2、信息增益比"><a href="#2、信息增益比" class="headerlink" title="2、信息增益比"></a>2、信息增益比</h5><p>信息增益比 &#x3D; 信息增益 &#x2F; 经验熵</p>
+<h5 id="3、基尼不纯度"><a href="#3、基尼不纯度" class="headerlink" title="3、基尼不纯度"></a>3、基尼不纯度</h5><p>熵的近似值，基尼不纯度越小，数据越纯</p>
+<h4 id="三、决策树停止生长的条件（阈值-最大深度）"><a href="#三、决策树停止生长的条件（阈值-最大深度）" class="headerlink" title="三、决策树停止生长的条件（阈值 &amp; 最大深度）"></a>三、决策树停止生长的条件（阈值 &amp; 最大深度）</h4><h4 id="四、决策树的生成算法"><a href="#四、决策树的生成算法" class="headerlink" title="四、决策树的生成算法"></a>四、决策树的生成算法</h4><p>1、ID3算法 —— 信息增益</p>
+<p>2、C4.5算法 —— 信息增益比</p>
+<p>3、CART算法 —— 基尼不纯度</p>
+<h4 id="五、剪枝-——-避免过拟合"><a href="#五、剪枝-——-避免过拟合" class="headerlink" title="五、剪枝 —— 避免过拟合"></a>五、剪枝 —— 避免过拟合</h4><h4 id="六、随机森林-——-多个决策树组成"><a href="#六、随机森林-——-多个决策树组成" class="headerlink" title="六、随机森林 —— 多个决策树组成"></a>六、随机森林 —— 多个决策树组成</h4><span id="more"></span>
 
 
 
@@ -233,7 +247,7 @@
 </ul>
 </li>
 </ul>
-<h3 id="二、决策树的特征选择"><a href="#二、决策树的特征选择" class="headerlink" title="二、决策树的特征选择"></a>二、决策树的特征选择</h3><h4 id="1）信息增益"><a href="#1）信息增益" class="headerlink" title="1）信息增益"></a>1）信息增益</h4><p>信息熵：衡量数据不确定性（混乱程度）的指标，数据越混乱，熵越大</p>
+<h3 id="二、决策树的特征选择-1"><a href="#二、决策树的特征选择-1" class="headerlink" title="二、决策树的特征选择"></a>二、决策树的特征选择</h3><h4 id="1）信息增益"><a href="#1）信息增益" class="headerlink" title="1）信息增益"></a>1）信息增益</h4><p>信息熵：衡量数据不确定性（混乱程度）的指标，数据越混乱，熵越大</p>
 <ul>
 <li>如果一个结点里的人全是幸存者，熵就是 0（完全不混乱）</li>
 <li>如果一半幸存者、一半遇难者，熵最大（最混乱）</li>
