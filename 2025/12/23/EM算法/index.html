@@ -189,12 +189,47 @@
                 </a>
             </span>
             
+            <span class="tag">
+                
+                <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/" style="color: #ff7d73">
+                    机器学习基础
+                </a>
+            </span>
+            
         </span>
         
     </div>
     
     <div class="content" v-pre>
-        <p>摘要部分</p>
+        <h2 id="摘要部分"><a href="#摘要部分" class="headerlink" title="摘要部分"></a>摘要部分</h2><p>EM算法是从【极大似然法】变换而来，适用于不完全数据（存在隐变量的数据）</p>
+<p>似然函数：已知 “结果”（观测值），反推 “导致这个结果的原因“（参数） 的可能性大小</p>
+<ul>
+<li><h4 id="E步："><a href="#E步：" class="headerlink" title="E步："></a>E步：</h4><ul>
+<li>找到隐变量条件概率</li>
+<li>找到期望公式</li>
+</ul>
+<p>人话：</p>
+<ul>
+<li>猜隐函数值</li>
+<li>写出Q函数：Q 函数是<strong>基于隐藏信息的概率，对 “观测 + 隐藏信息的联合似然函数” 求期望</strong>（简单说：把 “隐藏信息的不确定性” 用概率加权平均，得到一个 “能代表似然函数趋势” 的函数）。</li>
+</ul>
+</li>
+<li><h4 id="M步："><a href="#M步：" class="headerlink" title="M步："></a>M步：</h4><ul>
+<li>拿着 E 步得到的 Q 函数，找到能让这个函数最大的新参数 —— 这就是本轮迭代的新结果</li>
+</ul>
+</li>
+<li><p>迭代</p>
+<ul>
+<li>重复 E 步→M 步，直到两次迭代的参数变化特别小（比如小于 0.001），或者 Q 函数的变化特别小，就说明结果稳定了，停止计算</li>
+</ul>
+</li>
+</ul>
+<h4 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h4><ul>
+<li>给定初始参数</li>
+<li>E步：估计隐变量的期望值</li>
+<li>M步：最大化Q函数</li>
+<li>迭代，直到收敛</li>
+</ul>
 <span id="more"></span>
 
 

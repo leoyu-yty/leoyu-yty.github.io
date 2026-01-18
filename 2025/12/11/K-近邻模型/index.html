@@ -184,8 +184,15 @@
             
             <span class="tag">
                 
-                <a href="/tags/%E7%AC%94%E8%AE%B0/" style="color: #00a596">
+                <a href="/tags/%E7%AC%94%E8%AE%B0/" style="color: #03a9f4">
                     笔记
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/" style="color: #00bcd4">
+                    机器学习基础
                 </a>
             </span>
             
@@ -194,10 +201,21 @@
     </div>
     
     <div class="content" v-pre>
-        <h3 id="摘要部分："><a href="#摘要部分：" class="headerlink" title="摘要部分："></a>摘要部分：</h3><h4 id="主题：K-近邻模型"><a href="#主题：K-近邻模型" class="headerlink" title="主题：K - 近邻模型"></a>主题：K - 近邻模型</h4><h4 id="一、聚合思想"><a href="#一、聚合思想" class="headerlink" title="一、聚合思想"></a>一、聚合思想</h4><p>1、定义</p>
-<p>2、分类问题 v.s. 回归问题</p>
+        <h2 id="摘要部分"><a href="#摘要部分" class="headerlink" title="摘要部分"></a>摘要部分</h2><h4 id="主题：K-近邻模型"><a href="#主题：K-近邻模型" class="headerlink" title="主题：K - 近邻模型"></a>主题：K - 近邻模型</h4><h4 id="一、聚合思想"><a href="#一、聚合思想" class="headerlink" title="一、聚合思想"></a>一、聚合思想</h4><p>1、定义：把数据集中的个体值进行统计汇总，通过一个概括值（如：平均数、众数、中位数）来反映整个数据集</p>
+<p>2、分类问题 &amp; 回归问题</p>
+<ul>
+<li><p>分类问题：输出空间由离散数值构成，最终预测的是【类别】</p>
+</li>
+<li><p>回归问题：输出空间由连续性数值构成，最终预测的是【数值】</p>
+</li>
+</ul>
 <p>3、关键影响因素</p>
-<p>4、K - 近邻分类算法 ；K - 近邻回归算法</p>
+<ul>
+<li>K的取值</li>
+<li>距离的定义：哪些邻居算作为和自己比较“像”的，“距离”既是如何评判“像”的标准</li>
+<li>决策规则：除了用【众数】、【平均数】、还可以用【中位数】</li>
+</ul>
+<p>4、K - 近邻分类算法 &amp; K - 近邻回归算法</p>
 <h4 id="二、K-近邻算法的三要素"><a href="#二、K-近邻算法的三要素" class="headerlink" title="二、K - 近邻算法的三要素"></a>二、K - 近邻算法的三要素</h4><h5 id="1、距离度量"><a href="#1、距离度量" class="headerlink" title="1、距离度量"></a>1、距离度量</h5><ul>
 <li>曼哈顿距离</li>
 <li>欧氏距离</li>
@@ -209,11 +227,15 @@
 <li>分类问题：众数思想</li>
 <li>回归问题：均值思想</li>
 </ul>
-<h5 id="3、K-值的选取"><a href="#3、K-值的选取" class="headerlink" title="3、K 值的选取"></a>3、K 值的选取</h5><h5 id="4、K-维树（重点）"><a href="#4、K-维树（重点）" class="headerlink" title="4、K 维树（重点）"></a>4、K 维树（重点）</h5><ul>
+<h5 id="3、K-值的选取"><a href="#3、K-值的选取" class="headerlink" title="3、K 值的选取"></a>3、K 值的选取</h5><img src="/2025/12/11/K-%E8%BF%91%E9%82%BB%E6%A8%A1%E5%9E%8B/9.png" class="" title="图片描述">
+
+<h5 id="4、K-维树"><a href="#4、K-维树" class="headerlink" title="4、K 维树"></a>4、K 维树</h5><ul>
 <li>K 维树的构建</li>
 <li>K 维树的搜索</li>
 </ul>
-<h4 id="三、习题"><a href="#三、习题" class="headerlink" title="三、习题"></a>三、习题</h4><span id="more"></span>
+<img src="/2025/12/11/K-%E8%BF%91%E9%82%BB%E6%A8%A1%E5%9E%8B/11.png" class="" title="图片描述">
+
+<span id="more"></span>
 
 
 
@@ -394,7 +416,7 @@
 <p>解答：</p>
 <img src="/2025/12/11/K-%E8%BF%91%E9%82%BB%E6%A8%A1%E5%9E%8B/15.png" class="" title="图片描述">
 
-<h3 id="三、习题-1"><a href="#三、习题-1" class="headerlink" title="三、习题"></a>三、习题</h3><p>1）在K-近邻算法中，小明通过小芳朋友们的动向来判断小芳可能去哪个食堂，这体现了K-近邻算法的哪种基本思想？</p>
+<h3 id="三、习题"><a href="#三、习题" class="headerlink" title="三、习题"></a>三、习题</h3><p>1）在K-近邻算法中，小明通过小芳朋友们的动向来判断小芳可能去哪个食堂，这体现了K-近邻算法的哪种基本思想？</p>
 <p>答：【邻友思想】</p>
 <p>2）在K-近邻模型中，分类问题通常采用的决策规律是</p>
 <p>答：【众数思想】</p>

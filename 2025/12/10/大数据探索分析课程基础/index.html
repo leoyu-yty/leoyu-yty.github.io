@@ -184,8 +184,15 @@
             
             <span class="tag">
                 
-                <a href="/tags/%E7%AC%94%E8%AE%B0/" style="color: #00bcd4">
+                <a href="/tags/%E7%AC%94%E8%AE%B0/" style="color: #ffa2c4">
                     笔记
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8E%A2%E7%B4%A2%E6%80%A7%E5%88%86%E6%9E%90/" style="color: #03a9f4">
+                    大数据探索性分析
                 </a>
             </span>
             
@@ -194,7 +201,94 @@
     </div>
     
     <div class="content" v-pre>
-        <h3 id="摘要部分"><a href="#摘要部分" class="headerlink" title="摘要部分"></a>摘要部分</h3><span id="more"></span>
+        <h2 id="摘要部分"><a href="#摘要部分" class="headerlink" title="摘要部分"></a>摘要部分</h2><h3 id="一、数据形式"><a href="#一、数据形式" class="headerlink" title="一、数据形式"></a>一、数据形式</h3><ul>
+<li>结构化数据</li>
+<li>非结构化数据</li>
+</ul>
+<p>数据点的相似性度量</p>
+<h3 id="二、描述性统计"><a href="#二、描述性统计" class="headerlink" title="二、描述性统计"></a>二、描述性统计</h3><ul>
+<li><p>集中趋势：均值、众数、中位数</p>
+</li>
+<li><p>离散程度：标准差、极差、四分位差、变异系数（标准差 &#x2F; 均值）</p>
+</li>
+<li><p>分布形态：偏度、峰度</p>
+</li>
+</ul>
+<h3 id="三、属性类型"><a href="#三、属性类型" class="headerlink" title="三、属性类型"></a>三、属性类型</h3><ul>
+<li><p>数值型</p>
+</li>
+<li><p>类别型（频数，频率）</p>
+</li>
+<li><p>序数型（累积频数，等级相关分析）</p>
+</li>
+<li><p>区间型（均值，方差）</p>
+</li>
+<li><p>比率型（均值，标准差，相关系数）</p>
+</li>
+</ul>
+<h3 id="四、缺失值"><a href="#四、缺失值" class="headerlink" title="四、缺失值"></a>四、缺失值</h3><ul>
+<li>完全随机缺失：缺失与任何变量无关，仅由随机因素导致</li>
+<li>随机缺失：缺失与已观测变量相关，但与缺失变量本身无关</li>
+<li>非随机缺失：缺失与缺失变量本身直接相关</li>
+</ul>
+<h4 id="缺失值处理"><a href="#缺失值处理" class="headerlink" title="缺失值处理"></a>缺失值处理</h4><ul>
+<li>删除法</li>
+<li>代表性数据填充（均值，中位数，众数）</li>
+<li>预测值填充（回归模型预测 &#x2F; K近邻）</li>
+</ul>
+<h3 id="五、异常值"><a href="#五、异常值" class="headerlink" title="五、异常值"></a>五、异常值</h3><h4 id="1、异常值类型"><a href="#1、异常值类型" class="headerlink" title="1、异常值类型"></a>1、异常值类型</h4><ul>
+<li>点异常值</li>
+<li>上下文异常值</li>
+<li>集体异常值</li>
+</ul>
+<h4 id="2、异常值检测"><a href="#2、异常值检测" class="headerlink" title="2、异常值检测"></a>2、异常值检测</h4><ul>
+<li><h4 id="统计方法检测"><a href="#统计方法检测" class="headerlink" title="统计方法检测"></a>统计方法检测</h4><ul>
+<li><p>z-score检测</p>
+<p>z的值 &#x3D; （当前值 - 均值）&#x2F; 标准差</p>
+</li>
+<li><p>箱线图</p>
+<img src="/2025/12/10/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8E%A2%E7%B4%A2%E5%88%86%E6%9E%90%E8%AF%BE%E7%A8%8B%E5%9F%BA%E7%A1%80/16.png" class="" title="图片描述">
+</li>
+<li><p>假设检验（Grubb’s Test）</p>
+</li>
+</ul>
+</li>
+<li><h4 id="局部离群因子检测（LOF）"><a href="#局部离群因子检测（LOF）" class="headerlink" title="局部离群因子检测（LOF）"></a>局部离群因子检测（LOF）</h4><ul>
+<li><p>k- 距离：（k - distance）&#x3D; 每个数据点p到与他的第k个最近点ok之间的距离</p>
+</li>
+<li><p>可达距离（平滑点之间的距离，避免由于局部过于密集的区域导致的异常点识别误差）</p>
+</li>
+<li><p>局部可达密度（LRD）：邻居到该点的平均可达距离的倒数（密度越高，值越大）</p>
+</li>
+<li><p>局部离群因子</p>
+<ul>
+<li><p>LOF&gt;1——为异常点</p>
+</li>
+<li><p>LOF值越大，离群程度越高</p>
+</li>
+</ul>
+</li>
+<li><p>k值的影响：k太小，局部信息不够，容易误判；k值越大，异常点会被漏掉</p>
+</li>
+</ul>
+</li>
+<li><h4 id="聚类检测"><a href="#聚类检测" class="headerlink" title="聚类检测"></a>聚类检测</h4><ul>
+<li><p>k-means聚类</p>
+<p>把所有数据点分为k个簇（k个小团体），计算每个点到自己所属簇的中心的距离，根据这一距离设定阈值，大于这一阈值的被称为离群点。</p>
+</li>
+<li><p>DBSCAN聚类</p>
+<p>两个重要参数：<strong>最小邻居数（MinPts）</strong>；<strong>半径参数（eps）</strong></p>
+<p>对每个数据点，DBSCAN通过检查它在半径（eps）范围内的邻居数是否达到最小邻居数（&gt;&#x3D;MinPts）来判断这一数据点是否为核心点。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="3、异常值处理"><a href="#3、异常值处理" class="headerlink" title="3、异常值处理"></a>3、异常值处理</h4><ul>
+<li><strong>直接删除</strong></li>
+<li>**异常值替换：**均值替换；中位数替换；截断（超过异常值边界的值用边界值代替）</li>
+<li>**异常值修正：**对数变化（减少右偏分布的影响）；平方根变换（适用于轻微偏移的数据）；Box-Cox变换（通过参数调整数据分布，使其更接近正态分布）</li>
+</ul>
+<span id="more"></span>
 
 
 
@@ -366,11 +460,19 @@
 <img src="/2025/12/10/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8E%A2%E7%B4%A2%E5%88%86%E6%9E%90%E8%AF%BE%E7%A8%8B%E5%9F%BA%E7%A1%80/13.png" class="" title="图片描述">
 
 <h2 id="三、属性类型与统计方法的适配"><a href="#三、属性类型与统计方法的适配" class="headerlink" title="三、属性类型与统计方法的适配"></a>三、属性类型与统计方法的适配</h2><h4 id="1）类别型属性"><a href="#1）类别型属性" class="headerlink" title="1）类别型属性"></a>1）类别型属性</h4><ul>
-<li>核心统计方法：<br>- 频数：某类别的出现次数<br>- 频率：某类别出现次数占总数的比例</li>
+<li>核心统计方法：<ul>
+<li>频数：某类别的出现次数</li>
+<li>频率：某类别出现次数占总数的比例</li>
+</ul>
+</li>
 <li>图表：柱状图、饼图</li>
 </ul>
 <h4 id="2）序数型属性（数据有顺序-等级，但没有固定的数值间隔）"><a href="#2）序数型属性（数据有顺序-等级，但没有固定的数值间隔）" class="headerlink" title="2）序数型属性（数据有顺序&#x2F;等级，但没有固定的数值间隔）"></a>2）序数型属性（数据有顺序&#x2F;等级，但没有固定的数值间隔）</h4><ul>
-<li>核心统计方法：<br>- 累积频数：从低到高（或高到低）累加的次数（比如 “优 + 良” 的累积频数 &#x3D; 优的频数 + 良的频数）<br>- 等级相关分析：看两个序数数据的 “顺序关联”（比如 “成绩等级” 和 “作业完成等级” 是否正相关）</li>
+<li>核心统计方法：<ul>
+<li>累积频数：从低到高（或高到低）累加的次数（比如 “优 + 良” 的累积频数 &#x3D; 优的频数 + 良的频数）</li>
+<li>等级相关分析：看两个序数数据的 “顺序关联”（比如 “成绩等级” 和 “作业完成等级” 是否正相关）</li>
+</ul>
+</li>
 </ul>
 <img src="/2025/12/10/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8E%A2%E7%B4%A2%E5%88%86%E6%9E%90%E8%AF%BE%E7%A8%8B%E5%9F%BA%E7%A1%80/14.png" class="" title="图片描述">
 
@@ -385,7 +487,7 @@
 <li>核心统计方法：均值、标准差、相关系数（看两个比率数据的 “线性关联强度”（比如 “身高” 和 “体重” 的相关程度））</li>
 <li>图表：折线图、散点图</li>
 </ul>
-<h2 id="四、缺失值"><a href="#四、缺失值" class="headerlink" title="四、缺失值"></a>四、缺失值</h2><h4 id="1）缺失值的分类："><a href="#1）缺失值的分类：" class="headerlink" title="1）缺失值的分类："></a>1）缺失值的分类：</h4><ul>
+<h2 id="四、缺失值-1"><a href="#四、缺失值-1" class="headerlink" title="四、缺失值"></a>四、缺失值</h2><h4 id="1）缺失值的分类："><a href="#1）缺失值的分类：" class="headerlink" title="1）缺失值的分类："></a>1）缺失值的分类：</h4><ul>
 <li>完全随机缺失：缺失与任何变量无关，仅由随机因素导致</li>
 <li>随机缺失：缺失与已观测变量相关，但与缺失变量本身无关</li>
 <li>非随机缺失：缺失与缺失变量本身直接相关</li>
@@ -426,7 +528,7 @@
 <li>数据对象的异常程度</li>
 <li>多个数据对象同时考虑看有没有异常</li>
 </ul>
-<h3 id="2、异常值检测"><a href="#2、异常值检测" class="headerlink" title="2、异常值检测"></a>2、异常值检测</h3><h4 id="1）基于统计方法检测异常值"><a href="#1）基于统计方法检测异常值" class="headerlink" title="1）基于统计方法检测异常值"></a>1）基于统计方法检测异常值</h4><h5 id="a、基于z-score的异常值检测"><a href="#a、基于z-score的异常值检测" class="headerlink" title="a、基于z-score的异常值检测"></a>a、基于z-score的异常值检测</h5><p>适用于：单变量+正态分布</p>
+<h3 id="2、异常值检测-1"><a href="#2、异常值检测-1" class="headerlink" title="2、异常值检测"></a>2、异常值检测</h3><h4 id="1）基于统计方法检测异常值"><a href="#1）基于统计方法检测异常值" class="headerlink" title="1）基于统计方法检测异常值"></a>1）基于统计方法检测异常值</h4><h5 id="a、基于z-score的异常值检测"><a href="#a、基于z-score的异常值检测" class="headerlink" title="a、基于z-score的异常值检测"></a>a、基于z-score的异常值检测</h5><p>适用于：单变量+正态分布</p>
 <p>z的值 &#x3D; （当前值 - 均值）&#x2F; 标准差</p>
 <img src="/2025/12/10/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8E%A2%E7%B4%A2%E5%88%86%E6%9E%90%E8%AF%BE%E7%A8%8B%E5%9F%BA%E7%A1%80/15.png" class="" title="图片描述">
 
