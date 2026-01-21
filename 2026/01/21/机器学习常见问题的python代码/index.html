@@ -203,11 +203,32 @@
     <div class="content" v-pre>
         <h4 id="【主要方法】"><a href="#【主要方法】" class="headerlink" title="【主要方法】"></a>【主要方法】</h4><ul>
 <li><h5 id="线性回归模型"><a href="#线性回归模型" class="headerlink" title="线性回归模型"></a>线性回归模型</h5></li>
+<li><h5 id="K近邻模型"><a href="#K近邻模型" class="headerlink" title="K近邻模型"></a>K近邻模型</h5></li>
 </ul>
 <span id="more"></span>
 
-<h2 id="机器学习常见问题及对应核心python代码"><a href="#机器学习常见问题及对应核心python代码" class="headerlink" title="机器学习常见问题及对应核心python代码"></a>机器学习常见问题及对应核心python代码</h2><h3 id="一、线性回归模型"><a href="#一、线性回归模型" class="headerlink" title="一、线性回归模型"></a>一、线性回归模型</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 导入线性回归模型</span></span><br><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> linear_model</span><br></pre></td></tr></table></figure>
-
+<h2 id="机器学习常见问题及对应核心python代码"><a href="#机器学习常见问题及对应核心python代码" class="headerlink" title="机器学习常见问题及对应核心python代码"></a>机器学习常见问题及对应核心python代码</h2><h3 id="一、线性回归模型"><a href="#一、线性回归模型" class="headerlink" title="一、线性回归模型"></a>一、线性回归模型</h3><p>—— 导入线性回归模型</p>
+<p><code>from sklearn import linear_model</code></p>
+<p>—— 将数据拆分为训练集和测试集</p>
+<p><code>from sklearn.model_selection import train_test_split</code></p>
+<p>—— 拆分训练集和测试集（训练集占比90%，测试集占比10%，同时固定随机种子，使最终得出结果固定）</p>
+<p><code>X_train, X_test, y_train, y_test = train_test_split(X, y ,train_size = 0.9, random_state = 123)</code></p>
+<p>—— 创建线性回归模型</p>
+<p><code>Im_model = linear_model.LinearRegression()</code></p>
+<p>—— 训练线性回归模型</p>
+<p><code>Im_model.fit(X_train, y_train)</code></p>
+<h3 id="二、K近邻模型"><a href="#二、K近邻模型" class="headerlink" title="二、K近邻模型"></a>二、K近邻模型</h3><p>—— 设置待选K值</p>
+<p><code>ks = range(1, 50)</code></p>
+<p>—— 创建空列表来存储每个k值经过交叉验证后的分类准确率</p>
+<p><code>k_accuracy = []</code></p>
+<p>—— 选择合适的k值，通过六折交叉验证</p>
+<p><code>for k in ks:</code></p>
+<p>​	—— （对每个k值创建KNN模型，并评估其性能）</p>
+<p>​	<code>knn_cv = KNeighborsClassifier(n_neighbors=k)</code></p>
+<p>​	—— （六折交叉验证，即把数据分成 6 份，轮流用其中 5 份训练、1 份测试，重复 6 次；同时用 “分类准确率” 作为评估指标）</p>
+<p>​	<code>accuracy_cv = cross_val_score(knn_cv, x, y, cv=6, scoring=&quot;accuracy&quot;)</code></p>
+<p>​	—— （对 <code>accuracy_cv</code> 中的 6 个准确率值求平均，得到当前 K 值下的平均交叉验证准确率；并把这个平均值添加到 <code>k_accuracy</code> 列表中，这样列表的每个位置就对应一个 K 值的平均准确率。）</p>
+<p>​	<code>k_accuracy.append(accuracy_cv.mean())</code></p>
 
     </div>
     
