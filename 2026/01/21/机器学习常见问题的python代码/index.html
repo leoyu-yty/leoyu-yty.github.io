@@ -184,14 +184,14 @@
             
             <span class="tag">
                 
-                <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/" style="color: #00a596">
+                <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/" style="color: #ff7d73">
                     机器学习基础
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/python/" style="color: #ff7d73">
+                <a href="/tags/python/" style="color: #00bcd4">
                     python
                 </a>
             </span>
@@ -223,12 +223,12 @@
 <p><code>k_accuracy = []</code></p>
 <p>—— 选择合适的k值，通过六折交叉验证</p>
 <p><code>for k in ks:</code></p>
-<p>​	—— （对每个k值创建KNN模型，并评估其性能）</p>
-<p>​	<code>knn_cv = KNeighborsClassifier(n_neighbors=k)</code></p>
-<p>​	—— （六折交叉验证，即把数据分成 6 份，轮流用其中 5 份训练、1 份测试，重复 6 次；同时用 “分类准确率” 作为评估指标）</p>
-<p>​	<code>accuracy_cv = cross_val_score(knn_cv, x, y, cv=6, scoring=&quot;accuracy&quot;)</code></p>
-<p>​	—— （对 <code>accuracy_cv</code> 中的 6 个准确率值求平均，得到当前 K 值下的平均交叉验证准确率；并把这个平均值添加到 <code>k_accuracy</code> 列表中，这样列表的每个位置就对应一个 K 值的平均准确率。）</p>
-<p>​	<code>k_accuracy.append(accuracy_cv.mean())</code></p>
+<p>—— （对每个k值创建KNN模型，并评估其性能）</p>
+<p><code>knn_cv = KNeighborsClassifier(n_neighbors=k)</code></p>
+<p>—— （六折交叉验证，即把数据分成 6 份，轮流用其中 5 份训练、1 份测试，重复 6 次；同时用 “分类准确率” 作为评估指标）</p>
+<p><code>accuracy_cv = cross_val_score(knn_cv, x, y, cv=6, scoring=&quot;accuracy&quot;)</code></p>
+<p>—— （对 <code>accuracy_cv</code> 中的 6 个准确率值求平均，得到当前 K 值下的平均交叉验证准确率；并把这个平均值添加到 <code>k_accuracy</code> 列表中，这样列表的每个位置就对应一个 K 值的平均准确率。）</p>
+<p><code>k_accuracy.append(accuracy_cv.mean())</code></p>
 
     </div>
     
