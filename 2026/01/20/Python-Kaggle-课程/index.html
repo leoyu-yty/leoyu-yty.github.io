@@ -184,7 +184,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/%E7%AC%94%E8%AE%B0/" style="color: #ffa2c4">
+                <a href="/tags/%E7%AC%94%E8%AE%B0/" style="color: #00a596">
                     笔记
                 </a>
             </span>
@@ -198,7 +198,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/kaggle/" style="color: #ffa2c4">
+                <a href="/tags/kaggle/" style="color: #03a9f4">
                     kaggle
                 </a>
             </span>
@@ -223,8 +223,10 @@
 
 <p><code>自定义函数注释由 &quot;&quot;&quot; &quot;&quot;&quot; 组成</code></p>
 <h4 id="4、Sep-函数"><a href="#4、Sep-函数" class="headerlink" title="4、Sep 函数"></a>4、<code>Sep</code> 函数</h4><p>函数作用：设置间隔</p>
-<p><code>print</code> 中使用 <code>sep=&#39;\n&#39;</code> 起到换行输出的作用 ：</p>
+<p><code>print</code> 中使用 <code>sep=&#39;\n&#39;</code> 起到<u>换行输出</u>的作用 ：</p>
 <p><code>print(1, 2, 3, sep=&#39;\n&#39;)</code></p>
+<p>将输出全部输出到一行中：</p>
+<p><code>print(XXX, end=&#39; &#39;)</code></p>
 <h4 id="5、round函数"><a href="#5、round函数" class="headerlink" title="5、round函数"></a>5、<code>round</code>函数</h4><p>函数语法：<code>round(number, ndights= )</code></p>
 <p>例1：<code>round(number, 2)</code> —— 作用为保留两位小数</p>
 <p>例2：<code>round(number, -1)</code> —— 作用为精确到十位</p>
@@ -234,6 +236,54 @@
 
 <p>6、<code>and</code>和<code>or</code>的优先级</p>
 <p><code>and</code>的优先级 &gt; <code>or</code></p>
+<h4 id="6、List相关的语法"><a href="#6、List相关的语法" class="headerlink" title="6、List相关的语法"></a>6、List相关的语法</h4><ul>
+<li>添加元素：<code>list.append()</code></li>
+<li>删除元素：<code>list.pop()</code></li>
+<li>寻找某元素（这里用的<code>x</code>元素为例）在list中的下标位置：<code>list.index(&#39;X&#39;)</code></li>
+<li>判断某元素（这里用的<code>x</code>元素为例）是否在list中：<code>&quot;x&quot; in list</code>，返回<code>True / False</code></li>
+</ul>
+<h4 id="7、Tuples元组"><a href="#7、Tuples元组" class="headerlink" title="7、Tuples元组"></a>7、Tuples元组</h4><p>类似于List，什么是元组？</p>
+<p>例：<code>t = (1,2,3)</code></p>
+<p>【注意】：元组内元素无法更改，list中可以更改</p>
+<h4 id="8、List中的循环"><a href="#8、List中的循环" class="headerlink" title="8、List中的循环"></a>8、List中的循环</h4><p>这样写的循环最终会输出到一个List中</p>
+<img src="/2026/01/20/Python-Kaggle-%E8%AF%BE%E7%A8%8B/6.png" class="" title="图片描述">
+
+<img src="/2026/01/20/Python-Kaggle-%E8%AF%BE%E7%A8%8B/7.png" class="" title="图片描述">
+
+<img src="/2026/01/20/Python-Kaggle-%E8%AF%BE%E7%A8%8B/8.png" class="" title="图片描述">
+
+<img src="/2026/01/20/Python-Kaggle-%E8%AF%BE%E7%A8%8B/9.png" class="" title="图片描述">
+
+<h4 id="9、字符串中的引号"><a href="#9、字符串中的引号" class="headerlink" title="9、字符串中的引号"></a>9、字符串中的引号</h4><p>字符串由<code>&quot;&quot;</code>包裹，如何在字符串中再添加<code>&quot;&quot;</code>：<code>\&quot;</code></p>
+<img src="/2026/01/20/Python-Kaggle-%E8%AF%BE%E7%A8%8B/10.png" class="" title="图片描述">
+
+<h4 id="10、字符串的大小写"><a href="#10、字符串的大小写" class="headerlink" title="10、字符串的大小写"></a>10、字符串的大小写</h4><img src="/2026/01/20/Python-Kaggle-%E8%AF%BE%E7%A8%8B/11.png" class="" title="图片描述">
+
+<p><code>index</code> 函数：寻找目标字符串在整个字符串中的第一个位置的索引</p>
+<h4 id="11、字符串的分割和整合函数"><a href="#11、字符串的分割和整合函数" class="headerlink" title="11、字符串的分割和整合函数"></a>11、字符串的分割和整合函数</h4><p><code>split()</code> 和 <code>join()</code></p>
+<ul>
+<li><code>split()</code>默认按字符串中的空格分开，结果输出到一个列表中</li>
+</ul>
+<img src="/2026/01/20/Python-Kaggle-%E8%AF%BE%E7%A8%8B/12.png" class="" title="图片描述">
+
+<ul>
+<li><code>join()</code>函数将<u>列表</u>中的字符串拼成一整个大字符串</li>
+</ul>
+<img src="/2026/01/20/Python-Kaggle-%E8%AF%BE%E7%A8%8B/13.png" class="" title="图片描述">
+
+<h4 id="12、format-函数"><a href="#12、format-函数" class="headerlink" title="12、format 函数"></a>12、<code>format</code> 函数</h4><p>作用：将其他非字符串格式的变量一起添加到字符串中，添加位置由<code>&#123;&#125;</code>和下标索引决定</p>
+<img src="/2026/01/20/Python-Kaggle-%E8%AF%BE%E7%A8%8B/17.png" class="" title="图片描述">
+
+<img src="/2026/01/20/Python-Kaggle-%E8%AF%BE%E7%A8%8B/16.png" class="" title="图片描述">
+
+<h4 id="13、字典"><a href="#13、字典" class="headerlink" title="13、字典"></a>13、字典</h4><h4 id="1）字典的存储和引用"><a href="#1）字典的存储和引用" class="headerlink" title="1）字典的存储和引用"></a>1）字典的存储和引用</h4><ul>
+<li>存储：<code>dic = &#123;&#39;key&#39;: value&#125;</code></li>
+<li>引用：<code>dic[&#39;key&#39;]</code></li>
+</ul>
+<img src="/2026/01/20/Python-Kaggle-%E8%AF%BE%E7%A8%8B/14.png" class="" title="图片描述">
+
+<h4 id="2）字典的增加和修改"><a href="#2）字典的增加和修改" class="headerlink" title="2）字典的增加和修改"></a>2）字典的增加和修改</h4><img src="/2026/01/20/Python-Kaggle-%E8%AF%BE%E7%A8%8B/15.png" class="" title="图片描述">
+
 
     </div>
     
