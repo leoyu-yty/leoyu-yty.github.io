@@ -1,0 +1,299 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <title>Simon雅思写作课——Task1——Diagram | yty的博客</title>
+    <meta name="author" content="Leo yu yty" />
+    <meta name="description" content="Hello Everyone This is my website" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/xnylh.webp" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>YTY的博客</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;主页</span>
+        </a>
+        
+        <a href="/about/">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;关于</span>
+        </a>
+        
+        <a href="/archives/">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;文章</span>
+        </a>
+        
+        <a href="/categories/">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;分类</span>
+        </a>
+        
+        <a href="/tags/">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;标签</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;YTY的博客</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">主页</div>
+                    </div>
+                </a>
+                
+                <a href="/about/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">关于</div>
+                    </div>
+                </a>
+                
+                <a href="/archives/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">文章</div>
+                    </div>
+                </a>
+                
+                <a href="/categories/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">分类</div>
+                    </div>
+                </a>
+                
+                <a href="/tags/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">标签</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>Simon雅思写作课——Task1——Diagram</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2026/2/3
+        </span>
+        
+        <span class="category">
+            <a href="/categories/%E9%9B%85%E6%80%9D/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                雅思
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/%E9%9B%85%E6%80%9D/" style="color: #ffa2c4">
+                    雅思
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/%E5%86%99%E4%BD%9C/" style="color: #ff7d73">
+                    写作
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/%E7%BD%91%E8%AF%BE/" style="color: #03a9f4">
+                    网课
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h2 id="摘要部分"><a href="#摘要部分" class="headerlink" title="摘要部分"></a>摘要部分</h2><h4 id="雅思写作-——-Task-1"><a href="#雅思写作-——-Task-1" class="headerlink" title="雅思写作 —— Task 1"></a>雅思写作 —— Task 1</h4><h5 id="Task-1核心：描述图表（记住！不要发表你的观点）"><a href="#Task-1核心：描述图表（记住！不要发表你的观点）" class="headerlink" title="Task 1核心：描述图表（记住！不要发表你的观点）"></a>Task 1核心：描述图表（记住！不要发表你的观点）</h5><h5 id="段落结构分配："><a href="#段落结构分配：" class="headerlink" title="段落结构分配："></a>段落结构分配：</h5><img src="/2026/02/03/%E9%9B%85%E6%80%9D%E5%86%99%E4%BD%9C%E8%AF%BESimon%E2%80%94%E2%80%94Task1%E2%80%94%E2%80%94Diagram/1.png" class="" title="图片描述">
+
+<h5 id="六种不同题型："><a href="#六种不同题型：" class="headerlink" title="六种不同题型："></a>六种不同题型：</h5><img src="/2026/02/03/%E9%9B%85%E6%80%9D%E5%86%99%E4%BD%9C%E8%AF%BESimon%E2%80%94%E2%80%94Task1%E2%80%94%E2%80%94Diagram/2.png" class="" title="图片描述">
+
+<h5 id="这一篇记录的题型："><a href="#这一篇记录的题型：" class="headerlink" title="这一篇记录的题型："></a>这一篇记录的题型：</h5><ul>
+<li>Process Diagram</li>
+</ul>
+<span id="more"></span>
+
+<h2 id="雅思写作-——-Task-1-1"><a href="#雅思写作-——-Task-1-1" class="headerlink" title="雅思写作 —— Task 1"></a>雅思写作 —— Task 1</h2><h3 id="六种不同类型题目详解"><a href="#六种不同类型题目详解" class="headerlink" title="六种不同类型题目详解"></a>六种不同类型题目详解</h3><h3 id="1、Line-Graph"><a href="#1、Line-Graph" class="headerlink" title="1、Line Graph"></a>1、Line Graph</h3><h3 id="2、Bar-Chart"><a href="#2、Bar-Chart" class="headerlink" title="2、Bar Chart"></a>2、Bar Chart</h3><h3 id="3、Pie-Chart"><a href="#3、Pie-Chart" class="headerlink" title="3、Pie Chart"></a>3、Pie Chart</h3><h3 id="4、Table"><a href="#4、Table" class="headerlink" title="4、Table"></a>4、Table</h3><h3 id="5、两张不同图表的组合（Bar-chart-Line-graph-Pie-chart-Table）（1-1的形式出现）"><a href="#5、两张不同图表的组合（Bar-chart-Line-graph-Pie-chart-Table）（1-1的形式出现）" class="headerlink" title="5、两张不同图表的组合（Bar chart &amp; Line graph &amp; Pie chart &amp; Table）（1+1的形式出现）"></a>5、两张不同图表的组合（Bar chart &amp; Line graph &amp; Pie chart &amp; Table）（1+1的形式出现）</h3><h3 id="6、Diagram"><a href="#6、Diagram" class="headerlink" title="6、Diagram"></a>6、Diagram</h3><h4 id="1）Process-Diagram-——-详细描述【Steps】"><a href="#1）Process-Diagram-——-详细描述【Steps】" class="headerlink" title="1）Process Diagram —— 详细描述【Steps】"></a>1）Process Diagram —— 详细描述【Steps】</h4><p>常见题型：</p>
+<h5 id="a、factory-process-即一件商品的生产过程"><a href="#a、factory-process-即一件商品的生产过程" class="headerlink" title="a、factory process 即一件商品的生产过程"></a>a、<u>factory process</u> 即一件商品的生产过程</h5><img src="/2026/02/03/%E9%9B%85%E6%80%9D%E5%86%99%E4%BD%9C%E8%AF%BESimon%E2%80%94%E2%80%94Task1%E2%80%94%E2%80%94Diagram/3.png" class="" title="图片描述">
+
+<h5 id="b、natural-cycle-自然循环"><a href="#b、natural-cycle-自然循环" class="headerlink" title="b、natural cycle 自然循环"></a>b、<u>natural cycle</u> 自然循环</h5><img src="/2026/02/03/%E9%9B%85%E6%80%9D%E5%86%99%E4%BD%9C%E8%AF%BESimon%E2%80%94%E2%80%94Task1%E2%80%94%E2%80%94Diagram/4.png" class="" title="图片描述">
+
+<h5 id="c、map-地图也展示了一步一步发展的过程，也属于Process-Diagram"><a href="#c、map-地图也展示了一步一步发展的过程，也属于Process-Diagram" class="headerlink" title="c、map 地图也展示了一步一步发展的过程，也属于Process Diagram"></a>c、<u>map</u> 地图也展示了一步一步发展的过程，也属于Process Diagram</h5><img src="/2026/02/03/%E9%9B%85%E6%80%9D%E5%86%99%E4%BD%9C%E8%AF%BESimon%E2%80%94%E2%80%94Task1%E2%80%94%E2%80%94Diagram/9.png" class="" title="图片描述">
+
+<p>例句：At the second stage of development, from 1891 to 1950,  the city grew in a northerly direction.</p>
+<p>【tip】：在描述地图中，不太需要用到被动语态，大多是the city grow这种类似的主动形式</p>
+<p>【与之前的图表的不同处】：</p>
+<p>没有数字，没有对比，没有趋势</p>
+<p>但要详细描述步骤</p>
+<img src="/2026/02/03/%E9%9B%85%E6%80%9D%E5%86%99%E4%BD%9C%E8%AF%BESimon%E2%80%94%E2%80%94Task1%E2%80%94%E2%80%94Diagram/5.png" class="" title="图片描述">
+
+<h5 id="【用词注意】："><a href="#【用词注意】：" class="headerlink" title="【用词注意】："></a>【用词注意】：</h5><h5 id="a、如何描述步骤"><a href="#a、如何描述步骤" class="headerlink" title="a、如何描述步骤"></a>a、如何描述步骤</h5><img src="/2026/02/03/%E9%9B%85%E6%80%9D%E5%86%99%E4%BD%9C%E8%AF%BESimon%E2%80%94%E2%80%94Task1%E2%80%94%E2%80%94Diagram/6.png" class="" title="图片描述">
+
+<h5 id="b、商品生产或者自然循环的描述过程中，要注意时刻用被动语态进行描述"><a href="#b、商品生产或者自然循环的描述过程中，要注意时刻用被动语态进行描述" class="headerlink" title="b、商品生产或者自然循环的描述过程中，要注意时刻用被动语态进行描述"></a>b、商品生产或者自然循环的描述过程中，要注意时刻用被动语态进行描述</h5><img src="/2026/02/03/%E9%9B%85%E6%80%9D%E5%86%99%E4%BD%9C%E8%AF%BESimon%E2%80%94%E2%80%94Task1%E2%80%94%E2%80%94Diagram/7.png" class="" title="图片描述">
+
+<img src="/2026/02/03/%E9%9B%85%E6%80%9D%E5%86%99%E4%BD%9C%E8%AF%BESimon%E2%80%94%E2%80%94Task1%E2%80%94%E2%80%94Diagram/8.png" class="" title="图片描述">
+
+<h4 id="【例题详解】"><a href="#【例题详解】" class="headerlink" title="【例题详解】"></a>【例题详解】</h4><img src="/2026/02/03/%E9%9B%85%E6%80%9D%E5%86%99%E4%BD%9C%E8%AF%BESimon%E2%80%94%E2%80%94Task1%E2%80%94%E2%80%94Diagram/10.png" class="" title="图片描述">
+
+<h4 id="1）Introduction（改写题目描述）"><a href="#1）Introduction（改写题目描述）" class="headerlink" title="1）Introduction（改写题目描述）"></a>1）Introduction（改写题目描述）</h4><img src="/2026/02/03/%E9%9B%85%E6%80%9D%E5%86%99%E4%BD%9C%E8%AF%BESimon%E2%80%94%E2%80%94Task1%E2%80%94%E2%80%94Diagram/11.png" class="" title="图片描述">
+
+<h4 id="2）Overview（两句话，两个主要点）-——-两张生产过程图，每一张写一下主要有几步-主要做什么"><a href="#2）Overview（两句话，两个主要点）-——-两张生产过程图，每一张写一下主要有几步-主要做什么" class="headerlink" title="2）Overview（两句话，两个主要点） —— 两张生产过程图，每一张写一下主要有几步+主要做什么"></a>2）Overview（两句话，两个主要点） —— 两张生产过程图，每一张写一下主要有几步+主要做什么</h4><img src="/2026/02/03/%E9%9B%85%E6%80%9D%E5%86%99%E4%BD%9C%E8%AF%BESimon%E2%80%94%E2%80%94Task1%E2%80%94%E2%80%94Diagram/12.png" class="" title="图片描述">
+
+<h4 id="3）Details-——-详细描述一下每一步骤都讲了什么"><a href="#3）Details-——-详细描述一下每一步骤都讲了什么" class="headerlink" title="3）Details —— 详细描述一下每一步骤都讲了什么"></a>3）Details —— 详细描述一下每一步骤都讲了什么</h4><img src="/2026/02/03/%E9%9B%85%E6%80%9D%E5%86%99%E4%BD%9C%E8%AF%BESimon%E2%80%94%E2%80%94Task1%E2%80%94%E2%80%94Diagram/13.png" class="" title="图片描述">
+
+<img src="/2026/02/03/%E9%9B%85%E6%80%9D%E5%86%99%E4%BD%9C%E8%AF%BESimon%E2%80%94%E2%80%94Task1%E2%80%94%E2%80%94Diagram/14.png" class="" title="图片描述">
+
+<p>【常用词汇】</p>
+<img src="/2026/02/03/%E9%9B%85%E6%80%9D%E5%86%99%E4%BD%9C%E8%AF%BESimon%E2%80%94%E2%80%94Task1%E2%80%94%E2%80%94Diagram/15.png" class="" title="图片描述">
+
+    </div>
+    
+    
+    
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2005 - 2026 yty的博客
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Leo yu yty
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+
+
+
+
+    
+</body>
+</html>

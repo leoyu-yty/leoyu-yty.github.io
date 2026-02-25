@@ -1,0 +1,365 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <title>2026-2-24-理财分析 | yty的博客</title>
+    <meta name="author" content="Leo yu yty" />
+    <meta name="description" content="Hello Everyone This is my website" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/xnylh.webp" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>YTY的博客</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;主页</span>
+        </a>
+        
+        <a href="/about/">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;关于</span>
+        </a>
+        
+        <a href="/archives/">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;文章</span>
+        </a>
+        
+        <a href="/categories/">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;分类</span>
+        </a>
+        
+        <a href="/tags/">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;标签</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;YTY的博客</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">主页</div>
+                    </div>
+                </a>
+                
+                <a href="/about/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">关于</div>
+                    </div>
+                </a>
+                
+                <a href="/archives/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">文章</div>
+                    </div>
+                </a>
+                
+                <a href="/categories/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">分类</div>
+                    </div>
+                </a>
+                
+                <a href="/tags/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">标签</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>2026-2-24-理财分析</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2026/2/24
+        </span>
+        
+        <span class="category">
+            <a href="/categories/%E6%8A%95%E8%B5%84%E7%90%86%E8%B4%A2/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                投资理财
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/%E6%8A%95%E8%B5%84%E7%90%86%E8%B4%A2/" style="color: #00bcd4">
+                    投资理财
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h4 id="近期理财分析"><a href="#近期理财分析" class="headerlink" title="近期理财分析"></a>近期理财分析</h4><span id="more"></span>
+
+<h4 id="重点关注基金"><a href="#重点关注基金" class="headerlink" title="重点关注基金"></a>重点关注基金</h4><h3 id="1、广发全球精选-QDII-A"><a href="#1、广发全球精选-QDII-A" class="headerlink" title="1、广发全球精选(QDII)A"></a>1、广发全球精选(QDII)A</h3><p>基金代码：270023</p>
+<p>强关联：美股科技股（纳斯达克）</p>
+<h4 id="持仓因素："><a href="#持仓因素：" class="headerlink" title="持仓因素："></a>持仓因素：</h4><p>1）AI算力（英伟达，博通）</p>
+<p>关注财报，财报超预期——涨</p>
+<p>2）互联网 &#x2F; 云（谷歌微软亚马逊）</p>
+<p>3）苹果</p>
+<p>看销售量</p>
+<h4 id="影响因素："><a href="#影响因素：" class="headerlink" title="影响因素："></a>影响因素：</h4><p>美联储降息——涨</p>
+<p>关注降息信号，降息信号发出进行加仓</p>
+<p>原理：降息会导致企业融资成本下降，企业资本开支更激进，股价上升</p>
+<h4 id="相关概念：缩表？扩表？"><a href="#相关概念：缩表？扩表？" class="headerlink" title="相关概念：缩表？扩表？"></a>相关概念：缩表？扩表？</h4><p>美联储执行缩表扩表</p>
+<p>表：资产负债表</p>
+<ul>
+<li>扩表：市场上美元变多，利好股市</li>
+<li>缩表：市场美元变少，跌</li>
+</ul>
+<h4 id="如何看缩表？扩表？"><a href="#如何看缩表？扩表？" class="headerlink" title="如何看缩表？扩表？"></a>如何看缩表？扩表？</h4><p>核心指标：美联储总资产</p>
+<h5 id="如何判断：周环比持续上涨-扩表；周环比持续下跌-缩表；基本持平-稳表"><a href="#如何判断：周环比持续上涨-扩表；周环比持续下跌-缩表；基本持平-稳表" class="headerlink" title="如何判断：周环比持续上涨 &#x3D; 扩表；周环比持续下跌 &#x3D; 缩表；基本持平 &#x3D; 稳表"></a>如何判断：<strong>周环比持续上涨 &#x3D; 扩表</strong>；<strong>周环比持续下跌 &#x3D; 缩表</strong>；<strong>基本持平 &#x3D; 稳表</strong></h5><p>近期2月份，稳表</p>
+<h4 id="近期操作"><a href="#近期操作" class="headerlink" title="近期操作"></a>近期操作</h4><p>当前状态：稳表+降息预期（6月降息）</p>
+<p>上半年利好这笔基金</p>
+<p>由于处于历史高位，震荡加剧</p>
+<p>下半年有缩表倾向，下半年减少持仓</p>
+<p>近期主要持仓业绩超预期，关注Q1财报</p>
+<h5 id="结论：短期震荡上行，回调时加仓，控制仓位；下半年关注美联储动向"><a href="#结论：短期震荡上行，回调时加仓，控制仓位；下半年关注美联储动向" class="headerlink" title="结论：短期震荡上行，回调时加仓，控制仓位；下半年关注美联储动向"></a>结论：短期震荡上行，回调时加仓，控制仓位；下半年关注美联储动向</h5><h3 id="2、景顺长城纳斯达克科技市值加权ETF联结-QDII-A"><a href="#2、景顺长城纳斯达克科技市值加权ETF联结-QDII-A" class="headerlink" title="2、景顺长城纳斯达克科技市值加权ETF联结(QDII)A"></a>2、景顺长城纳斯达克科技市值加权ETF联结(QDII)A</h3><p>基金代码：017091</p>
+<ul>
+<li>现在纳指：22,863</li>
+</ul>
+<p>操作：</p>
+<ul>
+<li><p><strong>买点 1（稳健）</strong>：纳指回踩 <strong>22,500–22,600</strong>（5&#x2F;10 日均线附近），小仓位试错。</p>
+</li>
+<li><p><strong>买点 2（激进）</strong>：回踩 <strong>22,300–22,400</strong>（前低支撑），加仓至目标仓位。</p>
+</li>
+<li><p><strong>禁止</strong>：在 <strong>23,000+</strong> 追高，情绪过热易遇短期回调。</p>
+</li>
+</ul>
+<h3 id="3、银华数字经济股票C"><a href="#3、银华数字经济股票C" class="headerlink" title="3、银华数字经济股票C"></a>3、银华数字经济股票C</h3><p>基金代码：015642</p>
+<p>持仓：</p>
+<img src="/2026/02/24/2026-2-24-%E7%90%86%E8%B4%A2%E5%88%86%E6%9E%90/1.png" class="" title="图片描述">
+
+<p>持仓聚焦于科创版+港股</p>
+<p>主要倾向：AI &#x2F; 算力、半导体、数字政府、智能硬件、潮玩 IP、金融科技</p>
+<h4 id="主要影响因素："><a href="#主要影响因素：" class="headerlink" title="主要影响因素："></a>主要影响因素：</h4><p>1）政策（数字经济相关政策）</p>
+<p>2）AI大模型 &amp; AI商业化</p>
+<p>3）半导体</p>
+<p>4）电子消费</p>
+<h4 id="短期操作："><a href="#短期操作：" class="headerlink" title="短期操作："></a>短期操作：</h4><p>节后AI和半导体为主要走向，近期震荡加强</p>
+<h4 id="长期操作："><a href="#长期操作：" class="headerlink" title="长期操作："></a>长期操作：</h4><p>国内AI大模型商业化走向明显；半导体国产替代加速</p>
+<h4 id="仓位近期分析："><a href="#仓位近期分析：" class="headerlink" title="仓位近期分析："></a>仓位近期分析：</h4><ul>
+<li>泡泡玛特：震荡，不看好</li>
+<li>九号：电动车，短期有上行趋势</li>
+<li>开普云：下跌明显</li>
+<li>香农芯创：看好，上涨有力</li>
+<li>九方智投：短期弱势</li>
+<li>神工股份：半导体走势偏强</li>
+</ul>
+<h4 id="操作："><a href="#操作：" class="headerlink" title="操作："></a>操作：</h4><p>继续持仓，分批止盈</p>
+<h3 id="4、招商行业精选股票"><a href="#4、招商行业精选股票" class="headerlink" title="4、招商行业精选股票"></a>4、招商行业精选股票</h3><p>基金代码：000746</p>
+<h4 id="主要持仓："><a href="#主要持仓：" class="headerlink" title="主要持仓："></a>主要持仓：</h4><p>1）黄金——强利好</p>
+<p>2）保险——正常——稳定</p>
+<p>3）能源——正常</p>
+<h3 id="5、黄金"><a href="#5、黄金" class="headerlink" title="5、黄金"></a>5、黄金</h3><h4 id="影响黄金涨跌的长期因素："><a href="#影响黄金涨跌的长期因素：" class="headerlink" title="影响黄金涨跌的长期因素："></a>影响黄金涨跌的<u>长期</u>因素：</h4><h5 id="1）美元强弱"><a href="#1）美元强弱" class="headerlink" title="1）美元强弱"></a>1）美元强弱</h5><ul>
+<li>美元涨——黄金跌</li>
+</ul>
+<h5 id="2）美国实际利率"><a href="#2）美国实际利率" class="headerlink" title="2）美国实际利率"></a>2）美国实际利率</h5><p>实际利率 &#x3D; 名义利率 - 通胀</p>
+<ul>
+<li>实际利率下行——黄金涨</li>
+</ul>
+<h5 id="3）美联储"><a href="#3）美联储" class="headerlink" title="3）美联储"></a>3）美联储</h5><ul>
+<li>降息——黄金涨</li>
+</ul>
+<h4 id="影响黄金涨跌的短期因素："><a href="#影响黄金涨跌的短期因素：" class="headerlink" title="影响黄金涨跌的短期因素："></a>影响黄金涨跌的<u>短期</u>因素：</h4><h5 id="1）地缘政治（打仗）"><a href="#1）地缘政治（打仗）" class="headerlink" title="1）地缘政治（打仗）"></a>1）地缘政治（打仗）</h5><p>紧张——黄金涨</p>
+<h5 id="2）美联储公布降息-加息"><a href="#2）美联储公布降息-加息" class="headerlink" title="2）美联储公布降息&#x2F;加息"></a>2）美联储公布降息&#x2F;加息</h5><h5 id="短期影响金价"><a href="#短期影响金价" class="headerlink" title="短期影响金价"></a>短期影响金价</h5><ul>
+<li><p>降息：降息前就已有铺垫（持续涨），降息一公布金价会先跌（多数人卖出），跌完进入长期波动上涨</p>
+</li>
+<li><p>降息当天黄金波动极大，作为基金，适合在降息前就卖出大部分，行情平稳后继续定投加仓</p>
+</li>
+<li><p>美联储：</p>
+<ul>
+<li>鸽派：如果说“未来继续降息”，黄金继续涨</li>
+<li>鹰派：”这是最后一次降息“，黄金暴跌</li>
+</ul>
+</li>
+<li><p>降息：</p>
+<ul>
+<li>超预期降息：黄金直接暴涨</li>
+<li>符合预期：先跌再震荡，长期上涨</li>
+</ul>
+</li>
+<li><p>降息前一定看涨</p>
+</li>
+</ul>
+<h4 id="今年2026年核心操作："><a href="#今年2026年核心操作：" class="headerlink" title="今年2026年核心操作："></a>今年2026年核心操作：</h4><h5 id="今年美联储是降息周期，不会加息；首次降息大概率在-6-月，全年预计-2–3-次、每次-25bp"><a href="#今年美联储是降息周期，不会加息；首次降息大概率在-6-月，全年预计-2–3-次、每次-25bp" class="headerlink" title="今年美联储是降息周期，不会加息；首次降息大概率在 6 月，全年预计 2–3 次、每次 25bp"></a>今年美联储是降息周期，不会加息；首次降息大概率在 6 月，全年预计 2–3 次、每次 25bp</h5><p>首次降息：6月份</p>
+<p>后期：9月份，12月份</p>
+<p>新主席上任：5月底份</p>
+<p>策略：五月底持续加仓，六月份公布前卖（关注时间），降息后根据美联储方向再决定后期方向</p>
+<p>如今策略：定投，跌就加仓，不要卖</p>
+<h3 id="6、上证"><a href="#6、上证" class="headerlink" title="6、上证"></a>6、上证</h3><p>当前：4147</p>
+<p>高位震荡</p>
+<ul>
+<li>突破4180，持续放大，加仓</li>
+<li>跌破，4100减仓</li>
+<li>当前主力资金流出，关注下个交易日是否转为流入<ul>
+<li>流入：上涨</li>
+<li>流出：下跌</li>
+</ul>
+</li>
+</ul>
+<h4 id="相关术语："><a href="#相关术语：" class="headerlink" title="相关术语："></a>相关术语：</h4><h5 id="主力资金流入流出"><a href="#主力资金流入流出" class="headerlink" title="主力资金流入流出"></a>主力资金流入流出</h5><p>主力资金包括：公募基金，私募基金，保险，社保，北向资金（外资）</p>
+<ul>
+<li>主力资金流入：主力资金买入，推动上涨</li>
+<li>主力资金流出：主力资金卖出，下跌</li>
+</ul>
+<p>why 资金流出，指数还涨？</p>
+<ul>
+<li>主力调仓换股</li>
+<li>说明拉升指数的是散户</li>
+<li>连续多个交易日这种情况，利空</li>
+</ul>
+
+    </div>
+    
+    
+    
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2005 - 2026 yty的博客
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Leo yu yty
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+
+
+
+
+    
+</body>
+</html>
