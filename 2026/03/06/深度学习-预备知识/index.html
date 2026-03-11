@@ -184,7 +184,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="color: #ffa2c4">
+                <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="color: #ff7d73">
                     深度学习
                 </a>
             </span>
@@ -240,7 +240,8 @@
 <img src="/2026/03/06/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E9%A2%84%E5%A4%87%E7%9F%A5%E8%AF%86/7.png" class="" title="图片描述">
 
 <h4 id="6、与numpy的转化"><a href="#6、与numpy的转化" class="headerlink" title="6、与numpy的转化"></a>6、与numpy的转化</h4><p>深度学习框架定义的张量可以与NumPy张量（<code>ndarray</code>）相互转换</p>
-<h3 id="二、数据初始化"><a href="#二、数据初始化" class="headerlink" title="二、数据初始化"></a>二、数据初始化</h3><h4 id="1、创建csv文件"><a href="#1、创建csv文件" class="headerlink" title="1、创建csv文件"></a>1、创建csv文件</h4><img src="/2026/03/06/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E9%A2%84%E5%A4%87%E7%9F%A5%E8%AF%86/8.png" class="" title="图片描述">
+<h3 id="二、数据初始化"><a href="#二、数据初始化" class="headerlink" title="二、数据初始化"></a>二、数据初始化</h3><p><code>pandas</code>与张量兼容</p>
+<h4 id="1、创建csv文件"><a href="#1、创建csv文件" class="headerlink" title="1、创建csv文件"></a>1、创建csv文件</h4><img src="/2026/03/06/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E9%A2%84%E5%A4%87%E7%9F%A5%E8%AF%86/8.png" class="" title="图片描述">
 
 <p>读取刚刚创建的csv文件，长这样：</p>
 <img src="/2026/03/06/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E9%A2%84%E5%A4%87%E7%9F%A5%E8%AF%86/9.png" class="" title="图片描述">
@@ -248,8 +249,30 @@
 <h4 id="2、处理缺失值"><a href="#2、处理缺失值" class="headerlink" title="2、处理缺失值"></a>2、处理缺失值</h4><p>缺失值用”NaN”表示</p>
 <ul>
 <li><code>NumRooms</code>列用均值替换</li>
-<li><code>Alley</code>列分为两列：<code>Alley_Pave</code>和<code>Alley_nan</code>表示巷子是否铺路</li>
+<li><code>data.iloc[]</code>作用为：将数据拆分为特征集（<code>input</code>）和标签集（<code>outputs</code>）</li>
+<li>特征集：<code>NumRooms</code>和<code>Alley</code></li>
+<li>标签集：<code>Price</code>列</li>
+<li>填充函数：<code>fillna()</code>（该填充只对数值型特征生效）</li>
 </ul>
+<img src="/2026/03/06/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E9%A2%84%E5%A4%87%E7%9F%A5%E8%AF%86/10.png" class="" title="图片描述">
+
+<ul>
+<li><p><code>Alley</code>列分为两列：<code>Alley_Pave</code>和<code>Alley_nan</code>表示巷子是否铺路</p>
+</li>
+<li><p><code>pd.get_dummies()</code>为pandas库中独热编码函数——将分类变量转换成数值型变量</p>
+<p>原<code>Alley</code>列包含<code>Pave</code>和<code>NaN</code>两个值</p>
+<p>通过独热编码，pandas可以自动将此列转换为两列<code>Alley_Pave</code>和<code>Alley_nan</code>两列</p>
+<p>巷子类型为<code>Pave</code>的行会将<code>Alley_Pave</code>的值设置为1，<code>Alley_nan</code>的值设置为0</p>
+</li>
+</ul>
+<img src="/2026/03/06/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E9%A2%84%E5%A4%87%E7%9F%A5%E8%AF%86/11.png" class="" title="图片描述">
+
+<h4 id="3、转化为张量的形式"><a href="#3、转化为张量的形式" class="headerlink" title="3、转化为张量的形式"></a>3、转化为张量的形式</h4><p>现在<code>inputs</code>和<code>outputs</code>中的所有条目都是数值类型</p>
+<p>转化为张量</p>
+<img src="/2026/03/06/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E9%A2%84%E5%A4%87%E7%9F%A5%E8%AF%86/12.png" class="" title="图片描述">
+
+
+
 
     </div>
     
