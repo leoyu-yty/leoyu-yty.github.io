@@ -1,0 +1,357 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <title>雅思写作2论点专项训练 | yty的博客</title>
+    <meta name="author" content="Leo yu yty" />
+    <meta name="description" content="Hello Everyone This is my website" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/xnylh.webp" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>YTY的博客</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;主页</span>
+        </a>
+        
+        <a href="/about/">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;关于</span>
+        </a>
+        
+        <a href="/archives/">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;文章</span>
+        </a>
+        
+        <a href="/categories/">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;分类</span>
+        </a>
+        
+        <a href="/tags/">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;标签</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;YTY的博客</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">主页</div>
+                    </div>
+                </a>
+                
+                <a href="/about/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">关于</div>
+                    </div>
+                </a>
+                
+                <a href="/archives/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">文章</div>
+                    </div>
+                </a>
+                
+                <a href="/categories/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">分类</div>
+                    </div>
+                </a>
+                
+                <a href="/tags/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">标签</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>雅思写作2论点专项训练</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2026/3/19
+        </span>
+        
+        <span class="category">
+            <a href="/categories/%E9%9B%85%E6%80%9D/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                雅思
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/%E9%9B%85%E6%80%9D/" style="color: #00bcd4">
+                    雅思
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/%E5%86%99%E4%BD%9C/" style="color: #03a9f4">
+                    写作
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h4 id="此篇为雅思写作2的论点专项训练"><a href="#此篇为雅思写作2的论点专项训练" class="headerlink" title="此篇为雅思写作2的论点专项训练"></a>此篇为雅思写作2的论点专项训练</h4><span id="more"></span>
+
+<h5 id="论点论证结构："><a href="#论点论证结构：" class="headerlink" title="论点论证结构："></a>论点论证结构：</h5><p>开门见山提出论点——because原因分析 which——for example具体论证分析——In contrast &#x2F; if 反证法——In conclusion改写重复第一个句子</p>
+<h5 id="结论清单："><a href="#结论清单：" class="headerlink" title="结论清单："></a>结论清单：</h5><p>钱 &#x2F; 身体健康 &#x2F; 心情 &#x2F; 压力 &#x2F; 学习表现 &#x2F; 工作表现 &#x2F; 就业机会 &#x2F; 安全 &#x2F; 犯罪 &#x2F; 环境保护 &#x2F; 培养or缺乏什么能力 &#x2F; 培养好or坏性格 &#x2F; 生活质量提高or下降 </p>
+<h4 id="一、一个分论点段落书写"><a href="#一、一个分论点段落书写" class="headerlink" title="一、一个分论点段落书写"></a>一、一个分论点段落书写</h4><h5 id="1、要求高中生参加社区服务对他们的身体健康有好处"><a href="#1、要求高中生参加社区服务对他们的身体健康有好处" class="headerlink" title="1、要求高中生参加社区服务对他们的身体健康有好处"></a>1、要求高中生参加社区服务对他们的身体健康有好处</h5><ul>
+<li><p>因为社区活动涉及大量体力劳动——which避免了年轻人久坐不动的生活方式——for example 他们通常要求被打扫社区和帮老人院子里除草等——如果学生不强制性参加这些活动，他们可能会把空闲时间花在游戏或者学习，which会造成常见的obecity和shortsightedness等疾病</p>
+</li>
+<li><p>asking high school students to participate in community services is beneficial for their physical health, because community service involves a plenty of physical work</p>
+</li>
+</ul>
+<h5 id="2、网络购物帮消费者省钱"><a href="#2、网络购物帮消费者省钱" class="headerlink" title="2、网络购物帮消费者省钱"></a>2、网络购物帮消费者省钱</h5><ul>
+<li><p>e-commerce platforms break regional restrictions, they often offer discounts.</p>
+</li>
+<li><p>what’s more, the price online is more transparent and customers can compare prices across stores.</p>
+</li>
+<li><p>for instance, the price of the same product in offline stores are usually 10%-20% higher than on e-commerce platforms.</p>
+</li>
+<li><p>in contarst, offline shop is limited by the store rent and labor cost, making its product much more expensive.</p>
+</li>
+<li><p>in conclusion, with the advantages of transparent prices and lower cost, online shopping can effectively help consumers reduce shooping expenses.</p>
+</li>
+</ul>
+<h5 id="3、快餐越来越受欢迎对环境有害"><a href="#3、快餐越来越受欢迎对环境有害" class="headerlink" title="3、快餐越来越受欢迎对环境有害"></a>3、快餐越来越受欢迎对环境有害</h5><ul>
+<li><p>the growing popularity of fast food is harmful to the environment.</p>
+</li>
+<li><p>because fast food stores only provide disposable packaging such as plastic boxes, straws and packaging bags, which will aggravate soil and marine pollution.</p>
+</li>
+<li><p>according to the research, millions of  global plastic waste generated by fast food flow into the ocean per year, threatening the survival of marine organisms.</p>
+</li>
+<li><p>therefore, the popularity of fast food will aggravate plastic pollution, causing continuous negative impacts onthe ecological environment.</p>
+</li>
+</ul>
+<h5 id="4、单身帮人省钱"><a href="#4、单身帮人省钱" class="headerlink" title="4、单身帮人省钱"></a>4、单身帮人省钱</h5><ul>
+<li>自己可以控制自己的消费——例子：节假日不用给对象买礼物</li>
+</ul>
+<h5 id="5、住养老院保障老人身体健康"><a href="#5、住养老院保障老人身体健康" class="headerlink" title="5、住养老院保障老人身体健康"></a>5、住养老院保障老人身体健康</h5><ul>
+<li>有专业的护工来照顾老人，老人不会孤单</li>
+</ul>
+<h5 id="6、养宠物对主人的身体健康有益"><a href="#6、养宠物对主人的身体健康有益" class="headerlink" title="6、养宠物对主人的身体健康有益"></a>6、养宠物对主人的身体健康有益</h5><p>7、经常使用电脑和手机交流会影响 writing skills</p>
+<p>8、学习外语可以让人变得更聪明</p>
+<p>9、尝试联系外星人可能给人类带来巨大的灾难</p>
+<p>10、老师比家长对孩子的智力发展有更大的影响</p>
+<p>11、家长比老师对孩子的社交发展有更大的影响</p>
+<p>12、提供免费公共交通并不能有效减少交通拥堵</p>
+<p>13、读书比看电视更能帮助人们培养想象力</p>
+<p>14、在人口较大的城市，空地更应该被用来盖房子</p>
+<p>15、在家工作可能导致很低的效率</p>
+<p>16、提高获取驾照的最低年龄限制并不能有效减少交通事故</p>
+<p>17、雇佣相同数量男女员工可能导致工作效率下降</p>
+<p>18、利用传统文化挣游客的钱可能导致传统文化的破坏</p>
+<p>19、举办奥运会可能会浪费很多公共资金</p>
+<p>20、给员工太长的假期可能导致他们无法顺利回归工作</p>
+<h5 id="21、针对儿童的广告能培养孩子的好习惯"><a href="#21、针对儿童的广告能培养孩子的好习惯" class="headerlink" title="21、针对儿童的广告能培养孩子的好习惯"></a>21、针对儿童的广告能培养孩子的好习惯</h5><ul>
+<li>模仿广告里的孩子做一些他们同样在做的事情——自行车广告，孩子看了广告中的人骑自行车很帅气会让他们也对这项运动感兴趣从而自主要学自行车，which不但建立了一个hobby同时也促进了孩子的日常锻炼</li>
+</ul>
+<p>22、社交媒体浪费人们很多时间</p>
+<p>23、玩电子游戏比体育运动对孩子更有吸引力</p>
+<p>24、针对儿童的广告给他们带来健康问题</p>
+<p>25、通过网络看历史文物不能带来和博物馆一样的效果</p>
+<h5 id="26、学校的音乐课、美术课可以让孩子变得更加有信心"><a href="#26、学校的音乐课、美术课可以让孩子变得更加有信心" class="headerlink" title="26、学校的音乐课、美术课可以让孩子变得更加有信心"></a>26、学校的音乐课、美术课可以让孩子变得更加有信心</h5><ul>
+<li><p>音乐课和美术课的包容性强，没有对错之分，学生可以自由发挥，而老师也往往会给出积极的反馈（positve feedback），for example，美术课上学生们可以画自己所喜爱的，不像主课那样每道题对应着一个正确答案，限制了学生的</p>
+</li>
+<li><p>Music and art courses at school can make children more confident.</p>
+</li>
+<li><p>music and aet calsses are highly inclusive, with no absolute “right or wrong” answers. They allow students to express themselve freely and teachers usually provides positive feedbacks that boost self-esteem.</p>
+</li>
+<li><p>In core subjects like math or science, every questions has a standard correct answer and mistakes can lead to lower gardes, which can make studentsfear failure and doubt their abilities.  </p>
+</li>
+<li><p>Therefore, by offering a safe palce for free expression, music and art classes effectively boost students’ confidence and encourage them to embrace their unique creativities.</p>
+</li>
+</ul>
+<h5 id="27、学校的音乐课和美术课可以提高学生的审美能力（aesthetics）"><a href="#27、学校的音乐课和美术课可以提高学生的审美能力（aesthetics）" class="headerlink" title="27、学校的音乐课和美术课可以提高学生的审美能力（aesthetics）"></a>27、学校的音乐课和美术课可以提高学生的审美能力（aesthetics）</h5><ul>
+<li>这些课程当中，学生会接触（be exposed to）很多艺术作品，同时老师也会进行详细讲解，which会教会他们色彩搭配、空间线条、旋律节奏etc</li>
+</ul>
+<h4 id="二、多个分论点段落训练"><a href="#二、多个分论点段落训练" class="headerlink" title="二、多个分论点段落训练"></a>二、多个分论点段落训练</h4><p>1、艺术课程给孩子带来不少好处</p>
+<h5 id="2、电子阅读有一系列的优点"><a href="#2、电子阅读有一系列的优点" class="headerlink" title="2、电子阅读有一系列的优点"></a>2、电子阅读有一系列的优点</h5><ul>
+<li>省钱，因为实体书通常比电子书要贵，不包含印刷、运输、仓储成本</li>
+<li>保护环境，因为制作实体书需要消耗大量的木材和许多化学颜料，这些颜料可能排入水中，污染当地的水源</li>
+<li>电子阅读能加深读者对书籍的理解，电子书籍中往往带有不同类型的评论，能提供更多的perspective，从而提高读者的critical thinking</li>
+<li>举例：经济学人</li>
+</ul>
+<h5 id="3、住在农村给人们带来不少好处"><a href="#3、住在农村给人们带来不少好处" class="headerlink" title="3、住在农村给人们带来不少好处"></a>3、住在农村给人们带来不少好处</h5><ul>
+<li>空气污染少，减少呼吸疾病的发作</li>
+<li>压力小，农村生活成本低</li>
+<li>接近大自然，心情好，没有汽车的鸣笛（Inner peace）</li>
+<li>培养自己的动手能力，想吃什么自己做，东西坏了自己修</li>
+</ul>
+<p>4、电视转播法庭审判可能导致一些问题</p>
+<p>5、允许孩子犯错是有好处的</p>
+<p>6、看电视被证明对孩子有一些负面影响</p>
+<h5 id="7、玩电子游戏给孩子带来非常多的好处"><a href="#7、玩电子游戏给孩子带来非常多的好处" class="headerlink" title="7、玩电子游戏给孩子带来非常多的好处"></a>7、玩电子游戏给孩子带来非常多的好处</h5><ul>
+<li>丰富孩子的知识，因为很多游戏的世界观都是建立在一些现有的历史和地域文化上的，for instance，Assassins Creed Odyssey（刺客信条奥德赛）就建立在ancient Greek的文明之上</li>
+</ul>
+<p>8、全球化给所有国家都带来了积极影响</p>
+<p>9、探索宇宙对人类有巨大的意义</p>
+<h5 id="10、要求学生穿校服可能造成一些负面的结果"><a href="#10、要求学生穿校服可能造成一些负面的结果" class="headerlink" title="10、要求学生穿校服可能造成一些负面的结果"></a>10、要求学生穿校服可能造成一些负面的结果</h5><ul>
+<li>-&gt;校服质量不好，大多数校服不是牌子货，用料一般，既导致学生穿的不舒服，影响学习；又在制作过程中往往伴随劣质化学物质的产生，排放到水中造成水污染</li>
+<li>校服丑，青春期的学生正处于爱美阶段，非常注重他们的外表，强制穿自己不喜欢的衣服会影响他们上学的心情，导致厌学</li>
+<li>-&gt;强制穿校服可能给一些家庭带来经济压力，校服往往不止一套，有不同的季节款式；随着孩子身高的提升往往要购买多套校服，这要花上一笔不小的数目，which对家里经济条件困难的同学不友好</li>
+<li>降低学生的审美能力，每天穿一样的衣服会导致学生不知道自己适合什么样的穿衣风格，慢慢地他们的衣品就会变得很糟糕</li>
+</ul>
+<p>11、广告越来越多给人们带来很多麻烦</p>
+<p>12、公共交通有一系列的缺点</p>
+<p>13、追逐时尚对年轻人有很多负面影响</p>
+<p>14、竞争给孩子带来很多坏处</p>
+<p>15、竞争对孩子有很重要的意义</p>
+
+    </div>
+    
+    
+    
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2005 - 2026 yty的博客
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Leo yu yty
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+
+
+
+
+    
+</body>
+</html>
