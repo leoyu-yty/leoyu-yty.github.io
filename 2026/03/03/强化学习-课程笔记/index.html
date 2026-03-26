@@ -194,7 +194,10 @@
     </div>
     
     <div class="content" v-pre>
-        <h4 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h4><span id="more"></span>
+        <h4 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h4><p>参考文章：<a target="_blank" rel="noopener" href="https://hrl.boyuai.com/">https://hrl.boyuai.com/</a></p>
+<img src="/2026/03/03/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0-%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/11.png" class="" title="图片描述">
+
+<span id="more"></span>
 
 <h3 id="一、什么是强化学习"><a href="#一、什么是强化学习" class="headerlink" title="一、什么是强化学习"></a>一、什么是强化学习</h3><h4 id="1、相关概念"><a href="#1、相关概念" class="headerlink" title="1、相关概念"></a>1、相关概念</h4><h5 id="机器与环境交互："><a href="#机器与环境交互：" class="headerlink" title="机器与环境交互："></a>机器与环境交互：</h5><p>机器在环境的一个状态下做一个动作决策，把这个动作作用到环境当中，这个环境发生相应的改变并且将相应的奖励反馈和下一轮状态传回机器。</p>
 <p>这种交互是迭代进行的，机器的目标是最大化在多轮交互过程中获得的累积奖励的期望。</p>
@@ -232,6 +235,48 @@
 </li>
 </ul>
 <img src="/2026/03/03/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0-%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/4.png" class="" title="图片描述">
+
+<h3 id="二、多臂老虎机"><a href="#二、多臂老虎机" class="headerlink" title="二、多臂老虎机"></a>二、多臂老虎机</h3><h5 id="强化学习：试错型学习"><a href="#强化学习：试错型学习" class="headerlink" title="强化学习：试错型学习"></a>强化学习：试错型学习</h5><h5 id="多臂老虎机：简化版强化学习"><a href="#多臂老虎机：简化版强化学习" class="headerlink" title="多臂老虎机：简化版强化学习"></a>多臂老虎机：简化版强化学习</h5><ul>
+<li>只有动作 &amp; 奖励</li>
+<li>不存在状态信息</li>
+</ul>
+<h5 id="1）什么是多臂老虎机："><a href="#1）什么是多臂老虎机：" class="headerlink" title="1）什么是多臂老虎机："></a>1）什么是多臂老虎机：</h5><ul>
+<li><p>一个拥有 K 根拉杆的老虎机，拉动每一根拉杆都对应一个关于奖励的概率分布：R</p>
+<p>每拉动一个拉杆，就可以从该拉杆对应的奖励概率分布中获得一个奖励 r</p>
+</li>
+<li><p>我们在各根拉杆奖励概率分布未知的情况下，从头开始尝试</p>
+</li>
+<li><p>目标：在操作 T 次拉杆后获得尽可能高的累积奖励</p>
+</li>
+<li><p>问题：采用怎样的操作策略才能使获得的累积奖励最高</p>
+</li>
+</ul>
+<h5 id="2）数学描述"><a href="#2）数学描述" class="headerlink" title="2）数学描述"></a>2）数学描述</h5><h5 id="多臂老虎机的目标：最大化一段时间内累积的奖励"><a href="#多臂老虎机的目标：最大化一段时间内累积的奖励" class="headerlink" title="多臂老虎机的目标：最大化一段时间内累积的奖励"></a>多臂老虎机的目标：最大化一段时间内累积的奖励</h5><img src="/2026/03/03/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0-%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/5.png" class="" title="图片描述">
+
+<h5 id="3）累积懊悔：拉动当前拉杆的动作-a-与最优拉杆的期望奖励差"><a href="#3）累积懊悔：拉动当前拉杆的动作-a-与最优拉杆的期望奖励差" class="headerlink" title="3）累积懊悔：拉动当前拉杆的动作 a 与最优拉杆的期望奖励差"></a>3）累积懊悔：拉动当前拉杆的动作 a 与最优拉杆的期望奖励差</h5><p>MAB 问题的目标为最大化累积奖励，等价于最小化累积懊悔</p>
+<img src="/2026/03/03/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0-%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/6.png" class="" title="图片描述">
+
+<h5 id="4）估计拉动每个拉杆能够得到的期望（平均）奖励"><a href="#4）估计拉动每个拉杆能够得到的期望（平均）奖励" class="headerlink" title="4）估计拉动每个拉杆能够得到的期望（平均）奖励"></a>4）估计拉动每个拉杆能够得到的期望（平均）奖励</h5><p>如何计算这个期望？</p>
+<img src="/2026/03/03/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0-%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/7.png" class="" title="图片描述">
+
+<h5 id="代码部分："><a href="#代码部分：" class="headerlink" title="代码部分："></a>代码部分：</h5><p>实现一个拉杆数为 10 的多臂老虎机。</p>
+<p>其中拉动每根拉杆的奖励服从<strong>伯努利分布</strong>（Bernoulli distribution），即每次拉下拉杆有 <u>p</u> 的概率获得的奖励为 1，有 <u>1 - p</u> 的概率获得的奖励为 0。</p>
+<p>奖励为 1 代表获奖，奖励为 0 代表没有获奖。</p>
+<h5 id="生成一个多臂老虎机模型："><a href="#生成一个多臂老虎机模型：" class="headerlink" title="生成一个多臂老虎机模型："></a>生成一个多臂老虎机模型：</h5><img src="/2026/03/03/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0-%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/8.png" class="" title="图片描述">
+
+<img src="/2026/03/03/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0-%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/9.png" class="" title="图片描述">
+
+<img src="/2026/03/03/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0-%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/10.png" class="" title="图片描述">
+
+<h5 id="求解多臂老虎机模型："><a href="#求解多臂老虎机模型：" class="headerlink" title="求解多臂老虎机模型："></a>求解多臂老虎机模型：</h5><img src="/2026/03/03/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0-%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/12.png" class="" title="图片描述">
+
+
+
+
+
+
+
+
 
 
 
