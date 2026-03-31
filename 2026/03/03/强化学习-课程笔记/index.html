@@ -184,7 +184,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" style="color: #00bcd4">
+                <a href="/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" style="color: #ff7d73">
                     强化学习
                 </a>
             </span>
@@ -253,15 +253,27 @@
 </ul>
 <h5 id="2）数学描述"><a href="#2）数学描述" class="headerlink" title="2）数学描述"></a>2）数学描述</h5><h5 id="多臂老虎机的目标：最大化一段时间内累积的奖励"><a href="#多臂老虎机的目标：最大化一段时间内累积的奖励" class="headerlink" title="多臂老虎机的目标：最大化一段时间内累积的奖励"></a>多臂老虎机的目标：最大化一段时间内累积的奖励</h5><img src="/2026/03/03/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0-%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/5.png" class="" title="图片描述">
 
-<h5 id="3）累积懊悔：拉动当前拉杆的动作-a-与最优拉杆的期望奖励差"><a href="#3）累积懊悔：拉动当前拉杆的动作-a-与最优拉杆的期望奖励差" class="headerlink" title="3）累积懊悔：拉动当前拉杆的动作 a 与最优拉杆的期望奖励差"></a>3）累积懊悔：拉动当前拉杆的动作 a 与最优拉杆的期望奖励差</h5><p>MAB 问题的目标为最大化累积奖励，等价于最小化累积懊悔</p>
+<h5 id="3）累积懊悔：拉动当前拉杆的动作-a-与最优拉杆的期望奖励差"><a href="#3）累积懊悔：拉动当前拉杆的动作-a-与最优拉杆的期望奖励差" class="headerlink" title="3）累积懊悔：拉动当前拉杆的动作 a 与最优拉杆的期望奖励差"></a>3）累积懊悔：拉动当前拉杆的动作 a 与最优拉杆的期望奖励差</h5><ul>
+<li><p>这里的累积懊悔 &#x3D; 损失</p>
+</li>
+<li><p>MAB 问题的目标为最大化累积奖励，等价于最小化累积懊悔</p>
+</li>
+</ul>
 <img src="/2026/03/03/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0-%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/6.png" class="" title="图片描述">
 
-<h5 id="4）估计拉动每个拉杆能够得到的期望（平均）奖励"><a href="#4）估计拉动每个拉杆能够得到的期望（平均）奖励" class="headerlink" title="4）估计拉动每个拉杆能够得到的期望（平均）奖励"></a>4）估计拉动每个拉杆能够得到的期望（平均）奖励</h5><p>如何计算这个期望？</p>
+<h5 id="4）估计拉动每个拉杆能够得到的期望（平均）奖励"><a href="#4）估计拉动每个拉杆能够得到的期望（平均）奖励" class="headerlink" title="4）估计拉动每个拉杆能够得到的期望（平均）奖励"></a>4）估计拉动每个拉杆能够得到的期望（平均）奖励</h5><ul>
+<li>如何计算这个期望？</li>
+</ul>
 <img src="/2026/03/03/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0-%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/7.png" class="" title="图片描述">
 
-<h5 id="代码部分："><a href="#代码部分：" class="headerlink" title="代码部分："></a>代码部分：</h5><p>实现一个拉杆数为 10 的多臂老虎机。</p>
-<p>其中拉动每根拉杆的奖励服从<strong>伯努利分布</strong>（Bernoulli distribution），即每次拉下拉杆有 <u>p</u> 的概率获得的奖励为 1，有 <u>1 - p</u> 的概率获得的奖励为 0。</p>
-<p>奖励为 1 代表获奖，奖励为 0 代表没有获奖。</p>
+<h5 id="5）代码部分："><a href="#5）代码部分：" class="headerlink" title="5）代码部分："></a>5）代码部分：</h5><ul>
+<li><p>实现一个拉杆数为 10 的多臂老虎机。</p>
+</li>
+<li><p>其中拉动每根拉杆的奖励服从<strong>伯努利分布</strong>（Bernoulli distribution），即每次拉下拉杆有 <u>p</u> 的概率获得的奖励为 1，有 <u>1 - p</u> 的概率获得的奖励为 0。</p>
+</li>
+<li><p>奖励为 1 代表获奖，奖励为 0 代表没有获奖。</p>
+</li>
+</ul>
 <h5 id="生成一个多臂老虎机模型："><a href="#生成一个多臂老虎机模型：" class="headerlink" title="生成一个多臂老虎机模型："></a>生成一个多臂老虎机模型：</h5><img src="/2026/03/03/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0-%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/8.png" class="" title="图片描述">
 
 <img src="/2026/03/03/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0-%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/9.png" class="" title="图片描述">
@@ -270,29 +282,69 @@
 
 <h5 id="求解多臂老虎机模型："><a href="#求解多臂老虎机模型：" class="headerlink" title="求解多臂老虎机模型："></a>求解多臂老虎机模型：</h5><img src="/2026/03/03/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0-%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/12.png" class="" title="图片描述">
 
+<h4 id="6）ϵ-贪心算法-——-平衡探索和利用，从而最大化累计奖励（epsilon贪婪算法）"><a href="#6）ϵ-贪心算法-——-平衡探索和利用，从而最大化累计奖励（epsilon贪婪算法）" class="headerlink" title="6）ϵ-贪心算法 —— 平衡探索和利用，从而最大化累计奖励（epsilon贪婪算法）"></a>6）ϵ-贪心算法 —— 平衡探索和利用，从而最大化累计奖励（epsilon贪婪算法）</h4><ul>
+<li><p>探索：指尝试拉动更多可能的拉杆，这根拉杆不一定会获得最大的奖励，但这种方案能够摸清楚所有拉杆的获奖情况</p>
+</li>
+<li><p>利用：指拉动已知期望奖励最大的那根拉杆，由于已知的信息仅仅来自有限次的交互观测，所以当前的最优拉杆不一定是全局最优的</p>
+</li>
+</ul>
+<h4 id="什么是ϵ-贪心算法？"><a href="#什么是ϵ-贪心算法？" class="headerlink" title="什么是ϵ-贪心算法？"></a>什么是ϵ-贪心算法？</h4><ul>
+<li>每次以 1 - ϵ 的概率选择往期经验中期望奖励最大的那根拉杆</li>
+<li>以 概率 ϵ 随机选择一根拉杆</li>
+</ul>
+<img src="/2026/03/03/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0-%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/13.png" class="" title="图片描述">
 
+<ul>
+<li><p>随着探索的次数不断增加，对各个动作的奖励估计越来越准，就不再需要继续维持高次数去执行探索</p>
+<p>因此，可以令 ϵ 随时间衰减，从而慢慢降低探索的概率</p>
+</li>
+</ul>
+<p>先实践当固定epsilon值为0.01的情况下，对累计懊悔的影响</p>
+<img src="/2026/03/03/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0-%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/14.png" class="" title="图片描述">
 
+<h5 id="可视化累积懊悔（展现累积懊悔随时间的变化）"><a href="#可视化累积懊悔（展现累积懊悔随时间的变化）" class="headerlink" title="可视化累积懊悔（展现累积懊悔随时间的变化）"></a>可视化累积懊悔（展现累积懊悔随时间的变化）</h5><img src="/2026/03/03/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0-%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/15.png" class="" title="图片描述">
 
+<h5 id="6-1）在-epsilon-0-01情况下的累积懊悔"><a href="#6-1）在-epsilon-0-01情况下的累积懊悔" class="headerlink" title="6.1）在 epsilon = 0.01情况下的累积懊悔"></a>6.1）在 <code>epsilon = 0.01</code>情况下的累积懊悔</h5><ul>
+<li>发现：在经历了开始的一小段时间后，epsilon贪婪算法的累积懊悔几乎是线性增长的</li>
+</ul>
+<img src="/2026/03/03/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0-%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/17.png" class="" title="图片描述">
 
+<img src="/2026/03/03/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0-%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/16.png" class="" title="图片描述">
 
+<h5 id="6-2）查看epsilon取不同固定值的情况下累积懊悔的增长情况"><a href="#6-2）查看epsilon取不同固定值的情况下累积懊悔的增长情况" class="headerlink" title="6.2）查看epsilon取不同固定值的情况下累积懊悔的增长情况"></a>6.2）查看<code>epsilon</code>取不同固定值的情况下累积懊悔的增长情况</h5><ul>
+<li><code>epsilon</code>取值：<code>&#123;10^-4 , 0.01 , 0.1 , 0.25 , 0.5&#125;</code></li>
+</ul>
+<img src="/2026/03/03/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0-%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/19.png" class="" title="图片描述">
 
+<ul>
+<li>通过结果可以发现：<ul>
+<li>无论 epsilon 取值多少，累积懊悔都是线性增长的</li>
+<li>随着 epsilon 增大，累计懊悔也会增大</li>
+</ul>
+</li>
+</ul>
+<img src="/2026/03/03/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0-%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/18.png" class="" title="图片描述">
 
+<h5 id="6-3）epsilon衰减"><a href="#6-3）epsilon衰减" class="headerlink" title="6.3）epsilon衰减"></a>6.3）<code>epsilon</code>衰减</h5><ul>
+<li>最常用的epsilon衰减模式：反比例衰减</li>
+</ul>
+<img src="/2026/03/03/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0-%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/20.png" class="" title="图片描述">
 
+<ul>
+<li>代码实现</li>
+</ul>
+<img src="/2026/03/03/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0-%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/21.png" class="" title="图片描述">
 
+<ul>
+<li>可视化结果</li>
+<li>发现：随时间做反比例衰减的 epsilon 贪婪算法能够使累积懊悔与时间步的关系变成<strong>次线性</strong>（sublinear）的，这明显优于固定 epsilon 值的 epsilon 贪婪算法</li>
+</ul>
+<img src="/2026/03/03/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0-%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/23.png" class="" title="图片描述">
 
+<img src="/2026/03/03/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0-%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/22.png" class="" title="图片描述">
 
-
-
-
-<p>走迷宫案例：</p>
-<img src="/2026/03/03/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0-%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/1.png" class="" title="图片描述">
-
-<p>价值函数：Q(s,a)</p>
-<p>状态：智能体的位置（坐标）—— 这个就是s</p>
-<p>行动：方向</p>
-<p>状态转移：向行动方向前进一格</p>
-<p>目标：达到最后一个格子且步数最小</p>
-<p>奖励：每一步奖励值为（-1）</p>
+<p>7）</p>
+<p>epsilon-贪婪算法的累积懊悔是随时间线性增长的，而另外 3 种算法（ espsilon-衰减贪婪算法、上置信界算法、汤普森采样算法）的累积懊悔都是随时间次线性增长的（具体为对数形式增长）</p>
 
     </div>
     
