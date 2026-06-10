@@ -184,7 +184,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%A1%E7%AE%97/" style="color: #03a9f4">
+                <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%A1%E7%AE%97/" style="color: #ff7d73">
                     分布式计算
                 </a>
             </span>
@@ -426,7 +426,226 @@
 <li>数据本地性优先：减少网络传输，加速</li>
 <li>推测执行：对于特别慢的“拖后腿任务”，Master 可以在另一台机器上再启动一个副本，谁先做完用谁</li>
 </ul>
-
+<h5 id="6、错误恢复（三种情况）"><a href="#6、错误恢复（三种情况）" class="headerlink" title="6、错误恢复（三种情况）"></a>6、错误恢复（三种情况）</h5><ul>
+<li><p>Map Worker 挂了</p>
+<ul>
+<li><p>它已经完成的 map task 通常也要重做</p>
+<p>因为 map 中间结果存在这个 worker 的本地磁盘上，机器挂了数据就没了</p>
+</li>
+</ul>
+</li>
+<li><p>Reduce Worker 挂了</p>
+<ul>
+<li><p>它已完成的 reduce task 一般不用重做</p>
+<p>因为 reduce 输出通常已经写到分布式文件系统里了</p>
+</li>
+</ul>
+</li>
+<li><p>Master 挂了：主控容错机制</p>
+</li>
+<li><p>Master发现Worker出错的过程：</p>
+<ul>
+<li>Master 通过超时、心跳等方式发现 worker 失联</li>
+<li>把未完成任务重新标为 idle</li>
+<li>分配给其他 worker</li>
+</ul>
+</li>
+</ul>
+<h5 id="7、处理文件分布"><a href="#7、处理文件分布" class="headerlink" title="7、处理文件分布"></a>7、处理文件分布</h5><ul>
+<li>MapReduce 通常运行在像 GFS 这样的分布式文件系统之上</li>
+<li>GFS 的特点：<ul>
+<li>文件被切成多个 chunk</li>
+<li>每个chunk会复制到多台机器上</li>
+</ul>
+</li>
+<li>在 Google 的 MapReduce 架构里，所有 worker 所在机器都能访问 GFS（否则它们没法读输入，也没法把最终结果写回去）</li>
+</ul>
+<h2 id="三、Go并发"><a href="#三、Go并发" class="headerlink" title="三、Go并发"></a>三、Go并发</h2><h5 id="1、相关概念"><a href="#1、相关概念" class="headerlink" title="1、相关概念"></a>1、相关概念</h5><ul>
+<li>程序：静态代码</li>
+<li>进程：程序运行起来之后成为进程</li>
+<li>线程：进程内的执行流，负责实际执行代码</li>
+<li>CPU：执行线程指令的硬件单元</li>
+<li>总结：<strong>进程是资源容器，线程是执行单位，CPU</strong> <strong>是执行硬件</strong></li>
+</ul>
+<h5 id="2、线程（Thread）"><a href="#2、线程（Thread）" class="headerlink" title="2、线程（Thread）"></a>2、线程（Thread）</h5><ul>
+<li>线程是程序内部一条持续向前执行的独立控制流</li>
+<li><u>同一进程中可以存在多个线程</u></li>
+<li>同一进程的线程共享同一地址空间，通信开销低；但正因为共享资源，也存在相互干扰的风险</li>
+</ul>
+<h5 id="3、线程-和-进程-的关系"><a href="#3、线程-和-进程-的关系" class="headerlink" title="3、线程 和 进程 的关系"></a>3、线程 和 进程 的关系</h5><ul>
+<li><p>定义：进程是运行中的程序实例，线程是进程内部具体执行任务的单元</p>
+<p>进程 &gt; 线程</p>
+</li>
+<li><p>同一进程的线程共享大量资源，但每个线程拥有独立的执行状态</p>
+</li>
+</ul>
+<h5 id="4、线程的作用"><a href="#4、线程的作用" class="headerlink" title="4、线程的作用"></a>4、线程的作用</h5><ul>
+<li>提升响应性：当某线程等待磁盘或网络 I&#x2F;O 时，其他线程可继续执行</li>
+<li>逻辑结构清晰：将不同职责分配给不同线程，程序组织更为清晰</li>
+<li>多核利用：多线程可调度到多个 CPU 核心上，实现真正的并行执行</li>
+</ul>
+<h5 id="5、并发-vs-并行（重要）"><a href="#5、并发-vs-并行（重要）" class="headerlink" title="5、并发 vs 并行（重要）"></a>5、并发 vs 并行（重要）</h5><ul>
+<li><p>定义：</p>
+<ul>
+<li>并发（Concurrency）：多个任务在同一时间段内均有所推进</li>
+<li>并行（Parallelism）：多个任务在同一时刻真正同时执行</li>
+</ul>
+</li>
+<li><p>关系：<strong>并行 ⊂ 并发</strong> </p>
+<p>并行是并发的一种特殊情形，并发不一定并行</p>
+</li>
+<li><p>主要区别（*）</p>
+<ul>
+<li><u>并发：交替推进</u></li>
+<li><u>并行：同时推进</u></li>
+<li><img src="/2026/06/03/%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%A1%E7%AE%97%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/27.png" class="" title="图片描述"></li>
+</ul>
+</li>
+</ul>
+<h5 id="6、Go中的并发：goroutine"><a href="#6、Go中的并发：goroutine" class="headerlink" title="6、Go中的并发：goroutine"></a>6、Go中的并发：goroutine</h5><ul>
+<li><strong><u>goroutine 是 Go 运行时管理的轻量级执行流，不是操作系统线程</u></strong></li>
+<li>启动一个新的goroutine：<code>go doWork()</code></li>
+</ul>
+<h5 id="7、goroutine和操作系统线程（OS）之间的关系"><a href="#7、goroutine和操作系统线程（OS）之间的关系" class="headerlink" title="7、goroutine和操作系统线程（OS）之间的关系"></a>7、goroutine和操作系统线程（OS）之间的关系</h5><ul>
+<li>Go 运行时将大量 goroutine多路复用到少量操作系统线程上运行</li>
+</ul>
+<h5 id="8、共享内存（Shared-Memory）"><a href="#8、共享内存（Shared-Memory）" class="headerlink" title="8、共享内存（Shared Memory）"></a>8、共享内存（Shared Memory）</h5><ul>
+<li>同一进程的多个线程通常共享以下信息：<ul>
+<li>全局变量</li>
+<li>堆内存</li>
+<li>已打开的文件</li>
+<li>进程地址空间</li>
+</ul>
+</li>
+<li>好处：线程间通信简便，数据共享效率高</li>
+<li>风险：多个线程的操作可能相互干扰，导致数据不一致</li>
+<li>多线程的执行顺序是交错的会引发问题</li>
+</ul>
+<h5 id="9、竞争条件（race-condition）"><a href="#9、竞争条件（race-condition）" class="headerlink" title="9、竞争条件（race condition）"></a>9、竞争条件（race condition）</h5><ul>
+<li><p>定义：<u><strong>程序的执行结果依赖于线程调度的相对时序，而某些时序会导致错误的结果</strong></u></p>
+</li>
+<li><p>特征：</p>
+<ul>
+<li>偶发性错误，很难复现</li>
+<li>代码看起来正确</li>
+<li>高并发或特定负载下才暴露</li>
+</ul>
+</li>
+<li><p>例：<code>n = n + 1</code> 问题</p>
+<p>造成问题：<strong>lost update（丢失更新）</strong></p>
+<p><strong>误解</strong>：”只有一行代码，就不会有并发问题”</p>
+<p><code>n = n + 1</code>为三步：内存读n的当前值+执行加法运算+结果写回内存</p>
+</li>
+</ul>
+<h5 id="10、原子性（atomicity）"><a href="#10、原子性（atomicity）" class="headerlink" title="10、原子性（atomicity）"></a>10、原子性（atomicity）</h5><ul>
+<li>定义：<strong><u>一个操作要么完整执行，要么完全不执行，执行过程不可被中断或观察到中间状态</u></strong></li>
+<li>若某操作不具备原子性，其他线程便可能在其执行中途介入，引发数据不一致</li>
+</ul>
+<h5 id="11、临界区（critical-section）"><a href="#11、临界区（critical-section）" class="headerlink" title="11、临界区（critical section）"></a>11、临界区（critical section）</h5><ul>
+<li><p>定义：<u><strong>不能被多个线程同时执行的一段代码</strong></u></p>
+</li>
+<li><p>判断是否为临界区：</p>
+<ul>
+<li>是否访问了共享数据？</li>
+<li>多个线程同时执行是否会导致数据不一致？</li>
+</ul>
+<p>两个都是”是” → 这就是临界区</p>
+<p><u><strong>临界区是需要受到保护的关键代码段</strong></u></p>
+<p><u><strong>竞态条件经常发生在临界区没有被正确保护的时候</strong></u></p>
+</li>
+</ul>
+<h5 id="12、互斥（mutual-exclusion）"><a href="#12、互斥（mutual-exclusion）" class="headerlink" title="12、互斥（mutual exclusion）"></a>12、互斥（mutual exclusion）</h5><ul>
+<li>定义：<u><strong>同一时刻最多允许一个线程进入临界区执行</strong></u></li>
+<li>作用：防止多个线程同时修改同一份共享状态，从而保证数据的一致性</li>
+</ul>
+<h5 id="13、锁（lock）"><a href="#13、锁（lock）" class="headerlink" title="13、锁（lock）"></a>13、锁（lock）</h5><ul>
+<li>锁是实现互斥最常见的机制</li>
+<li>作用：确保共享状态不被同时破坏</li>
+<li>锁的使用：<ul>
+<li>进入临界区之前加锁</li>
+<li>离开临界区之后解锁</li>
+</ul>
+</li>
+<li>锁的效果：<ul>
+<li>持有锁的线程可进入受保护代码段</li>
+<li>其他线程在获得锁之前须阻塞等待</li>
+</ul>
+</li>
+</ul>
+<h5 id="14、Go中的互斥锁（sync-Mutex）"><a href="#14、Go中的互斥锁（sync-Mutex）" class="headerlink" title="14、Go中的互斥锁（sync.Mutex）"></a>14、Go中的互斥锁（sync.Mutex）</h5><ul>
+<li><p><code>var mu sync.Mutex</code></p>
+</li>
+<li><p><code>mu.Lock()</code> 加锁</p>
+</li>
+<li><p><code>mu.Unlock()</code> 解锁</p>
+</li>
+<li><img src="/2026/06/03/%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%A1%E7%AE%97%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/28.png" class="" title="图片描述"></li>
+<li><p>或者直接在加锁后用<code>defer mu.Unlock()</code></p>
+</li>
+<li><img src="/2026/06/03/%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%A1%E7%AE%97%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/29.png" class="" title="图片描述">
+</li>
+<li><p>锁解决的核心问题：<u><strong>共享状态被并发访问时的正确性保障</strong></u></p>
+</li>
+<li><p>锁的使用原则：</p>
+<ul>
+<li><u><strong>只在确实需要保护的临界区加锁，而非在所有地方加锁</strong></u></li>
+</ul>
+</li>
+<li><p>引入锁的代价：</p>
+<ul>
+<li>线程等待与阻塞</li>
+<li>并发度降低，吞吐量下降</li>
+<li>锁使用不当可能引发死锁（deadlock）</li>
+</ul>
+</li>
+</ul>
+<h5 id="15、并发的目标"><a href="#15、并发的目标" class="headerlink" title="15、并发的目标"></a>15、并发的目标</h5><ul>
+<li><u><strong>可并发的部分尽量并发，需要保护的部分必须互斥</strong></u></li>
+</ul>
+<h5 id="16、总结"><a href="#16、总结" class="headerlink" title="16、总结"></a>16、总结</h5><ul>
+<li><p>线程 → 操作系统调度的<u>最小执行单位</u></p>
+</li>
+<li><p>进程 → 资源分配的<u>基本单位</u></p>
+</li>
+<li><p>并发 → 多线程在同一时间段内<u>交替推进</u></p>
+</li>
+<li><p>共享内存 → 线程间协作方便，但存在相互干扰的风险</p>
+</li>
+<li><p>race condition → <u>执行顺序的差异</u>导致结果不一致（问题）</p>
+</li>
+<li><p>critical section → 需要保护的关键代码段（地方）</p>
+</li>
+<li><p>atomicity → 操作若不可分割，则不会出现中间状态被观察的问题</p>
+</li>
+<li><p>mutual exclusion → 同一时刻仅允许一个线程执行临界区</p>
+</li>
+<li><p>lock → 实现互斥最常见的机制</p>
+</li>
+<li><p><strong>并发不等于并行</strong>：<strong>并行 ⊂ 并发</strong> </p>
+</li>
+<li><p><strong>共享内存在提供通信便利的同时，也引入了竞争风险</strong></p>
+</li>
+<li><p><strong>锁的目的不是提升性能，而是首先保证正确性</strong></p>
+</li>
+<li><p>并发强调“多个任务均在推进”，并不要求每一时刻都真正同时执行</p>
+<p>判断：并发就是多个线程同时执行（错）</p>
+</li>
+<li><p>判断：只有一行代码，就不会有并发问题（错）</p>
+<p>单行高级语言代码在底层通常对应多个机器指令</p>
+</li>
+<li><p>判断：使用更多线程，程序一定更快（错）</p>
+<p>多线程频繁竞争同一把锁时，等待开销可能使程序比单线程还慢</p>
+</li>
+<li><p>判断：使用 Go 或 goroutine，共享数据自动是安全的（错）</p>
+<p>只要多个 goroutine 访问共享数据，且没有适当的同步机制，race condition 依然存在</p>
+</li>
+<li><p>并发程序的核心矛盾是：</p>
+<p><u><strong>多条执行流需要同时推进，但它们可能访问同一份共享状态</strong></u></p>
+</li>
+<li><p><strong>并发使多个任务得以同时推进；共享内存使它们容易相互干扰；锁通过互斥机制保护临界区，确保共享状态的一致性</strong></p>
+</li>
+</ul>
+<h2 id="三、并发协作"><a href="#三、并发协作" class="headerlink" title="三、并发协作"></a>三、并发协作</h2><h5 id="1、回顾"><a href="#1、回顾" class="headerlink" title="1、回顾"></a>1、回顾</h5>
     </div>
     
     
