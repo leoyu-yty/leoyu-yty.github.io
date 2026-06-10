@@ -184,7 +184,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%A1%E7%AE%97/" style="color: #00a596">
+                <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%A1%E7%AE%97/" style="color: #03a9f4">
                     分布式计算
                 </a>
             </span>
@@ -195,6 +195,17 @@
     
     <div class="content" v-pre>
         <h4 id="此篇为分布式计算期末复习部分"><a href="#此篇为分布式计算期末复习部分" class="headerlink" title="此篇为分布式计算期末复习部分"></a>此篇为分布式计算期末复习部分</h4><p>go语言学习：<a target="_blank" rel="noopener" href="https://gopl-zh.github.io/">https://gopl-zh.github.io/</a></p>
+<p>考试范围：</p>
+<ul>
+<li>Mapreduce</li>
+<li>GO语言</li>
+<li>RPC</li>
+<li>Lamport逻辑时钟计算</li>
+<li>K-value存储服务</li>
+<li>GO进程阻塞</li>
+<li>Raft</li>
+<li>Paxos</li>
+</ul>
 <span id="more"></span>
 
 <h2 id="一、Go语言"><a href="#一、Go语言" class="headerlink" title="一、Go语言"></a>一、Go语言</h2><h5 id="1、go和python的区别："><a href="#1、go和python的区别：" class="headerlink" title="1、go和python的区别："></a>1、go和python的区别：</h5><p>Python 的主要特性：</p>
@@ -238,10 +249,183 @@
 </ul>
 <h5 id="3、Go程序框架"><a href="#3、Go程序框架" class="headerlink" title="3、Go程序框架"></a>3、Go程序框架</h5><img src="/2026/06/03/%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%A1%E7%AE%97%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/2.png" class="" title="图片描述">
 
+<p>常用库：</p>
+<ul>
+<li><p>fmt：格式化输入输出</p>
+</li>
+<li><p>sync：互斥锁、WaitGroup 等并发同步原语</p>
+</li>
+<li><p>time：时间处理、sleep、超时控制</p>
+</li>
+<li><p>net&#x2F;rpc：远程过程调用（RPC）相关功能</p>
+</li>
+<li><p>testing：单元测试框架</p>
+</li>
+</ul>
 <h5 id="4、Go程序的运行"><a href="#4、Go程序的运行" class="headerlink" title="4、Go程序的运行"></a>4、Go程序的运行</h5><p>终端运行</p>
 <p>假设你有一个文件 main.go</p>
 <p>在终端进入这个文件所在目录，然后执行：</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">go</span> run main.<span class="keyword">go</span></span><br></pre></td></tr></table></figure>
+<p><code>go run main.go</code></p>
+<h5 id="5、变量声明（var-）"><a href="#5、变量声明（var-）" class="headerlink" title="5、变量声明（var &#x2F; :&#x3D;）"></a>5、变量声明（var &#x2F; :&#x3D;）</h5><ul>
+<li><p>var：用于包级变量声明，或需要显式指定类型及零值的情况</p>
+<p><code>var x int = 10</code></p>
+</li>
+<li><p>:&#x3D;：用于函数内部的声明并初始化（<u>只能在函数内部使用</u>）</p>
+<p><code>x := 10</code></p>
+</li>
+</ul>
+<img src="/2026/06/03/%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%A1%E7%AE%97%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/3.png" class="" title="图片描述">
+
+<img src="/2026/06/03/%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%A1%E7%AE%97%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/4.png" class="" title="图片描述">
+
+<h5 id="Go-中声明但未初始化的变量，将自动获得对应类型的零值"><a href="#Go-中声明但未初始化的变量，将自动获得对应类型的零值" class="headerlink" title="Go 中声明但未初始化的变量，将自动获得对应类型的零值"></a><u>Go 中声明但未初始化的变量，将自动获得对应类型的零值</u></h5><img src="/2026/06/03/%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%A1%E7%AE%97%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/6.png" class="" title="图片描述">
+
+<h5 id="6、Go的基本数据类型"><a href="#6、Go的基本数据类型" class="headerlink" title="6、Go的基本数据类型"></a>6、Go的基本数据类型</h5><p>Go 中的字符串为不可变的 UTF-8 文本</p>
+<p>即可用 len(x) 调取字符串的长度</p>
+<img src="/2026/06/03/%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%A1%E7%AE%97%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/5.png" class="" title="图片描述">
+
+<h5 id="7、if-语句"><a href="#7、if-语句" class="headerlink" title="7、if 语句"></a>7、if 语句</h5><p><code>if 条件 &#123;&#125; else &#123;&#125;</code></p>
+<img src="/2026/06/03/%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%A1%E7%AE%97%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/7.png" class="" title="图片描述">
+
+<h5 id="8、for循环"><a href="#8、for循环" class="headerlink" title="8、for循环"></a>8、for循环</h5><p><strong>Go 以单一的 for 关键字统一表达各类循环</strong></p>
+<img src="/2026/06/03/%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%A1%E7%AE%97%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/8.png" class="" title="图片描述">
+
+<h5 id="9、定义函数"><a href="#9、定义函数" class="headerlink" title="9、定义函数"></a>9、定义函数</h5><p>返回单一值：</p>
+<img src="/2026/06/03/%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%A1%E7%AE%97%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/9.png" class="" title="图片描述">
+
+<p>返回多个值：</p>
+<img src="/2026/06/03/%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%A1%E7%AE%97%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/10.png" class="" title="图片描述">
+
+<h5 id="10、错误处理"><a href="#10、错误处理" class="headerlink" title="10、错误处理"></a>10、错误处理</h5><p><code>nil</code>表示没问题</p>
+<img src="/2026/06/03/%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%A1%E7%AE%97%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/11.png" class="" title="图片描述">
+
+<p>go中<code>error</code>相当于一个状态标签，<u>表示这次操作是否成功的返回值</u></p>
+<p><code>error</code>取值：<code>nil</code>和<code>其他</code></p>
+<img src="/2026/06/03/%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%A1%E7%AE%97%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/12.png" class="" title="图片描述">
+
+<h5 id="11、切片（Slice）-python中的list"><a href="#11、切片（Slice）-python中的list" class="headerlink" title="11、切片（Slice）&#x3D; python中的list"></a>11、切片（Slice）&#x3D; python中的list</h5><p>主要和python中的list的差异：</p>
+<ul>
+<li><p>Go 切片具有明确的元素类型，如 []int</p>
+</li>
+<li><p>append 返回新切片，需要重新赋值</p>
+</li>
+</ul>
+<img src="/2026/06/03/%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%A1%E7%AE%97%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/13.png" class="" title="图片描述">
+
+<h5 id="12、map-python的字典-dic"><a href="#12、map-python的字典-dic" class="headerlink" title="12、map &#x3D; python的字典 dic"></a>12、map &#x3D; python的字典 dic</h5><img src="/2026/06/03/%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%A1%E7%AE%97%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/14.png" class="" title="图片描述">
+
+<p>map字典取值：</p>
+<img src="/2026/06/03/%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%A1%E7%AE%97%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/15.png" class="" title="图片描述">
+
+<h5 id="13、struct-python中的class"><a href="#13、struct-python中的class" class="headerlink" title="13、struct &#x3D; python中的class"></a>13、struct &#x3D; python中的class</h5><p>作用：<u>定义复合数据类型，将若干相关字段组合为一个逻辑单元</u></p>
+<p>用<code>func</code>来定义在该类上的成员函数</p>
+<img src="/2026/06/03/%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%A1%E7%AE%97%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/16.png" class="" title="图片描述">
+
+<img src="/2026/06/03/%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%A1%E7%AE%97%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/17.png" class="" title="图片描述">
+
+<h5 id="14、指针：表示指向某个值的内存地址"><a href="#14、指针：表示指向某个值的内存地址" class="headerlink" title="14、指针：表示指向某个值的内存地址"></a>14、<u>指针：表示指向某个值的内存地址</u></h5><img src="/2026/06/03/%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%A1%E7%AE%97%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/18.png" class="" title="图片描述">
+
+<h5 id="15、interface（插口）：用于定义类型须满足的行为约束"><a href="#15、interface（插口）：用于定义类型须满足的行为约束" class="headerlink" title="15、interface（插口）：用于定义类型须满足的行为约束"></a>15、interface（插口）：用于定义类型须满足的行为约束</h5><p><strong>注意：<u>凡是实现了 interface 所声明方法的类型，均满足该 interface</u></strong></p>
+<img src="/2026/06/03/%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%A1%E7%AE%97%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/19.png" class="" title="图片描述">
+
+<h5 id="16、goroutine（轻量级并发执行单元）"><a href="#16、goroutine（轻量级并发执行单元）" class="headerlink" title="16、goroutine（轻量级并发执行单元）"></a>16、goroutine（轻量级并发执行单元）</h5><p>启动 goroutine（启动go的并发执行）</p>
+<p><strong><u>goroutine 是 Go 运行时提供的轻量级并发执行单元</u></strong></p>
+<p><code>go doWork()</code></p>
+<h5 id="17、channel-用于-goroutine-之间的通信与数据传递"><a href="#17、channel-用于-goroutine-之间的通信与数据传递" class="headerlink" title="17、channel 用于 goroutine 之间的通信与数据传递"></a>17、channel 用于 goroutine 之间的通信与数据传递</h5><p><strong>作用：<u>channel 是 goroutine 之间传递数据的通道</u></strong></p>
+<p>发送数据：<code>ch &lt;- 42</code></p>
+<p>接收数据：<code>x := &lt;-ch</code></p>
+<h5 id="goroutine最小示例："><a href="#goroutine最小示例：" class="headerlink" title="goroutine最小示例："></a>goroutine最小示例：</h5><img src="/2026/06/03/%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%A1%E7%AE%97%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/20.png" class="" title="图片描述">
+
+<h5 id="Python-的常见并发方式："><a href="#Python-的常见并发方式：" class="headerlink" title="Python 的常见并发方式："></a>Python 的常见并发方式：</h5><ul>
+<li><p>threading（线程）</p>
+</li>
+<li><p>multiprocessing（多进程）</p>
+</li>
+<li><p>asyncio（协程）</p>
+</li>
+</ul>
+<h5 id="Go-的并发模型更为统一："><a href="#Go-的并发模型更为统一：" class="headerlink" title="Go 的并发模型更为统一："></a>Go 的并发模型更为统一：</h5><ul>
+<li><p>goroutine（轻量级并发执行单元）</p>
+</li>
+<li><p>channel（goroutine 间通信）</p>
+</li>
+<li><p>mutex（互斥锁，保护共享状态）</p>
+</li>
+</ul>
+<h2 id="二、MapReduce"><a href="#二、MapReduce" class="headerlink" title="二、MapReduce"></a>二、MapReduce</h2><h4 id="主要流程："><a href="#主要流程：" class="headerlink" title="主要流程："></a>主要流程：</h4><ul>
+<li>Master：分配任务</li>
+<li>Worker：干活的（Map &#x2F; Reduce）</li>
+</ul>
+<img src="/2026/06/03/%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%A1%E7%AE%97%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/21.png" class="" title="图片描述">
+
+<img src="/2026/06/03/%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%A1%E7%AE%97%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/22.png" class="" title="图片描述">
+
+<img src="/2026/06/03/%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%A1%E7%AE%97%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/23.png" class="" title="图片描述">
+
+<img src="/2026/06/03/%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%A1%E7%AE%97%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/24.png" class="" title="图片描述">
+
+<img src="/2026/06/03/%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%A1%E7%AE%97%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/25.png" class="" title="图片描述">
+
+<img src="/2026/06/03/%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%A1%E7%AE%97%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/26.png" class="" title="图片描述">
+
+<h4 id="细节："><a href="#细节：" class="headerlink" title="细节："></a>细节：</h4><h5 id="1、如何分配工作"><a href="#1、如何分配工作" class="headerlink" title="1、如何分配工作"></a>1、如何分配工作</h5><ul>
+<li><p>MapReduce 会先把<u>输入数据</u>切成很多 input <u>splits</u>任务，通常每个 split 对应一个 map task</p>
+</li>
+<li><p>Master 维护所有 map&#x2F;reduce task 的状态，哪个 worker 空闲了，就给它分配一个还没做的 task</p>
+</li>
+<li><p>Master 优先把 task 分给“数据本地”的 worker，或者同机架上的 worker</p>
+</li>
+<li><p>Worker 动态领取任务（空闲时领取）</p>
+</li>
+<li><p>整个过程为：<u>调度式分配</u></p>
+</li>
+</ul>
+<h5 id="2、如何将MapReduce代码发给各个服务器"><a href="#2、如何将MapReduce代码发给各个服务器" class="headerlink" title="2、如何将MapReduce代码发给各个服务器"></a>2、如何将MapReduce代码发给各个服务器</h5><ul>
+<li>代码提前部署在所有机器上</li>
+<li>把需要的文件代码先传到共享存储上，再由worker动态加载</li>
+</ul>
+<h5 id="3、如何跟踪进度"><a href="#3、如何跟踪进度" class="headerlink" title="3、如何跟踪进度"></a>3、如何跟踪进度</h5><ul>
+<li>Master 会记录每个 task 的状态（三个状态）：<ul>
+<li>idle</li>
+<li>in-progress</li>
+<li>completed</li>
+</ul>
+</li>
+<li>Worker 在执行中会：<ul>
+<li>接受任务</li>
+<li>定期汇报状态</li>
+<li>完成自己的任务后汇报结果位置</li>
+</ul>
+</li>
+<li>一个 mapreduce 任务什么时候算完成<ul>
+<li>所有 map 任务完成 + 所有 reduce 任务完成</li>
+</ul>
+</li>
+</ul>
+<h5 id="4、如何移动数据从-map-到-reduce（shuffle）"><a href="#4、如何移动数据从-map-到-reduce（shuffle）" class="headerlink" title="4、如何移动数据从 map 到 reduce（shuffle）"></a>4、如何移动数据从 map 到 reduce（shuffle）</h5><ul>
+<li><p>Map worker 执行完 map 任务时，生成（key , value）对</p>
+</li>
+<li><p>按分区函数（Partition）把中间结果切成 R 份（R 是 reduce task 数量）</p>
+<p>这些中间结果先写到 Worker 自己的本地磁盘</p>
+<ul>
+<li>通俗：一个快递分拣员（Map）根据目的地（key 的 hash）把包裹分成 3 堆：一堆寄北京，一堆寄上海，一堆寄广州</li>
+<li>每个Map Worker会生成R个文件</li>
+</ul>
+</li>
+<li><p>Reduce worker 通过网络去各个 map worker 拉取属于自己分区的数据</p>
+<ul>
+<li>通俗：北京站的收货员（Reduce 0）自己开着货车，跑到每个分拣员（Map Worker）的摊位，把写着“北京”的筐搬上车，拉回自己的仓库</li>
+</ul>
+</li>
+<li><p>Reduce worker在拉完自己对应的数据后对数据进行排序（归并排序 - 按key排序）、归并，再执行其自身的 reduce 函数（如求和&#x2F;求平均值）</p>
+</li>
+</ul>
+<h5 id="5、负载均衡，如何用尽所有服务器"><a href="#5、负载均衡，如何用尽所有服务器" class="headerlink" title="5、负载均衡，如何用尽所有服务器"></a>5、负载均衡，如何用尽所有服务器</h5><ul>
+<li>把总任务拆成大量小任务</li>
+<li>动态调度：快的机器多做，慢的机器少做</li>
+<li>数据本地性优先：减少网络传输，加速</li>
+<li>推测执行：对于特别慢的“拖后腿任务”，Master 可以在另一台机器上再启动一个副本，谁先做完用谁</li>
+</ul>
 
     </div>
     
