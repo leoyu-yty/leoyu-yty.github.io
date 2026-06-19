@@ -1,0 +1,325 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <title>深度学习期末复习 | yty的博客</title>
+    <meta name="author" content="Leo yu yty" />
+    <meta name="description" content="Hello Everyone This is my website" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/xnylh.webp" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>YTY的博客</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;主页</span>
+        </a>
+        
+        <a href="/about/">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;关于</span>
+        </a>
+        
+        <a href="/archives/">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;文章</span>
+        </a>
+        
+        <a href="/categories/">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;分类</span>
+        </a>
+        
+        <a href="/tags/">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;标签</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;YTY的博客</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">主页</div>
+                    </div>
+                </a>
+                
+                <a href="/about/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">关于</div>
+                    </div>
+                </a>
+                
+                <a href="/archives/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">文章</div>
+                    </div>
+                </a>
+                
+                <a href="/categories/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">分类</div>
+                    </div>
+                </a>
+                
+                <a href="/tags/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">标签</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>深度学习期末复习</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2026/6/17
+        </span>
+        
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <p>1、张量</p>
+<p>基本运算</p>
+<p>机制，广播机制，原理</p>
+<p>数据预处理</p>
+<p>读懂代码</p>
+<p>2、线性回归</p>
+<p>基本原理</p>
+<p>模型</p>
+<p>损失函数，平方损失、如何训练，如何参数学习</p>
+<p>公式：方差公式</p>
+<p>3、softmax回归</p>
+<p>损失函数</p>
+<p>解决什么问题？<strong>原理？</strong></p>
+<p>公式是什么</p>
+<p>损失函数是什么</p>
+<p>4、感知机</p>
+<p>单层，多层</p>
+<p>感知机公式+原理</p>
+<p>单层感知机（不能处理异或问题）</p>
+<p>多层感知机怎么解决XOR问题</p>
+<p>长度…函数</p>
+<p>5、模型选择（重要）（多看）</p>
+<p>训练误差</p>
+<p>验证机测试机</p>
+<p>交叉验证</p>
+<p>过拟合欠拟合</p>
+<p>模型复杂度</p>
+<p>这些所有基本原理（ppt上的）</p>
+<p>超参数</p>
+<p>哪些是用来学习的参数</p>
+<p>6、权重衰退</p>
+<p>基本原理</p>
+<p>什么是权重衰减</p>
+<p>总结部分（L2正则化…这页ppt）</p>
+<p>思想是什么？能用来解决什么问题？</p>
+<p>7、丢弃法</p>
+<p>原理，作用</p>
+<p>8、数值稳定性</p>
+<p>梯度函数（重要）</p>
+<p>两个问题：梯度消失（sigmoid函数，用这个有什么特点），梯度爆炸</p>
+<p>梯度</p>
+<p>如何解决上面这两个问题</p>
+<p>梯度裁剪，梯度归一化</p>
+<p>权重初始化</p>
+<p>9、层和块</p>
+<p>概念</p>
+<p>主要采用sequential组合到一起</p>
+<p>基本原理</p>
+<p>10、卷积（重要）</p>
+<p>卷积概念</p>
+<p>单隐藏层MLP如何计算他的参数大小（重要，给图计算，看ppt）</p>
+<p>MLP的前向传播，反向传播是怎么样的</p>
+<p>卷积解决两个原则：局部性和….</p>
+<p>卷积层</p>
+<p>原理</p>
+<p>卷积层的优势（相对于…），能解决什么问题（重要）</p>
+<p>怎么用卷积层进行参数共享</p>
+<p>卷积层计算参数量的大小</p>
+<p>11、填充和步幅</p>
+<p>他们的公式（重要）（有计算）</p>
+<p>卷积输出特征图的公式&amp;计算</p>
+<p>总结部分（作用）</p>
+<p>多个输入和输出通道</p>
+<p>尺寸大小计算，数值计算，记公式</p>
+<p>不同卷积层参数大小计算</p>
+<p>12、池化层</p>
+<p>为什么要有池化</p>
+<p>原理</p>
+<p>最大池化（怎么做的）</p>
+<p>相似点和区别点（有页ppt，步幅填充）</p>
+<p>平均池化</p>
+<p>13、LeNet</p>
+<p>图片（主要）</p>
+<p>加上通道大小怎么变化</p>
+<p>加上卷积怎么变化</p>
+<p>理解图片内容</p>
+<p>14、AlexNet</p>
+<p>LeNet的改进，改进在哪（主要改进）</p>
+<p>架构</p>
+<p>和LeNet发生了哪些变化</p>
+<p>概念，特征，改进</p>
+<p>15、VGG</p>
+<p>特征，和上面的有什么不同点，相似点，改进</p>
+<p>原理</p>
+<p>16、序列模型</p>
+<p>统计工具</p>
+<p>原理</p>
+<p>怎么建模</p>
+<p>潜变量（重要）</p>
+<p>马尔可夫假设（重要）</p>
+<p>语法具体是什么意思</p>
+<p>看懂代码即可（不用写代码）</p>
+<p>17、循环神经网络（重要）</p>
+<p>潜变量自回归模型到循环神经网络（公式）（理解+默写）（重要）</p>
+<p>公式原理</p>
+<p>这边的公式都重要</p>
+<p>困惑度（重要***）</p>
+<p>梯度裁剪（重要）</p>
+<p>原理+解决什么问题</p>
+<p>理解序列模型有什么样的基本特征，用什么样的手段来进行处理</p>
+<p>18、题型</p>
+<p>选择*15（45分）</p>
+<p>判断*5（15分）</p>
+<p>简答*4（32分）</p>
+<p>计算*1（8分）</p>
+
+    </div>
+    
+    
+    
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2005 - 2026 yty的博客
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Leo yu yty
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+
+
+
+
+    
+</body>
+</html>
