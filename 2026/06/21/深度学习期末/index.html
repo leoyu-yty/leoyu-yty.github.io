@@ -1,0 +1,350 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <title>深度学习期末 | yty的博客</title>
+    <meta name="author" content="Leo yu yty" />
+    <meta name="description" content="Hello Everyone This is my website" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/xnylh.webp" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>YTY的博客</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;主页</span>
+        </a>
+        
+        <a href="/about/">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;关于</span>
+        </a>
+        
+        <a href="/archives/">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;文章</span>
+        </a>
+        
+        <a href="/categories/">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;分类</span>
+        </a>
+        
+        <a href="/tags/">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;标签</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;YTY的博客</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">主页</div>
+                    </div>
+                </a>
+                
+                <a href="/about/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">关于</div>
+                    </div>
+                </a>
+                
+                <a href="/archives/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">文章</div>
+                    </div>
+                </a>
+                
+                <a href="/categories/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">分类</div>
+                    </div>
+                </a>
+                
+                <a href="/tags/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">标签</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>深度学习期末</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2026/6/21
+        </span>
+        
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h2 id="一、试卷回忆"><a href="#一、试卷回忆" class="headerlink" title="一、试卷回忆"></a>一、试卷回忆</h2><p>1、以下是线性模型的是</p>
+<p>答案：y &#x3D; xw + b</p>
+<p>解答：标准线性模型形式为输入特征x乘权重w加偏置b</p>
+<p>2、填充（padding）的目的</p>
+<p>维持特征图尺寸，防止边缘像素被反复卷积后快速缩小</p>
+<p>填充在输入周围添加额外的行&#x2F;列，来控制输出形状的减少量</p>
+<p>解答：</p>
+<p>防止图片空间过小（错）卷积操作不填充时特征图尺寸会逐轮变小，填充通过在图像边缘补 0，让输出特征图尺寸和输入接近，保护边缘的图像特征；</p>
+<p>增加输出通道维度（错）通道数由卷积核数量决定，和填充无关</p>
+<p>3、梯度裁剪的目的</p>
+<p>答案：防止梯度爆炸</p>
+<p>解析：梯度裁剪会把过大的梯度限制在阈值范围内，解决深度网络梯度爆炸问题</p>
+<p>4、反向传播的主要目的是</p>
+<p>答案：计算损失函数对权重的梯度</p>
+<p>解析：反向传播利用链式求导法则，从损失函数出发逐层计算每一层权重、偏置的梯度，之后用梯度下降更新参数，这是反向传播的核心任务</p>
+<p>5、对于预测未来值，通常用哪个模型</p>
+<p>答案：马尔可夫模型</p>
+<p>解析：马尔可夫模型假设未来状态只依赖有限历史状态，适合时序未来值预测；更通用长时序会用 RNN、LSTM</p>
+<p>6、用什么计算 softmax 回归的误差</p>
+<p>A. 准确率</p>
+<p>B. 均方误差</p>
+<p>C. 交叉熵损失 &#x2F; 概率</p>
+<p>D. 相关系数</p>
+<p>答案：C</p>
+<p>解析：softmax 处理多分类任务，标准损失是<strong>交叉熵损失</strong>，衡量预测概率分布和真实标签分布的差距；均方误差不适合分类概率优化，准确率是评价指标不是误差损失</p>
+<p>7、对于文本语言模型，一般用什么度量其准确性</p>
+<p>答案：困惑度（Perplexity）</p>
+<p>解析：困惑度是语言模型专属指标，用来衡量模型预测文本序列的难易程度，困惑度越低模型效果越好；F1 分数更多用于分类、序列标注任务</p>
+<p>8、RNN 时间步t的隐状态(H_t)</p>
+<p>A. 依赖于输入的(x_t)和(H_{t-1})</p>
+<p>B. 依赖于输入的(H_{t-1})和(H_{t-1})</p>
+<p>C. 依赖于输入的所有参数</p>
+<p>答案：A</p>
+<p>解析：当前时刻隐状态由当前输入(x_t)和上一时刻隐状态(H_{t-1})共同决定</p>
+<img src="/2026/06/21/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%9C%9F%E6%9C%AB/3.png" class="" title="图片描述">
+
+<h4 id="判断："><a href="#判断：" class="headerlink" title="判断："></a>判断：</h4><p>1、广播机制不适用于不同形状的张量（错）</p>
+<p>解析：广播机制正是用来让<strong>不同形状但满足广播规则</strong>的张量完成逐元素运算的机制</p>
+<p>2、训练误差始终小于泛化误差（错）</p>
+<p>解析：训练误差不一定始终小于泛化误差：数据噪声、强正则化场景下训练误差可能大于泛化误差；只有过拟合场景训练误差远小于泛化误差，“始终” 表述不成立。</p>
+<p>3、暂退法 Dropout 会丢弃整个神经元（对）</p>
+<p>解析：Dropout 在前向传播时随机让一部分神经元<strong>整个失活（输出置 0）</strong>，是丢弃完整神经元单元，不是只屏蔽部分权重，以此防止过拟合</p>
+<h4 id="简答："><a href="#简答：" class="headerlink" title="简答："></a>简答：</h4><h5 id="1、"><a href="#1、" class="headerlink" title="1、"></a>1、</h5><h5 id="a-多层感知机（MLP）与单层感知机相比有什么优势？"><a href="#a-多层感知机（MLP）与单层感知机相比有什么优势？" class="headerlink" title="(a) 多层感知机（MLP）与单层感知机相比有什么优势？"></a>(a) 多层感知机（MLP）与单层感知机相比有什么优势？</h5><p>单层感知机只有输入 + 输出层，<strong>只能解决线性可分任务</strong>（比如二分类线性分隔数据）；</p>
+<p>多层感知机引入至少一层隐藏层 + 非线性激活函数，可以拟合任意复杂的非线性决策边界，解决异或（XOR）这类线性不可分任务，泛化能力和任务适配性大幅提升。</p>
+<p>记：</p>
+<ul>
+<li>单层感知机：输入+输出层，只能解决线性可分任务</li>
+<li>多层感知机：至少一层隐含层+非线性激活函数，解决异或（这类线性不可分）任务</li>
+</ul>
+<h5 id="b-写出-ReLU-函数的公式，与-Sigmoid-函数相比有什么优势？"><a href="#b-写出-ReLU-函数的公式，与-Sigmoid-函数相比有什么优势？" class="headerlink" title="(b) 写出 ReLU 函数的公式，与 Sigmoid 函数相比有什么优势？"></a>(b) 写出 ReLU 函数的公式，与 Sigmoid 函数相比有什么优势？</h5><img src="/2026/06/21/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%9C%9F%E6%9C%AB/4.png" class="" title="图片描述">
+
+<p>优势：</p>
+<ul>
+<li>正区间梯度恒为 1，彻底解决 Sigmoid 深层易出现的<strong>梯度消失</strong>问题；</li>
+<li>计算只需要取最大值，比 Sigmoid 的指数运算更高效；</li>
+<li>负区间输出为 0，带来稀疏激活特性，提升网络泛化能力。</li>
+</ul>
+<h5 id="c-多层感知机的-“隐藏层”-有什么作用？"><a href="#c-多层感知机的-“隐藏层”-有什么作用？" class="headerlink" title="(c) 多层感知机的 “隐藏层” 有什么作用？"></a>(c) 多层感知机的 “隐藏层” 有什么作用？</h5><ul>
+<li>通过非线性激活，把原始输入特征映射到高维非线性特征空间，让网络具备拟合复杂模式的能力；</li>
+<li>多层隐藏层可以逐层提取从低级到高级的抽象特征；</li>
+<li>提升模型容量，适配复杂度更高的学习任务。</li>
+</ul>
+<h5 id="2"><a href="#2" class="headerlink" title="2."></a>2.</h5><h5 id="a-什么是过拟合和欠拟合？"><a href="#a-什么是过拟合和欠拟合？" class="headerlink" title="(a) 什么是过拟合和欠拟合？"></a>(a) 什么是过拟合和欠拟合？</h5><ul>
+<li><strong>欠拟合</strong>：模型容量不足，连训练集的规律都没能学好，训练误差和测试（泛化）误差都很高；</li>
+<li><strong>过拟合</strong>：模型过度学习了训练集的噪声和细节，训练误差极低，但在未见过的测试集上泛化误差很高。</li>
+</ul>
+<h5 id="b-什么是训练误差和验证误差？"><a href="#b-什么是训练误差和验证误差？" class="headerlink" title="(b) 什么是训练误差和验证误差？"></a>(b) 什么是训练误差和验证误差？</h5><ul>
+<li><strong>训练误差</strong>：模型在<strong>训练数据集</strong>上计算得到的预测误差，反映模型在训练数据上的拟合效果；</li>
+<li><strong>验证误差</strong>：模型在独立的<strong>验证数据集</strong>上计算的误差，用来评估模型泛化能力、调超参数，不参与参数更新。</li>
+</ul>
+<h5 id="c-怎么通过训练误差和泛化误差判断是否过拟合？"><a href="#c-怎么通过训练误差和泛化误差判断是否过拟合？" class="headerlink" title="(c) 怎么通过训练误差和泛化误差判断是否过拟合？"></a>(c) 怎么通过训练误差和泛化误差判断是否过拟合？</h5><p>如果<strong>训练误差持续下降到很低，泛化误差前期下降后显著回升、两者差距持续拉大</strong>，就说明模型出现了过拟合；</p>
+<p>若两者都处于高位且差距不大，则是欠拟合。</p>
+<h5 id="3、LeNet"><a href="#3、LeNet" class="headerlink" title="3、LeNet"></a>3、LeNet</h5><img src="/2026/06/21/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%9C%9F%E6%9C%AB/5.png" class="" title="图片描述">
+
+<h5 id="a-图中从左到右第二个卷积层，写出输入通道数量、输出通道数量、卷积核形状。"><a href="#a-图中从左到右第二个卷积层，写出输入通道数量、输出通道数量、卷积核形状。" class="headerlink" title="(a) 图中从左到右第二个卷积层，写出输入通道数量、输出通道数量、卷积核形状。"></a>(a) 图中从左到右第二个卷积层，写出输入通道数量、输出通道数量、卷积核形状。</h5><p>第二个卷积层 C3，输入是上一层 S2（6 通道特征图），输出通道数<strong>16</strong>；LeNet 标准卷积核尺寸为<strong>5×5</strong>；输入通道数为上一层输出的 6。</p>
+<p>答案：输入通道 &#x3D; 6，输出通道 &#x3D; 16，卷积核形状 5 * 5</p>
+<h5 id="b-LeNet-使用卷积层和汇聚层（池化层）结合的方式，有什么作用？"><a href="#b-LeNet-使用卷积层和汇聚层（池化层）结合的方式，有什么作用？" class="headerlink" title="(b) LeNet 使用卷积层和汇聚层（池化层）结合的方式，有什么作用？"></a>(b) LeNet 使用卷积层和汇聚层（池化层）结合的方式，有什么作用？</h5><ul>
+<li>卷积层：局部感受野提取图像边缘、纹理这类空间特征，权值共享大幅减少参数数量；</li>
+<li>汇聚层（平均池化）：压缩特征图尺寸、降低计算量，赋予特征平移不变性，抑制过拟合；</li>
+<li>两者交替堆叠：逐层提取更抽象的特征，同时控制参数量和计算开销。</li>
+</ul>
+<h5 id="c-LeNet-末端都是全连接层，分析其作用，为什么全连接层的参数最多？"><a href="#c-LeNet-末端都是全连接层，分析其作用，为什么全连接层的参数最多？" class="headerlink" title="(c) LeNet 末端都是全连接层，分析其作用，为什么全连接层的参数最多？"></a>(c) LeNet 末端都是全连接层，分析其作用，为什么全连接层的参数最多？</h5><p>作用：把卷积提取的二维特征图展平为一维向量，完成最终的特征融合，输出适配分类任务的结果；</p>
+<p>参数多原因：全连接层<strong>前后层所有神经元两两互连</strong>，参数数量 &#x3D; 前一层神经元数 × 后一层神经元数；卷积层依靠局部感受野 + 权值共享，参数远少于全连接，所以全连接层通常是参数量大头。</p>
+<h5 id="4、AlexNet-和-LeNet-的核心技术的主要差别是什么，并分析这些差别的作用。"><a href="#4、AlexNet-和-LeNet-的核心技术的主要差别是什么，并分析这些差别的作用。" class="headerlink" title="4、AlexNet 和 LeNet 的核心技术的主要差别是什么，并分析这些差别的作用。"></a>4、AlexNet 和 LeNet 的核心技术的主要差别是什么，并分析这些差别的作用。</h5><table>
+<thead>
+<tr>
+<th>维度</th>
+<th>LeNet</th>
+<th>AlexNet</th>
+<th>差别带来的作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>激活函数</td>
+<td>Sigmoid</td>
+<td>ReLU</td>
+<td>解决深层网络梯度消失，支持更深网络训练</td>
+</tr>
+<tr>
+<td>硬件加速</td>
+<td>单 CPU</td>
+<td>双 GPU 并行拆分结构</td>
+<td>利用 GPU 大幅提升训练速度，能处理更大图像、更深网络</td>
+</tr>
+<tr>
+<td>归一化</td>
+<td>无局部响应归一化 LRN</td>
+<td>加入 LRN</td>
+<td>增强局部特征对比度，提升泛化能力</td>
+</tr>
+<tr>
+<td>正则化</td>
+<td>轻微权重衰减</td>
+<td>Dropout + 强数据增强</td>
+<td>强力抑制过拟合，适配 ImageNet 大规模数据集</td>
+</tr>
+<tr>
+<td>网络深度</td>
+<td>浅层 5 层左右</td>
+<td>8 层更深结构</td>
+<td>能提取更复杂的图像高层特征</td>
+</tr>
+<tr>
+<td>输入尺寸</td>
+<td>28×28 灰度图</td>
+<td>224×224RGB 彩色图</td>
+<td>适配大规模真实彩色图像分类任务</td>
+</tr>
+</tbody></table>
+<h4 id="计算题："><a href="#计算题：" class="headerlink" title="计算题："></a>计算题：</h4><h5 id="题目：MLP-的输入层有-256-个神经元，隐藏层有-128-个神经元，输出层有-10-个神经元，忽略偏置，求参数数量并写出计算过程。"><a href="#题目：MLP-的输入层有-256-个神经元，隐藏层有-128-个神经元，输出层有-10-个神经元，忽略偏置，求参数数量并写出计算过程。" class="headerlink" title="题目：MLP 的输入层有 256 个神经元，隐藏层有 128 个神经元，输出层有 10 个神经元，忽略偏置，求参数数量并写出计算过程。"></a>题目：MLP 的输入层有 256 个神经元，隐藏层有 128 个神经元，输出层有 10 个神经元，忽略偏置，求参数数量并写出计算过程。</h5><img src="/2026/06/21/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%9C%9F%E6%9C%AB/6.png" class="" title="图片描述">
+
+    </div>
+    
+    
+    
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2005 - 2026 yty的博客
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Leo yu yty
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+
+
+
+
+    
+</body>
+</html>
